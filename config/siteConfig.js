@@ -9,7 +9,7 @@ module.exports = {
   themeColor: '#000',
   backgroundColor: '#fff',
   nav: [
-    { name: "Home", path: '/' }
+    { name: "Categorías", path: '/categoria' }
   ],
   social: [
     { name: "Facebook", url: 'https://www.facebook.com/<user>', icon: 'Facebook' },
