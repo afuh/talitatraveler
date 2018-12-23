@@ -141,6 +141,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1.4rem;
   }
 
+  img {
+    width: 100%;
+  }
+
   button, input {
     &:focus {
       outline: 0;

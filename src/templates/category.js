@@ -1,16 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 
+import { Section, PostCard } from '../utils/UI'
 import Layout from '../components/layout'
 
-const Category = ({ data: { posts } }) => (
+const Category = ({ data: { posts: { edges } } }) => (
   <Layout>
-    {posts.edges.map(({ node }) => (
-      <div key={node.slug}>
-        <Link to={node.slug}>{node.title}</Link>
-      </div>
-    ))}
+    <Section>
+      {edges.map(({ node }) => (
+        <PostCard
+          key={node.id}
+          node={node}
+        />
+      ))}
+    </Section>
   </Layout>
 )
 
@@ -30,8 +34,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          slug
-          title
+          ...PostCard
         }
       }
     }

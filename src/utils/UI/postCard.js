@@ -33,8 +33,7 @@ export const PostCard = ({ node }) => (
       <div className='content'>
         <h1>{node.title}</h1>
         <GatsbyImg
-          style={{ width: '100%', height: 200 }}
-          imgStyle={{ objectFit: "cover", objectPosition: 'top' }}
+          style={{ height: 200 }}
           fluid={node.headerImage.fluid}
           alt={node.headerImage.description}
           title={node.headerImage.description}

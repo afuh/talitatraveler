@@ -1,34 +1,54 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from "gatsby"
+import GatsbyImg from 'gatsby-image'
 
 import Layout from '../components/layout'
 import SEO from '../utils/seo'
 import { Section } from '../utils/UI'
 
-const Page = ({ data: { page }, location }) => (
+const Post = ({ data: { post }, location }) => (
   <Layout>
     <SEO
-      title={page.name}
-      description={page.content.md.excerpt}
+      title={post.title}
+      image={post.headerImage.file.url}
+      description={post.content.md.excerpt}
       pathname={location.pathname}
     />
     <Section>
-      <div dangerouslySetInnerHTML={{ __html: page.content.md.html }} />
+      <h1>{post.title}</h1>
+      <h2>{post.subTitle}</h2>
+      <GatsbyImg
+        fluid={post.headerImage.fluid}
+        alt={post.headerImage.description}
+        title={post.headerImage.description}
+      />
+      <div dangerouslySetInnerHTML={{ __html: post.content.md.html }} />
     </Section>
   </Layout>
 )
 
-Page.propTypes = {
+Post.propTypes = {
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired
 }
 
-export default Page
+export default Post
 
 export const query = graphql`
   query POST_TEMPLATE_QUERY ($slug: String!) {
-    page: contentfulPost(slug: { eq: $slug } ) {
+    post: contentfulPost(slug: { eq: $slug } ) {
+      title
+      subTitle
+      headerImage {
+        description
+        fluid(maxWidth: 2000) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
+        }
+        file {
+          url
+        }
+      }
       content {
         md: childMarkdownRemark {
           excerpt

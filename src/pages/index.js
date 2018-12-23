@@ -19,26 +19,10 @@ export default HomePage
 
 export const query = graphql`
   query HOME_PAGE_QUERY {
-    posts: allContentfulPost(sort: {fields: date, order: DESC  }) {
+    posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
       edges {
         node {
-          id
-          title
-          slug
-          createdAt(fromNow: true, locale: "es")
-          date(fromNow: true, locale: "es")
-          content {
-            md: childMarkdownRemark {
-              excerpt
-              timeToRead
-            }
-          }
-          headerImage {
-            description
-            fluid(maxWidth: 1000) {
-              ...GatsbyContentfulFluid
-            }
-          }
+          ...PostCard
         }
       }
     }
