@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`
+})
+
 const siteConfig = require('./config/siteConfig')
 
 module.exports = {
@@ -12,6 +16,13 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-sitemap',
     'gatsby-plugin-robots-txt',
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: process.env.SPACE_ID,
+        accessToken: process.env.TOKEN
+      }
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
