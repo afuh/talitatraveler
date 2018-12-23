@@ -1,11 +1,21 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-import {
-  Landing
-} from './sections'
+import { Section, PostCard } from '../../utils/UI'
 
-const Home = ({ data }) => (
-  <div>hola</div>
+const Home = ({ data: { posts: { edges } } }) => (
+  <Section>
+    {edges.map(({ node }) => (
+      <PostCard
+        key={node.id}
+        node={node}
+      />
+    ))}
+  </Section>
 )
+
+Home.propTypes = {
+  data: PropTypes.object.isRequired
+}
 
 export default Home
