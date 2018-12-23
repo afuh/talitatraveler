@@ -22,14 +22,18 @@ const SEO = ({ title, description, image, pathname }) => (
       const seo = {
         title: title || defaultTitle,
         description: description || defaultDescription,
-        image: image ? image :`${siteUrl}${defaultImage}`,
         url: `${siteUrl}${pathname || '/'}`,
-        favicon: `${siteUrl}${favicon}`
+        favicon: `${siteUrl}${favicon}`,
+        image: {
+          url: image ? image.url : `${siteUrl}${defaultImage}`,
+          contentType: image ? image.contentType : "image/jpeg",
+          size: image ? image.size : { width: "1440", height: "720" }
+        }
       }
 
       return (
         <Helmet
-          htmlAttributes={{ lang: "en" }}
+          htmlAttributes={{ lang: "es" }}
           titleTemplate={titleTemplate}
           title={seo.title}
         >
@@ -37,7 +41,7 @@ const SEO = ({ title, description, image, pathname }) => (
           <link rel="icon" href={seo.favicon}/>
 
           <meta name="description" content={seo.description} />
-          <meta name="image" content={seo.image} />
+          <meta name="image" content={seo.image.url} />
 
           <meta property="og:locale" content='en'/>
           <meta property="og:type" content="website" />
@@ -45,10 +49,10 @@ const SEO = ({ title, description, image, pathname }) => (
           <meta property="og:title" content={seo.title} />
           <meta property="og:url" content={seo.url} />
           <meta property="og:description" content={seo.description} />
-          <meta property="og:image" content={seo.image} />
-          <meta property="og:image:type" content="image/jpeg" />
-          <meta property="og:image:width" content="1440" />
-          <meta property="og:image:height" content="720" />
+          <meta property="og:image" content={seo.image.url} />
+          <meta property="og:image:type" content={seo.image.contentType} />
+          <meta property="og:image:width" content={seo.image.size.width} />
+          <meta property="og:image:height" content={seo.image.size.height} />
 
           {userTwitter && <meta name="twitter:creator" content={userTwitter} />}
           {userTwitter && <meta name="twitter:site" content={userTwitter} />}
@@ -56,7 +60,7 @@ const SEO = ({ title, description, image, pathname }) => (
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:url" content={seo.url} />
           <meta name="twitter:description" content={seo.description} />
-          <meta name="twitter:image" content={seo.image} />
+          <meta name="twitter:image" content={seo.image.url} />
         </Helmet>
       ) }}
   />
@@ -65,7 +69,7 @@ const SEO = ({ title, description, image, pathname }) => (
 SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.string,
+  image: PropTypes.object,
   pathname: PropTypes.string
 }
 

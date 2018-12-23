@@ -11,9 +11,13 @@ const Post = ({ data: { post }, location }) => (
   <Layout>
     <SEO
       title={post.title}
-      image={post.headerImage.file.url}
       description={post.content.md.excerpt}
       pathname={location.pathname}
+      image={{
+        url: post.headerImage.file.url,
+        contentType: post.headerImage.file.contentType,
+        size: post.headerImage.file.details.image
+      }}
     />
     <Section>
       <h1>{post.title}</h1>
@@ -47,6 +51,13 @@ export const query = graphql`
         }
         file {
           url
+          contentType
+          details {
+            image {
+              width
+              height
+            }
+          }
         }
       }
       content {
