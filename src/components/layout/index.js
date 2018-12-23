@@ -26,7 +26,7 @@ const Layout = ({ children }) => (
             <Main>
               {children}
             </Main>
-            <Footer social={meta.social}/>
+            <Footer social={[]}/>
           </>
         </ThemeProvider>
       </>
@@ -56,10 +56,6 @@ const query = graphql`
         nav {
           name
           path
-        }
-        social {
-          url
-          icon
         }
       }
     }
