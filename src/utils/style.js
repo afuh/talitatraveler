@@ -5,13 +5,19 @@ export const theme = {
   white: "#F9F9FA",
   gray: "#9F9FA3",
   deeporange: "#FF5722",
-  shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)'
+  shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
+  position: {
+    baseMargin: 4
+  }
 }
 
 const screenBreak = {
   mobile: 992,
   phone: 650,
-  small: 480
+  small: 480,
+  medium: 1024,
+  xlarge: 1920,
+  xxlarge: 2560
 }
 
 export const media = {
@@ -32,6 +38,22 @@ export const media = {
   `,
   custom: (n, inner) => css`
     @media (max-width: ${n / 16}em) {
+      ${inner}
+    }
+  `,
+
+  medium: inner => css`
+    @media (min-width: ${screenBreak.medium / 16}em) {
+      ${inner}
+    }
+  `,
+  xlarge: inner => css`
+    @media (min-width: ${screenBreak.xlarge / 16}em) {
+      ${inner}
+    }
+  `,
+  xxlarge: inner => css`
+    @media (min-width: ${screenBreak.xxlarge / 16}em) {
       ${inner}
     }
   `
