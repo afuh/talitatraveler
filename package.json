@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter",
-  "description": "Gatsby starter",
+  "name": "talitatraveler",
+  "description": "Talita traveler",
   "version": "1.0.0",
   "engines": {
     "node": ">= 8.5.0"
