@@ -17,7 +17,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
               edges {
                 node {
                   slug
-                  tags
+                  categories
                 }
               }
             }
@@ -32,7 +32,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
         res.data.posts.edges.forEach(({
           node: {
             slug,
-            tags
+            categories
           }
 
         }) => {
@@ -46,7 +46,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
           })
 
           // group all Categories
-          tags.forEach(category => {
+          categories.forEach(category => {
             category = category.trim()
 
             const slug = category

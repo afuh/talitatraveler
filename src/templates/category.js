@@ -30,7 +30,7 @@ export default Category
 export const pageQuery = graphql`
   query CATEGORY_TEMPLATE_QUER($category: [String!]) {
     posts: allContentfulPost(
-      filter: { tags: { in: $category } }
+      filter: { categories: { in: $category } }
     ) {
       edges {
         node {
