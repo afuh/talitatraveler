@@ -14,7 +14,6 @@ const SEO = ({ title, description, image, pathname }) => (
           defaultImage,
           siteUrl,
           titleTemplate,
-          favicon,
           userTwitter
         }
       }
@@ -23,7 +22,6 @@ const SEO = ({ title, description, image, pathname }) => (
         title: title || defaultTitle,
         description: description || defaultDescription,
         url: `${siteUrl}${pathname || '/'}`,
-        favicon: `${siteUrl}${favicon}`,
         image: {
           url: image ? image.url : `${siteUrl}${defaultImage}`,
           contentType: image ? image.contentType : "image/jpeg",
@@ -37,9 +35,6 @@ const SEO = ({ title, description, image, pathname }) => (
           titleTemplate={titleTemplate}
           title={seo.title}
         >
-          <link rel="shortcut icon" href={seo.favicon}/>
-          <link rel="icon" href={seo.favicon}/>
-
           <meta name="description" content={seo.description} />
           <meta name="image" content={seo.image.url} />
 
@@ -91,7 +86,6 @@ const query = graphql`
         siteUrl
         defaultImage: image
         titleTemplate
-        favicon
         userTwitter
       }
     }
