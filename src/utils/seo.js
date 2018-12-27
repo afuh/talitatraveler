@@ -7,14 +7,16 @@ const SEO = ({ title, description, image, pathname }) => (
   <StaticQuery
     query={query}
     render={({
+      twitter: {
+        url: twitterUrl
+      },
       site: {
         meta: {
           defaultTitle,
           defaultDescription,
           defaultImage,
           siteUrl,
-          titleTemplate,
-          userTwitter
+          titleTemplate
         }
       }
     }) => {
@@ -28,6 +30,9 @@ const SEO = ({ title, description, image, pathname }) => (
           size: image ? image.size : { width: "1440", height: "720" }
         }
       }
+
+      twitterUrl = twitterUrl.split("/")
+      const twitterUser = "@" + twitterUrl[twitterUrl.length - 1]
 
       return (
         <Helmet
@@ -49,8 +54,8 @@ const SEO = ({ title, description, image, pathname }) => (
           <meta property="og:image:width" content={seo.image.size.width} />
           <meta property="og:image:height" content={seo.image.size.height} />
 
-          {userTwitter && <meta name="twitter:creator" content={userTwitter} />}
-          {userTwitter && <meta name="twitter:site" content={userTwitter} />}
+          <meta name="twitter:creator" content={twitterUser} />
+          <meta name="twitter:site" content={twitterUser} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:url" content={seo.url} />
@@ -86,8 +91,10 @@ const query = graphql`
         siteUrl
         defaultImage: image
         titleTemplate
-        userTwitter
       }
+    }
+    twitter: contentfulExternalLink(name: {regex: "/twitter/i"}) {
+      url
     }
   }
 `
