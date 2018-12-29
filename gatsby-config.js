@@ -2,6 +2,8 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 })
 
+const stopWords = require('stopwords-es')
+
 const siteConfig = require('./config/siteConfig')
 
 const algolia = `{
@@ -9,7 +11,6 @@ const algolia = `{
     edges {
       node {
         objectID: id
-				slug
         title
         categories
         content {
@@ -127,7 +128,8 @@ module.exports = {
         feeds: [
           {
             query: feed,
-            title: "Talita traveler RSS feed",
+            title: siteConfig.title,
+            description: siteConfig.description,
             output: '/rss.xml',
             setup: () => ({
               title: siteConfig.title,
@@ -166,10 +168,18 @@ module.exports = {
         chunkSize: 10000,
         queries: [ {
           query: algolia,
-          transformer: ({ data }) => data.allContentfulPost.edges.map(({ node }) => ({
-            ...node,
-            content: node.content.md.body
-          }))
+          transformer: ({ data }) => data.allContentfulPost.edges.map(({ node }) => {
+            const content = node.content.md.body
+              .replace(/\s\s+/g, " ")
+              .split(" ")
+              .filter(word => stopWords.indexOf(word) < 0)
+              .join(" ")
+
+            return {
+              ...node,
+              content
+            }
+          })
         } ]
       }
     },
