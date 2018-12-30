@@ -3,10 +3,17 @@ import PropTypes from 'prop-types'
 import { graphql } from "gatsby"
 import GatsbyImg from 'gatsby-image'
 import { DiscussionEmbed } from 'disqus-react'
+import styled, { css } from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../utils/seo'
 import { Section, SocialLinks } from '../utils/UI'
+
+const Wrapper = styled.div`
+  ${({ poesia }) => poesia && css`
+    white-space: pre;
+  `};
+`
 
 const Post = ({ data: { post } }) => {
   const disqusProps = {
@@ -38,8 +45,11 @@ const Post = ({ data: { post } }) => {
           alt={post.headerImage.description}
           title={post.headerImage.description}
         />
-        <div dangerouslySetInnerHTML={{ __html: post.content.md.html }} />
-        <DiscussionEmbed {...disqusProps}/>
+        <Wrapper
+          poesia={post.categories.filter(i => i.match(/poes(í|i)a/i)).length}
+          dangerouslySetInnerHTML={{ __html: post.content.md.html }}
+        />
+        {process.env.NODE_ENV === 'production' && <DiscussionEmbed {...disqusProps}/>}
       </Section>
     </Layout>
   )
