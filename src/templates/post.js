@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 
 const Post = ({ data: { post } }) => {
   const disqusProps = {
-    shortname: process.env.DISQUSS,
+    shortname: process.env.GATSBY_DISQUSS,
     config: {
       identifier : post.id,
       title : post.title
