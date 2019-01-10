@@ -7,7 +7,7 @@ import styled, { css } from 'styled-components'
 
 import Layout from '../components/layout'
 import SEO from '../utils/seo'
-import { Section, SocialLinks } from '../utils/UI'
+import { Section, SocialLinks, PostCard } from '../utils/UI'
 
 const Wrapper = styled.div`
   ${({ poesia }) => poesia && css`
@@ -49,7 +49,18 @@ const Post = ({ data: { post } }) => {
           poesia={post.categories.filter(i => i.match(/poes(í|i)a/i)).length}
           dangerouslySetInnerHTML={{ __html: post.content.md.html }}
         />
-        {process.env.NODE_ENV === 'production' && <DiscussionEmbed {...disqusProps}/>}
+        <div>
+          <h2>Post relacionados</h2>
+          {post.suggestions &&
+            post.suggestions.map(post => (
+              <PostCard
+                key={post.slug}
+                node={post}
+              />
+            ))
+          }
+        </div>
+        {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
       </Section>
     </Layout>
   )
@@ -90,6 +101,9 @@ export const query = graphql`
           excerpt
           html
         }
+      }
+      suggestions {
+        ...PostCard
       }
     }
   }
