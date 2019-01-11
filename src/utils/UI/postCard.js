@@ -39,7 +39,7 @@ export const PostCard = ({ node }) => (
           title={node.headerImage.description}
         />
         <div>
-          <p>{node.date} - {timeToRead(node.content.md.timeToRead)}</p>
+          <p>{node.date || node.createdAt} - {timeToRead(node.content.md.timeToRead)}</p>
           <p>{node.content.md.excerpt}</p>
         </div>
       </div>
