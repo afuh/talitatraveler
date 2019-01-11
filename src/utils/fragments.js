@@ -5,8 +5,8 @@ export const PostCard = graphql`
     id
     title
     slug
-    createdAt(fromNow: true, locale: "es")
-    date(fromNow: true, locale: "es")
+    createdAt(formatString: "MMMM, YYYY", locale: "es")
+    date(formatString: "MMMM, YYYY", locale: "es")
     content {
       md: childMarkdownRemark {
         excerpt

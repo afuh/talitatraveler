@@ -7,7 +7,7 @@ export const theme = {
   mainColor: "#FF5722",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
   position: {
-    baseMargin: 4
+    baseMargin: 10
   }
 }
 
@@ -126,19 +126,20 @@ export const GlobalStyle = createGlobalStyle`
   h3 { ${fontSize(1.9)}; }
 
   a {
-    color: ${theme.black};
+    color: ${theme.mainColor};
     text-decoration: none;
 
     &:hover,
     &:active,
     &:focus {
       color: ${theme.mainColor};
-      text-decoration: none;
+      text-decoration: underline;
     }
   }
 
   p {
     font-size: 1.4rem;
+    margin: 0;
   }
 
   img {

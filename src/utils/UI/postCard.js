@@ -25,8 +25,19 @@ const Article = styled.article`
   }
 `
 
+const LinkWrapper = styled(Link)`
+  color: ${({ theme }) => theme.black};
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: ${({ theme }) => theme.mainColor};
+    text-decoration: none;
+  }
+`
+
 export const PostCard = ({ node }) => (
-  <Link
+  <LinkWrapper
     to={node.slug}
   >
     <Article>
@@ -44,7 +55,7 @@ export const PostCard = ({ node }) => (
         </div>
       </div>
     </Article>
-  </Link>
+  </LinkWrapper>
 )
 
 PostCard.propTypes = {
