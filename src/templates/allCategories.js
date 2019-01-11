@@ -9,7 +9,7 @@ const AllCagtegories = ({ pageContext }) => (
     <ul>
       {pageContext.allCategories.map(({ category, slug }) => (
         <li key={slug}>
-          <Link to={`/categoria/${slug}`}>{category}</Link>
+          <Link to={`/categorias/${slug}`}>{category}</Link>
         </li>
       ))}
     </ul>

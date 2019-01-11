@@ -34,7 +34,6 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
             slug,
             categories
           }
-
         }) => {
           // Create post page
           createPage({
@@ -59,10 +58,9 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
               allCategories.push({ category, slug })
             }
 
-
             // Create category page
             createPage({
-              path: `/categoria/${slug}`,
+              path: `/categorias/${slug}`,
               component: template.category,
               context: {
                 category
@@ -71,7 +69,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
 
             // create a category index
             createPage({
-              path: '/categoria',
+              path: '/categorias',
               component: template.allCategories,
               context: {
                 allCategories

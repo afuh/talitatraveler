@@ -9,6 +9,6 @@ module.exports = {
   backgroundColor: '#fff',
   nav: [
     { name: 'Home', path: '/' },
-    { name: "Categorías", path: '/categoria' }
+    { name: "Categorías", path: '/categorias' }
   ]
 }
