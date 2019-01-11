@@ -3,22 +3,28 @@ import PropTypes from 'prop-types'
 
 import { PostCard } from '../../utils/UI'
 
-const RelatedPosts = ({ post }) => (
-  <div>
-    <h2>Post relacionados</h2>
-    {post.suggestions &&
-        post.suggestions.map(post => (
+const RelatedPosts = ({ post, related }) => {
+  const suggestions = [...post.suggestions, ...related].filter(post => post && post)
+
+
+  return (
+    <div>
+      <h2>Post relacionados</h2>
+      {
+        suggestions.map((post, i) => i < 3 && (
           <PostCard
             key={post.slug}
             node={post}
           />
         ))
-    }
-  </div>
-)
+      }
+    </div>
+  )
+}
 
 RelatedPosts.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  related: PropTypes.array.isRequired
 }
 
 export default RelatedPosts

@@ -6,7 +6,7 @@ import Layout from '../components/layout'
 import Post from '../components/post'
 import SEO from '../utils/seo'
 
-const PostTemplate = ({ data: { post } }) => (
+const PostTemplate = ({ data: { post, suggested } }) => (
   <Layout>
     <SEO
       title={post.title}
@@ -19,20 +19,32 @@ const PostTemplate = ({ data: { post } }) => (
       }}
     />
     <Post
+      relatedPosts={suggested.edges.map(({ node }) => node)}
       post={post}
     />
   </Layout>
 )
 
+
 PostTemplate.propTypes = {
-  data: PropTypes.object.isRequired,
-  pageContext: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired
 }
 
 export default PostTemplate
 
 export const query = graphql`
-  query POST_TEMPLATE_QUERY ($slug: String!) {
+  query POST_TEMPLATE_QUERY ($slug: String!, $categories: [String!]) {
+    suggested: allContentfulPost(
+      filter: { categories: { in: $categories }, slug: { ne: $slug }}
+      sort: { fields: createdAt, order: DESC }
+      limit: 3
+    ) {
+      edges {
+        node {
+          ...PostCard
+        }
+      }
+    }
     post: contentfulPost(slug: { eq: $slug } ) {
       id
       title

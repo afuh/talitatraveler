@@ -17,7 +17,8 @@ const PostWrapper = styled.div`
   }
 `
 
-const Post = ({ post }) => {
+const Post = ({ post, relatedPosts }) => {
+
   const disqusProps = {
     shortname: process.env.GATSBY_DISQUSS,
     config: {
@@ -28,6 +29,13 @@ const Post = ({ post }) => {
 
   return (
     <div>
+      <ul>
+        {
+          post.categories.map((cat, i) => (
+            <li key={i}>{cat}</li>
+          ))
+        }
+      </ul>
       <Header post={post} />
       <Section>
         {post.subTitle && <h2>{post.subTitle}</h2>}
@@ -35,7 +43,11 @@ const Post = ({ post }) => {
           dangerouslySetInnerHTML={{ __html: post.content.md.html }}
         />
         <SocialLinks post={post} />
-        <RelatedPosts post={post} />
+        <RelatedPosts
+          related={relatedPosts}
+          post={post}
+        />
+
         {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
       </Section>
     </div>
@@ -43,7 +55,8 @@ const Post = ({ post }) => {
 }
 
 Post.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
+  relatedPosts: PropTypes.array.isRequired
 }
 
 export default Post

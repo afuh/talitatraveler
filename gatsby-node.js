@@ -40,7 +40,8 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
             path: `/${slug}`,
             component: template.post,
             context: {
-              slug
+              slug,
+              categories
             }
           })
 
