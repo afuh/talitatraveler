@@ -43,11 +43,11 @@ const Input = styled.input`
   width: 100%;
 
   &:focus {
-    border-bottom: 1px solid ${({ theme }) => theme.deeporange};
+    border-bottom: 1px solid ${({ theme }) => theme.mainColor};
     box-shadow: inset 0 2px 20px rgba(0,0,0,0.17);
 
     &::-webkit-input-placeholder {
-      color: ${({ theme }) => theme.deeporange};
+      color: ${({ theme }) => theme.mainColor};
       transition: all .3s ease;
     }
   }
@@ -62,7 +62,7 @@ const Button = styled.button`
   flex-basis: 30%;
 
   &:hover {
-    color: ${({ theme }) => theme.deeporange};
+    color: ${({ theme }) => theme.mainColor};
   }
 
   transition: all .3s ease;

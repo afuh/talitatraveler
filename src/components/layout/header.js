@@ -15,7 +15,7 @@ const Header = ({ nav }) => (
   <Content>
     {nav.map(item => (
       <Link
-        activeStyle={{ color: theme.deeporange }}
+        activeStyle={{ color: theme.mainColor }}
         style={{ marginRight: 10 }}
         key={item.name}
         to={item.path}
