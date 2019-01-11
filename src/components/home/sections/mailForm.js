@@ -173,6 +173,8 @@ class MailForm extends Component {
         <fieldset
           disabled={loading}
         >
+          <h2>Suscribite a Talita Traveler</h2>
+          <p>Recibí los últimos posts directamente en tu casilla de E-mail</p>
           <Form
             onSubmit={this.handleSubmit}
             blur={loading}
