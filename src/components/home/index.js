@@ -1,18 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { MailForm } from './sections'
-import { Section, PostCard } from '../../utils/UI'
+import { MailForm, LatestsPosts } from './sections'
+import { Section } from '../../utils/UI'
 
 const Home = ({ data: { posts: { edges } } }) => (
   <Section>
+    <LatestsPosts edges={edges} />
     <MailForm />
-    {edges.map(({ node }) => (
-      <PostCard
-        key={node.id}
-        node={node}
-      />
-    ))}
   </Section>
 )
 

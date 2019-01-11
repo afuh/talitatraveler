@@ -1,7 +1,7 @@
-import Landing from './landing'
 import MailForm from './mailForm'
+import LatestsPosts from './latestPosts'
 
 export {
-  Landing,
-  MailForm
+  MailForm,
+  LatestsPosts
 }
