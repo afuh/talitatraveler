@@ -2,17 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from "gatsby"
 
+import SEO from '../utils/seo'
 import Layout from '../components/layout'
 import Category from '../components/category'
 
-const CategoryTemplate = ({ data: { posts: { edges, totalCount } } }) => (
+const CategoryTemplate = ({ pageContext, data: { posts: { edges, totalCount } } }) => (
   <Layout>
+    <SEO
+      title={pageContext.category}
+    />
     <Category edges={edges} count={totalCount}/>
   </Layout>
 )
 
 CategoryTemplate.propTypes = {
-  location: PropTypes.object.isRequired,
+  pageContext: PropTypes.shape({
+    category: PropTypes.string
+  }).isRequired,
   data: PropTypes.shape({
     contentfulProjects: PropTypes.object
   }).isRequired
