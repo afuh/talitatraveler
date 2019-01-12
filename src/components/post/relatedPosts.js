@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { PostCard } from '../../utils/UI'
 
 const RelatedPosts = ({ post, related }) => {
-  const staticRelated= post.suggestions || []
+  const staticRelated = post.suggestions || []
   const suggestions = [...staticRelated, ...related].filter(post => post && post)
 
   return (
