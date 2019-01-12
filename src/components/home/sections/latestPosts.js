@@ -1,10 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled, { css } from 'styled-components'
 
 import { PostCard, MoreButton } from '../../../utils/UI'
 import { withPostCounter } from '../../../utils/context/postsToShow'
 
-const LatestsPosts = ({ edges, postsToShow, onShowMorePosts }) => (
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+
+  ${p => p.hide && css`
+    display: none;
+  `};
+`
+
+const LatestsPosts = ({ edges, totalCount, postsToShow, onShowMorePosts }) => (
   <div>
     {edges.map((post, i) => i < postsToShow && (
       <PostCard
@@ -12,18 +22,21 @@ const LatestsPosts = ({ edges, postsToShow, onShowMorePosts }) => (
         node={post.node}
       />
     ))}
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <ButtonWrapper
+      hide={postsToShow > totalCount}
+    >
       <MoreButton
         onClick={onShowMorePosts}
       >
         Ver más
       </MoreButton>
-    </div>
+    </ButtonWrapper>
   </div>
 )
 
 LatestsPosts.propTypes = {
   edges: PropTypes.array.isRequired,
+  totalCount: PropTypes.number.isRequired,
   postsToShow: PropTypes.number.isRequired,
   onShowMorePosts: PropTypes.func.isRequired
 }

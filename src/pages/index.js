@@ -7,7 +7,7 @@ import Home from '../components/home'
 
 const HomePage = ({ data }) => (
   <Layout>
-    <Home data={data}/>
+    <Home data={data} />
   </Layout>
 )
 
@@ -20,6 +20,7 @@ export default HomePage
 export const query = graphql`
   query HOME_PAGE_QUERY {
     posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
+      totalCount
       edges {
         node {
           ...PostCard
