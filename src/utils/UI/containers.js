@@ -5,6 +5,10 @@ import { media } from '../style'
 export const Section = styled.section`
   margin: 0 ${({ theme }) => theme.position.baseMargin}%;
 
+  ${media.phone(css`
+    margin: 0 ${({ theme }) => theme.position.baseMargin - 2}%;
+  `)}
+
   ${media.medium(css`
     margin: 0 ${({ theme }) => theme.position.baseMargin*2}%;
   `)}

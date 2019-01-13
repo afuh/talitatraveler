@@ -138,7 +138,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   p {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.5;
     margin: 0;
   }
 

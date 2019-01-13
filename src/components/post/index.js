@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { DiscussionEmbed } from 'disqus-react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { Section, SocialLinks } from '../../utils/UI'
+import { media } from '../../utils/style'
 
 import Header from './header'
 import RelatedPosts from './relatedPosts'
@@ -13,9 +14,14 @@ const PostWrapper = styled.div`
   white-space: pre-line;
 
   p {
-    font-size: 1.6rem;
-    line-height: 1.5;
+    text-align: justify;
+
+    ${media.phone(css`
+      text-align: left;
+      font-size: 1.9rem;
+    `)}
   }
+
 `
 
 const Post = ({ post, relatedPosts }) => {
