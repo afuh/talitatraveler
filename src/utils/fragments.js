@@ -16,7 +16,7 @@ export const PostCard = graphql`
     headerImage {
       description
       fluid(maxWidth: 800) {
-        ...GatsbyContentfulFluid_withWebp
+        ...GatsbyContentfulFluid_withWebp_noBase64
       }
     }
   }

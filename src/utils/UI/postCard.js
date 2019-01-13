@@ -43,6 +43,7 @@ const Article = styled.article`
 
 const LinkWrapper = styled(Link)`
   flex: 1;
+  flex-basis: 33%;
   color: ${({ theme }) => theme.black};
 
   &:hover,

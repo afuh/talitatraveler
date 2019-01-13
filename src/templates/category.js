@@ -6,12 +6,15 @@ import SEO from '../utils/seo'
 import Layout from '../components/layout'
 import Category from '../components/category'
 
-const CategoryTemplate = ({ pageContext, data: { posts: { edges, totalCount } } }) => (
+const CategoryTemplate = ({ pageContext, data: { posts: { edges } } }) => (
   <Layout>
     <SEO
       title={pageContext.category}
     />
-    <Category edges={edges} count={totalCount}/>
+    <Category
+      category={pageContext.category}
+      edges={edges}
+    />
   </Layout>
 )
 
