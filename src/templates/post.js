@@ -41,7 +41,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          ...PostCard
+          ...PostCard_Big
         }
       }
     }
@@ -80,7 +80,7 @@ export const query = graphql`
       createdAt(formatString: "MMMM, YYYY", locale: "es")
       date(formatString: "MMMM, YYYY", locale: "es")
       suggestions {
-        ...PostCard
+        ...PostCard_Small
       }
     }
   }

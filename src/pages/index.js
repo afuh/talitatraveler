@@ -27,7 +27,7 @@ export const query = graphql`
       totalCount
       edges {
         node {
-          ...PostCard
+          ...PostCard_Big
         }
       }
     }

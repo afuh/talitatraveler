@@ -1,7 +1,7 @@
 import { graphql } from 'gatsby'
 
 export const PostCard = graphql`
-  fragment PostCard on ContentfulPost {
+  fragment PostCard_Big on ContentfulPost {
     id
     title
     slug
@@ -15,8 +15,20 @@ export const PostCard = graphql`
     }
     headerImage {
       description
-      fluid(maxWidth: 1024) {
-        ...GatsbyContentfulFluid_withWebp_noBase64
+      fluid(maxWidth: 800) {
+        ...GatsbyContentfulFluid_withWebp
+      }
+    }
+  }
+
+  fragment PostCard_Small on ContentfulPost {
+    id
+    title
+    slug
+    headerImage {
+      description
+      fluid(maxWidth: 800) {
+        ...GatsbyContentfulFluid_withWebp
       }
     }
   }
