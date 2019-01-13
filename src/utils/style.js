@@ -78,11 +78,11 @@ export const fontSize = size => css`
   font-size: ${size}rem;
 
   ${media.mobile(css`
-    font-size: ${size - (size/5)}rem;
+    font-size: ${size - (size/12)}rem;
   `)}
 
   ${media.phone(css`
-    font-size: ${size - (size/4)}rem;
+    font-size: ${size - (size/10)}rem;
   `)}
 `
 
