@@ -4,6 +4,7 @@ export const PostCard = graphql`
   fragment PostCard_Big on ContentfulPost {
     id
     title
+    subTitle
     slug
     createdAt(formatString: "MMMM, YYYY", locale: "es")
     date(formatString: "MMMM, YYYY", locale: "es")
