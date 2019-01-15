@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { InstantSearch, SearchBox, Hits, Highlight, Menu } from 'react-instantsearch-dom'
+import { Link } from 'gatsby'
+import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom'
 
 import { Section } from '../utils/UI'
 import Layout from '../components/layout'
 
 const Hit = ({ hit }) => (
-  <Highlight attribute={'title'} hit={hit} tagName="mark" />
+  <Link to={hit.slug}>{hit.title}</Link>
 )
 
 Hit.propTypes = {
@@ -22,7 +23,6 @@ const Search = () => (
     <SearchBox
       translations={{ placeholder: 'Buscar...' }}
     />
-    <Menu attribute='categories'/>
     <Hits hitComponent={Hit}/>
   </InstantSearch>
 )

@@ -12,6 +12,7 @@ const algolia = `{
       node {
         objectID: id
         title
+        slug
         categories
         content {
           md: childMarkdownRemark {
