@@ -4,7 +4,7 @@ const { Provider, Consumer } = createContext()
 
 export class PostsToShowProvider extends Component {
   state = {
-    postsToShow: 4
+    postsToShow: 6
   }
 
   handlePostsToShow = () => {

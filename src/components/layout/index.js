@@ -10,8 +10,8 @@ import SEO from '../../utils/seo'
 import { theme, GlobalStyle } from '../../utils/style'
 
 const Main = styled.main`
-  max-width: 1200px;
-  margin: 50px auto;
+  max-width: 84%;
+  margin: 0 auto;
 `
 const Layout = ({ children }) => (
   <StaticQuery
