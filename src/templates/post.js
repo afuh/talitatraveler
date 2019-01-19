@@ -77,8 +77,7 @@ export const query = graphql`
         name
         slug
       }
-      createdAt(formatString: "MMMM, YYYY", locale: "es")
-      date(formatString: "MMMM, YYYY", locale: "es")
+      ...Dates
       suggestions {
         ...PostCard_Small
       }

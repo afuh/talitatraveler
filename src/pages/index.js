@@ -8,9 +8,7 @@ import Home from '../components/home'
 
 const HomePage = ({ data }) => (
   <Layout>
-    <SEO
-      title='Inicio'
-    />
+    <SEO />
     <Home data={data} />
   </Layout>
 )

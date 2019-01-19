@@ -28,7 +28,7 @@ class SearchForm extends Component {
   handleFilter(word, posts){
     const findWord = (word, post) => {
       const searchIn = [post.title, post.subTitle, post.content.md.text]
-      return searchIn.some(str => RegExp('\\b'+ word +'\\b', "i").test(str))
+      return searchIn.some(str => RegExp('\\b' + word, "i").test(str))
     }
 
     return posts.reduce((acc, post) => {

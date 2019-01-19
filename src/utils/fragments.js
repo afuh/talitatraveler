@@ -1,13 +1,19 @@
 import { graphql } from 'gatsby'
 
+export const Dates = graphql`
+  fragment Dates on ContentfulPost {
+    createdAt(formatString: "DD/MM/YYYY", locale: "es")
+    date(formatString: "DD/MM/YYYY", locale: "es")
+  }
+`
+
 export const PostCard = graphql`
   fragment PostCard_Big on ContentfulPost {
     id
     title
     subTitle
     slug
-    createdAt(formatString: "MMMM, YYYY", locale: "es")
-    date(formatString: "MMMM, YYYY", locale: "es")
+    ...Dates
     content {
       md: childMarkdownRemark {
         excerpt

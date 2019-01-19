@@ -49,7 +49,7 @@ const AboutSection = ({ author }) => (
     <Description dangerouslySetInnerHTML={{ __html: author.about.md.html }}/><br/>
     <p>Podés mandarme un <a href={`mailto:${author.contacto.mail}`}>mail</a></p>
     <SocialIcons>
-      {author.contacto.social.map(icon => (
+      {author.contact.social.map(icon => (
         <Icon
           key={icon.name}
           href={icon.url}

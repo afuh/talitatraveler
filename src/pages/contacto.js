@@ -30,7 +30,7 @@ export const query = graphql`
           html
         }
       }
-      contacto {
+      contact {
         mail
         social {
           name
