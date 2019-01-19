@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 `
 
 const Category = ({ edges, category }) => (
-  <Section>
+  <Section margin={2}>
     <h1>{category}</h1>
     <Wrapper>
       {edges.map(post => (

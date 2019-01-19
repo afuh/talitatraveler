@@ -5,10 +5,7 @@ export const theme = {
   white: "#F9F9FA",
   gray: "#9F9FA3",
   mainColor: "#FF5722",
-  shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
-  position: {
-    baseMargin: 10
-  }
+  shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)'
 }
 
 const screenBreak = {
