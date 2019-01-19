@@ -9,19 +9,14 @@ import { fontSize } from '../style'
 
 const Article = styled.article`
   display: flex;
-
-  border-bottom: 1px solid lightgray;
-  padding: 32px;
-  margin-bottom: 32px;
   box-shadow: rgba(27, 37, 64, 0.2) 0px 4px 4px 0px;
 
   :hover {
     box-shadow: rgba(27, 37, 64, 0.5) 0px 4px 4px 0px;
   }
 
-  transition: all .3s ease;
-
   .content {
+    position: relative;
     flex: 1;
   }
 
@@ -30,13 +25,8 @@ const Article = styled.article`
     box-shadow: none;
     border: none;
 
-    h2 {
-      ${fontSize(1.6)}
-    }
-
     :hover {
       box-shadow: none;
-      opacity: 0.8;
     }
   `};
 `
@@ -52,6 +42,44 @@ const LinkWrapper = styled(Link)`
     color: ${({ theme }) => theme.mainColor};
     text-decoration: none;
   }
+`
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: rgba(0, 0, 0, 0.2);
+
+    h2 {
+      opacity: 0;
+    }
+  }
+
+  transition: ${({ theme }) => theme.transition};
+`
+
+const Title = styled.h2`
+  color: ${({ theme }) => theme.white};
+  text-align: center;
+  opacity: 1;
+  ${fontSize(2.6)};
+
+  transition: ${({ theme }) => theme.transition};
 `
 
 const Big = ({ node }) => (
@@ -79,13 +107,15 @@ Big.propTypes = {
 const Small = ({ node }) => (
   <Article mini>
     <div className='content'>
+      <Overlay>
+        <Title>{node.title}</Title>
+      </Overlay>
       <GatsbyImg
-        style={{ height: 200, maxWidth: 800 }}
+        style={{ height: 240 }}
         fluid={node.headerImage.fluid}
         alt={node.headerImage.description}
         title={node.headerImage.description}
       />
-      <h2>{node.title}</h2>
     </div>
   </Article>
 )

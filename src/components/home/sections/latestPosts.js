@@ -18,6 +18,7 @@ const LatestsPosts = ({ edges, totalCount, postsToShow, onShowMorePosts }) => (
   <div>
     {edges.map((post, i) => i < postsToShow && (
       <PostCard
+        mini
         key={post.node.id}
         node={post.node}
       />
