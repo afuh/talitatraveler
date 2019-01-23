@@ -7,15 +7,16 @@ const SEO = ({ title, description, image, pathname }) => (
   <StaticQuery
     query={query}
     render={({
+      twitter: {
+        url: twitterUrl
+      },
       site: {
         meta: {
           defaultTitle,
           defaultDescription,
           defaultImage,
           siteUrl,
-          titleTemplate,
-          favicon,
-          userTwitter
+          titleTemplate
         }
       }
     }) => {
@@ -23,7 +24,6 @@ const SEO = ({ title, description, image, pathname }) => (
         title: title || defaultTitle,
         description: description || defaultDescription,
         url: `${siteUrl}${pathname || '/'}`,
-        favicon: `${siteUrl}${favicon}`,
         image: {
           url: image ? image.url : `${siteUrl}${defaultImage}`,
           contentType: image ? image.contentType : "image/jpeg",
@@ -31,15 +31,15 @@ const SEO = ({ title, description, image, pathname }) => (
         }
       }
 
+      twitterUrl = twitterUrl.split("/")
+      const twitterUser = "@" + twitterUrl[twitterUrl.length - 1]
+
       return (
         <Helmet
           htmlAttributes={{ lang: "es" }}
           titleTemplate={titleTemplate}
           title={seo.title}
         >
-          <link rel="shortcut icon" href={seo.favicon}/>
-          <link rel="icon" href={seo.favicon}/>
-
           <meta name="description" content={seo.description} />
           <meta name="image" content={seo.image.url} />
 
@@ -54,8 +54,8 @@ const SEO = ({ title, description, image, pathname }) => (
           <meta property="og:image:width" content={seo.image.size.width} />
           <meta property="og:image:height" content={seo.image.size.height} />
 
-          {userTwitter && <meta name="twitter:creator" content={userTwitter} />}
-          {userTwitter && <meta name="twitter:site" content={userTwitter} />}
+          <meta name="twitter:creator" content={twitterUser} />
+          <meta name="twitter:site" content={twitterUser} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content={seo.title} />
           <meta name="twitter:url" content={seo.url} />
@@ -91,9 +91,10 @@ const query = graphql`
         siteUrl
         defaultImage: image
         titleTemplate
-        favicon
-        userTwitter
       }
+    }
+    twitter: contentfulExternalLink(name: {regex: "/twitter/i"}) {
+      url
     }
   }
 `

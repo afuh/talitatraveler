@@ -17,7 +17,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
               edges {
                 node {
                   slug
-                  tags
+                  categories
                 }
               }
             }
@@ -32,21 +32,21 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
         res.data.posts.edges.forEach(({
           node: {
             slug,
-            tags
+            categories
           }
-
         }) => {
           // Create post page
           createPage({
             path: `/${slug}`,
             component: template.post,
             context: {
-              slug
+              slug,
+              categories
             }
           })
 
           // group all Categories
-          tags.forEach(category => {
+          categories.forEach(category => {
             category = category.trim()
 
             const slug = category
@@ -59,10 +59,9 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
               allCategories.push({ category, slug })
             }
 
-
             // Create category page
             createPage({
-              path: `/categoria/${slug}`,
+              path: `/categorias/${slug}`,
               component: template.category,
               context: {
                 category
@@ -71,7 +70,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
 
             // create a category index
             createPage({
-              path: '/categoria',
+              path: '/categorias',
               component: template.allCategories,
               context: {
                 allCategories

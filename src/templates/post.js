@@ -1,49 +1,56 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from "gatsby"
-import GatsbyImg from 'gatsby-image'
 
 import Layout from '../components/layout'
+import Post from '../components/post'
 import SEO from '../utils/seo'
-import { Section } from '../utils/UI'
 
-const Post = ({ data: { post }, location }) => (
+const PostTemplate = ({ data: { post, suggested } }) => (
   <Layout>
     <SEO
       title={post.title}
       description={post.content.md.excerpt}
-      pathname={location.pathname}
+      pathname={"/" + post.slug}
       image={{
         url: post.headerImage.file.url,
         contentType: post.headerImage.file.contentType,
         size: post.headerImage.file.details.image
       }}
     />
-    <Section>
-      <h1>{post.title}</h1>
-      <h2>{post.subTitle}</h2>
-      <GatsbyImg
-        fluid={post.headerImage.fluid}
-        alt={post.headerImage.description}
-        title={post.headerImage.description}
-      />
-      <div dangerouslySetInnerHTML={{ __html: post.content.md.html }} />
-    </Section>
+    <Post
+      relatedPosts={suggested.edges.map(({ node }) => node)}
+      post={post}
+    />
   </Layout>
 )
 
-Post.propTypes = {
-  data: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
+
+PostTemplate.propTypes = {
+  data: PropTypes.object.isRequired
 }
 
-export default Post
+export default PostTemplate
 
 export const query = graphql`
-  query POST_TEMPLATE_QUERY ($slug: String!) {
+  query POST_TEMPLATE_QUERY ($slug: String!, $categories: [String!]) {
+    suggested: allContentfulPost(
+      filter: { categories: { in: $categories }, slug: { ne: $slug }}
+      sort: { fields: createdAt, order: DESC }
+      limit: 3
+    ) {
+      edges {
+        node {
+          ...PostCard_Big
+        }
+      }
+    }
     post: contentfulPost(slug: { eq: $slug } ) {
+      id
       title
       subTitle
+      slug
+      categories
       headerImage {
         description
         fluid(maxWidth: 2000) {
@@ -65,6 +72,14 @@ export const query = graphql`
           excerpt
           html
         }
+      }
+      author {
+        name
+        slug
+      }
+      ...Dates
+      suggestions {
+        ...PostCard_Small
       }
     }
   }

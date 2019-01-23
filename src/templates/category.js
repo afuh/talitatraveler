@@ -2,39 +2,41 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from "gatsby"
 
-import { Section, PostCard } from '../utils/UI'
+import SEO from '../utils/seo'
 import Layout from '../components/layout'
+import Category from '../components/category'
 
-const Category = ({ data: { posts: { edges } } }) => (
+const CategoryTemplate = ({ pageContext, data: { posts: { edges } } }) => (
   <Layout>
-    <Section>
-      {edges.map(({ node }) => (
-        <PostCard
-          key={node.id}
-          node={node}
-        />
-      ))}
-    </Section>
+    <SEO
+      title={pageContext.category}
+    />
+    <Category
+      category={pageContext.category}
+      edges={edges}
+    />
   </Layout>
 )
 
-Category.propTypes = {
-  location: PropTypes.object.isRequired,
+CategoryTemplate.propTypes = {
+  pageContext: PropTypes.shape({
+    category: PropTypes.string
+  }).isRequired,
   data: PropTypes.shape({
     contentfulProjects: PropTypes.object
   }).isRequired
 }
 
-export default Category
+export default CategoryTemplate
 
 export const pageQuery = graphql`
   query CATEGORY_TEMPLATE_QUER($category: [String!]) {
     posts: allContentfulPost(
-      filter: { tags: { in: $category } }
+      filter: { categories: { in: $category } }
     ) {
       edges {
         node {
-          ...PostCard
+          ...PostCard_Small
         }
       }
     }

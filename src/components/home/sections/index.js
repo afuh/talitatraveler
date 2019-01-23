@@ -1,5 +1,9 @@
-import Landing from './landing'
+import MailForm from './mailForm'
+import LatestsPosts from './latestPosts'
+import Search from './search'
 
 export {
-  Landing
+  MailForm,
+  LatestsPosts,
+  Search
 }

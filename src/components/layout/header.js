@@ -7,7 +7,6 @@ import { theme } from '../../utils/style'
 
 const Content = styled.header`
   background: ${({ theme }) => theme.white};
-  box-shadow: ${({ theme }) => theme.shadow};
   padding: 20px;
 `
 
@@ -15,7 +14,7 @@ const Header = ({ nav }) => (
   <Content>
     {nav.map(item => (
       <Link
-        activeStyle={{ color: theme.deeporange }}
+        activeStyle={{ color: theme.mainColor }}
         style={{ marginRight: 10 }}
         key={item.name}
         to={item.path}

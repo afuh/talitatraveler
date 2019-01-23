@@ -1,19 +1,30 @@
+import { number } from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { media } from '../style'
 
 export const Section = styled.section`
-  margin: 0 ${({ theme }) => theme.position.baseMargin}%;
+  ${({ margin }) => css`
+    margin: 0 ${margin}%;
 
-  ${media.medium(css`
-    margin: 0 ${({ theme }) => theme.position.baseMargin*2}%;
-  `)}
+    ${media.phone(css`
+      margin: 0 ${margin - 2}%;
+    `)}
 
-  ${media.xlarge(css`
-    margin: 0 ${({ theme }) => theme.position.baseMargin*3}%;
-  `)}
+    ${media.medium(css`
+      margin: 0 ${margin*2}%;
+    `)}
 
-  ${media.xxlarge(css`
-    margin: 0 ${({ theme }) => theme.position.baseMargin*4}%;
-  `)}
+    ${media.xlarge(css`
+      margin: 0 ${margin*3}%;
+    `)}
+  `};
 `
+
+Section.propTypes = {
+  margin: number.isRequired
+}
+
+Section.defaultProps = {
+  margin: 8
+}

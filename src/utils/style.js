@@ -2,13 +2,11 @@ import { css, createGlobalStyle } from 'styled-components'
 
 export const theme = {
   black: "#212129",
-  white: "#F9F9FA",
+  white: "#fff",
   gray: "#9F9FA3",
-  deeporange: "#FF5722",
+  mainColor: "#FF5722",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
-  position: {
-    baseMargin: 4
-  }
+  transition: 'all .3s ease'
 }
 
 const screenBreak = {
@@ -78,11 +76,15 @@ export const fontSize = size => css`
   font-size: ${size}rem;
 
   ${media.mobile(css`
-    font-size: ${size - (size/5)}rem;
+    font-size: ${size - (size/12)}rem;
   `)}
 
   ${media.phone(css`
-    font-size: ${size - (size/4)}rem;
+    font-size: ${size - (size/10)}rem;
+  `)}
+
+  ${media.xlarge(css`
+    font-size: ${size * 1.3}rem;
   `)}
 `
 
@@ -114,6 +116,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: ${theme.white};
+    color: ${theme.black};
     padding: 0;
     margin: 0;
     font-size: 1.5rem;
@@ -126,19 +130,26 @@ export const GlobalStyle = createGlobalStyle`
   h3 { ${fontSize(1.9)}; }
 
   a {
-    color: ${theme.black};
+    color: ${theme.mainColor};
     text-decoration: none;
 
     &:hover,
     &:active,
     &:focus {
-      color: ${theme.deeporange};
-      text-decoration: none;
+      color: ${theme.mainColor};
+      text-decoration: underline;
     }
   }
 
+  p, li {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
   p {
-    font-size: 1.4rem;
+    margin: 0;
   }
 
   img {

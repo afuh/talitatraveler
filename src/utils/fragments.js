@@ -1,12 +1,19 @@
 import { graphql } from 'gatsby'
 
+export const Dates = graphql`
+  fragment Dates on ContentfulPost {
+    createdAt(formatString: "DD/MM/YYYY", locale: "es")
+    date(formatString: "DD/MM/YYYY", locale: "es")
+  }
+`
+
 export const PostCard = graphql`
-  fragment PostCard on ContentfulPost {
+  fragment PostCard_Big on ContentfulPost {
     id
     title
+    subTitle
     slug
-    createdAt(fromNow: true, locale: "es")
-    date(fromNow: true, locale: "es")
+    ...Dates
     content {
       md: childMarkdownRemark {
         excerpt
@@ -17,6 +24,18 @@ export const PostCard = graphql`
       description
       fluid(maxWidth: 800) {
         ...GatsbyContentfulFluid_withWebp_noBase64
+      }
+    }
+  }
+
+  fragment PostCard_Small on ContentfulPost {
+    id
+    title
+    slug
+    headerImage {
+      description
+      fluid(maxWidth: 800) {
+        ...GatsbyContentfulFluid_withWebp
       }
     }
   }
