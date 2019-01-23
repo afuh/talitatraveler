@@ -17,6 +17,7 @@ const Wrapper = styled.header`
     letter-spacing: 0.09rem;
 
     ${media.phone(css`
+      word-wrap: break-word;
       font-size: 4rem;
     `)}
   }

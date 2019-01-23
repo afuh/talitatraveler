@@ -82,6 +82,10 @@ export const fontSize = size => css`
   ${media.phone(css`
     font-size: ${size - (size/10)}rem;
   `)}
+
+  ${media.xlarge(css`
+    font-size: ${size * 1.3}rem;
+  `)}
 `
 
 const defaultFont = [
@@ -137,10 +141,14 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  p {
+  p, li {
+    font-family: 'Noto Serif KR', serif;
     font-size: 1.6rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.5;
+  }
+
+  p {
     margin: 0;
   }
 

@@ -2,17 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 import { Location } from '@reach/router'
-import styled, { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider, css } from 'styled-components'
 
 import Header from './header'
 import Footer from './footer'
 import SEO from '../../utils/seo'
-import { theme, GlobalStyle } from '../../utils/style'
+import { theme, GlobalStyle, media } from '../../utils/style'
 
 const Main = styled.main`
   max-width: 84%;
   margin: 0 auto;
+
+  ${media.phone(css`
+    max-width: none;
+    margin: 0;
+  `)}
 `
+
 const Layout = ({ children }) => (
   <StaticQuery
     query={query}

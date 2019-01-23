@@ -4,7 +4,7 @@ import { DiscussionEmbed } from 'disqus-react'
 import styled, { css } from 'styled-components'
 
 import { Section, SocialLinks } from '../../utils/UI'
-import { media } from '../../utils/style'
+import { fontSize, media } from '../../utils/style'
 
 import HeaderImage from './headerImage'
 import Header from './header'
@@ -14,11 +14,17 @@ import Categories from './categories'
 const Content = styled(Section)`
   background: ${({ theme }) => theme.white};
   transform: translateY(-150px);
-  padding: 60px;
+  padding: 5%;
 
   .sub-title {
     padding-bottom: 10px;
   }
+
+  ${media.phone(css`
+    transform: none;
+    max-width: none;
+    margin: 0;
+  `)}
 `
 
 const Footer = styled.footer`
@@ -38,13 +44,24 @@ const Article = styled.article`
   position: relative;
   border-bottom: 1px solid #f8f8f8;
 
-  p {
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+  }
+
+  p, li {
+    ${fontSize(1.6)};
     text-align: justify;
 
     ${media.phone(css`
       text-align: left;
-      font-size: 1.9rem;
+      font-size: 1.8rem;
     `)}
+
+    strong {
+      font-weight: 900;
+    }
   }
 `
 
