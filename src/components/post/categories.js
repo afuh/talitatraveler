@@ -7,7 +7,6 @@ import { categoryToSlug } from '../../utils/helpers'
 
 const Wrapper = styled.div`
   display: flex;
-  padding: 20px 0;
 `
 
 const Link = styled(GatsbyLink)`
@@ -17,7 +16,7 @@ const Link = styled(GatsbyLink)`
   padding: 8px;
   background: #f6f6f6;
   margin-right: 4px;
-  color: #888;
+  color: ${({ theme }) => theme.gray};
 
   &:hover {
     color: #fff;

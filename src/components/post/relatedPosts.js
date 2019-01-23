@@ -6,12 +6,16 @@ import { PostCard } from '../../utils/UI'
 import { media } from '../../utils/style'
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+  border-bottom: 1px solid #f8f8f8;
 
-  ${media.phone(css`
-    flex-direction: column;
-  `)}
+  .posts {
+    display: flex;
+    justify-content: space-between;
+
+    ${media.phone(css`
+      flex-direction: column;
+    `)}
+  }
 `
 
 const RelatedPosts = ({ post, related }) => {
@@ -19,9 +23,9 @@ const RelatedPosts = ({ post, related }) => {
   const suggestions = [...staticRelated, ...related].filter(post => post && post)
 
   return (
-    <div>
-      <h2>Posts relacionados</h2>
-      <Wrapper>
+    <Wrapper>
+      <h3>Posts relacionados</h3>
+      <div className='posts'>
         {
           suggestions.map((post, i) => i < 3 && (
             <PostCard
@@ -31,8 +35,8 @@ const RelatedPosts = ({ post, related }) => {
             />
           ))
         }
-      </Wrapper>
-    </div>
+      </div>
+    </Wrapper>
   )
 }
 

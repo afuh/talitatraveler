@@ -6,12 +6,37 @@ import styled, { css } from 'styled-components'
 import { Section, SocialLinks } from '../../utils/UI'
 import { media } from '../../utils/style'
 
+import HeaderImage from './headerImage'
 import Header from './header'
 import RelatedPosts from './relatedPosts'
 import Categories from './categories'
 
-const PostWrapper = styled.div`
+const Content = styled(Section)`
+  background: ${({ theme }) => theme.white};
+  transform: translateY(-150px);
+  padding: 60px;
+
+  .sub-title {
+    padding-bottom: 10px;
+  }
+`
+
+const Footer = styled.footer`
+  padding: 0 0 80px;
+
+  .social-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+  }
+`
+
+const Article = styled.article`
   white-space: pre-line;
+  padding-bottom: 20px;
+  position: relative;
+  border-bottom: 1px solid #f8f8f8;
 
   p {
     text-align: justify;
@@ -21,7 +46,6 @@ const PostWrapper = styled.div`
       font-size: 1.9rem;
     `)}
   }
-
 `
 
 const Post = ({ post, relatedPosts }) => {
@@ -34,22 +58,31 @@ const Post = ({ post, relatedPosts }) => {
   }
 
   return (
-    <article>
-      <Header post={post} />
-      <Section>
-        {post.subTitle && <h2>{post.subTitle}</h2>}
-        <PostWrapper
+    <>
+      <HeaderImage post={post} />
+      <Content margin={6}>
+        <Header post={post} />
+        {post.subTitle &&
+          <h2 className='sub-title'>
+            {post.subTitle}
+          </h2>
+        }
+        <Article
           dangerouslySetInnerHTML={{ __html: post.content.md.html }}
         />
-        <Categories categories={post.categories}/>
-        <SocialLinks post={post} />
-        <RelatedPosts
-          related={relatedPosts}
-          post={post}
-        />
-        {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
-      </Section>
-    </article>
+        <Footer>
+          <div className='social-wrapper'>
+            <Categories categories={post.categories}/>
+            <SocialLinks post={post} />
+          </div>
+          <RelatedPosts
+            related={relatedPosts}
+            post={post}
+          />
+          {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
+        </Footer>
+      </Content>
+    </>
   )
 }
 
