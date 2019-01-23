@@ -1,5 +1,6 @@
-/* eslint react/prop-types: 0 max-len: 0 */
+/* eslint  max-len: 0 */
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Svg = styled.svg`
@@ -27,3 +28,49 @@ export const Spinner = ({ size, color }) => (
     </path>
   </Svg>
 )
+
+Spinner.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string
+}
+
+export const SocialWrapper = styled.a`
+  border: none;
+  border-radius: 50%;
+  margin: 20px 20px 20px 0;
+  font-size: 2.4rem;
+  color: ${({ theme }) => theme.black};
+
+  display: flex;
+  align-items: center;
+
+  :hover {
+    color: ${({ theme }) => theme.mainColor};
+  }
+
+  transition: color .3s;
+`
+
+export const SocialIcon = ({ name, href, style, as }) => {
+  const findIcon = name => {
+    const Component = require("react-icons/fa")['Fa' + name]
+    return <Component />
+  }
+
+  return (
+    <SocialWrapper
+      href={href}
+      style={{ ...style }}
+      as={as}
+    >
+      {findIcon(name)}
+    </SocialWrapper>
+  )
+}
+
+SocialIcon.propTypes = {
+  href: PropTypes.string,
+  as: PropTypes.string,
+  style: PropTypes.object,
+  name: PropTypes.string.isRequired
+}

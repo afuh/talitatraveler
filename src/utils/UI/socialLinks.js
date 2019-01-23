@@ -2,14 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { StaticQuery, graphql } from "gatsby"
-import {
-  FacebookShareButton,
-  FacebookIcon,
-  TwitterShareButton,
-  TwitterIcon,
-  WhatsappShareButton,
-  WhatsappIcon
-} from 'react-share'
+import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
+
+import { SocialIcon } from '../../utils/UI/icons'
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +21,6 @@ export const SocialLinks = ({ post }) => (
     query={query}
     render={({ site: { siteMetadata: { siteUrl } } }) => {
       const url = siteUrl + "/" + post.slug
-      const size = 32
 
       return (
         <Wrapper>
@@ -34,20 +28,29 @@ export const SocialLinks = ({ post }) => (
             url={url}
             quote={post.content.md.excerpt}
           >
-            <FacebookIcon size={size} round/>
+            <SocialIcon
+              as='div'
+              name='Facebook'
+            />
           </FacebookShareButton>
           <TwitterShareButton
             url={url}
             title={post.title}
             hashtags={post.categories}
           >
-            <TwitterIcon size={size} round/>
+            <SocialIcon
+              as='div'
+              name='Twitter'
+            />
           </TwitterShareButton>
           <WhatsappShareButton
             url={url}
             title={post.title}
           >
-            <WhatsappIcon size={size} round/>
+            <SocialIcon
+              as='div'
+              name='Whatsapp'
+            />
           </WhatsappShareButton>
         </Wrapper>
       )
