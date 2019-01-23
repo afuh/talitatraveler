@@ -2,27 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`
 })
 
-const stopWords = require('stopwords-es')
-
 const siteConfig = require('./config/siteConfig')
-
-const algolia = `{
-  allContentfulPost {
-    edges {
-      node {
-        objectID: id
-        title
-        slug
-        categories
-        content {
-          md: childMarkdownRemark {
-            body: rawMarkdownBody
-          }
-        }
-      }
-    }
-  }
-}`
 
 const feed = `{
   allContentfulPost(sort: { fields: createdAt, order: DESC  }) {
@@ -164,30 +144,6 @@ module.exports = {
               }))
           }
         ]
-      }
-    },
-    {
-      resolve: `gatsby-plugin-algolia`,
-      options: {
-        appId: process.env.ALGOLIA_APP_ID,
-        apiKey: process.env.ALGOLIA_API_KEY,
-        indexName: process.env.ALGOLIA_INDEX_NAME,
-        chunkSize: 10000,
-        queries: [ {
-          query: algolia,
-          transformer: ({ data }) => data.allContentfulPost.edges.map(({ node }) => {
-            const content = node.content.md.body
-              .replace(/\s\s+/g, " ")
-              .split(" ")
-              .filter(word => stopWords.indexOf(word) < 0)
-              .join(" ")
-
-            return {
-              ...node,
-              content
-            }
-          })
-        } ]
       }
     },
     'gatsby-plugin-offline',
