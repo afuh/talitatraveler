@@ -2,7 +2,7 @@ import { css, createGlobalStyle } from 'styled-components'
 
 export const theme = {
   black: "#212129",
-  white: "#F9F9FA",
+  white: "#fff",
   gray: "#9F9FA3",
   mainColor: "#FF5722",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
@@ -112,6 +112,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: ${theme.white};
+    color: ${theme.black};
     padding: 0;
     margin: 0;
     font-size: 1.5rem;

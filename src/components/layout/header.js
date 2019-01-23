@@ -7,7 +7,6 @@ import { theme } from '../../utils/style'
 
 const Content = styled.header`
   background: ${({ theme }) => theme.white};
-  box-shadow: ${({ theme }) => theme.shadow};
   padding: 20px;
 `
 
