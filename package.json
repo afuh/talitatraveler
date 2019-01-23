@@ -33,7 +33,7 @@
     "gatsby-source-filesystem": "^2.0.12",
     "gatsby-transformer-remark": "^2.1.17",
     "gatsby-transformer-sharp": "^2.1.9",
-    "google-fonts-plugin": "^2.0.2",
+    "google-fonts-plugin": "2.0.2",
     "prismjs": "^1.15.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
