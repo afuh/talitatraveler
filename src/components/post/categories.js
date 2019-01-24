@@ -24,7 +24,7 @@ const Link = styled(GatsbyLink)`
     text-decoration: none;
   }
 
-  transition: all .2s;
+  transition: ${({ theme }) => theme.transition};
 `
 
 const Categories = ({ categories }) => (

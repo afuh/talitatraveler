@@ -31,7 +31,7 @@ const Form = styled.form`
     filter: blur(2px);
   `}
 
-  transition: all .3s ease;
+  transition: ${({ theme }) => theme.transition};
 `
 
 const Input = styled.input`
@@ -48,10 +48,10 @@ const Input = styled.input`
 
     &::-webkit-input-placeholder {
       color: ${({ theme }) => theme.mainColor};
-      transition: all .3s ease;
+      transition: ${({ theme }) => theme.transition};
     }
   }
-  transition: all .3s ease;
+  transition: ${({ theme }) => theme.transition};
 `
 
 const Button = styled.button`
@@ -65,7 +65,7 @@ const Button = styled.button`
     color: ${({ theme }) => theme.mainColor};
   }
 
-  transition: all .3s ease;
+  transition: ${({ theme }) => theme.transition};
 `
 
 const Message = styled.p`

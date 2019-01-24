@@ -35,7 +35,7 @@ const MoreButton = styled.button`
     `};
   }
 
-  transition: all .2s;
+  transition: ${({ theme }) => theme.transition};
 `
 
 const ButtonWrapper = styled.div`
