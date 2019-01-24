@@ -11,14 +11,12 @@ import Header from './header'
 import RelatedPosts from './relatedPosts'
 import Categories from './categories'
 
+const pre = ['Charlas', 'Poesía']
+
 const Content = styled(Section)`
   background: ${({ theme }) => theme.white};
   transform: translateY(-150px);
   padding: 5%;
-
-  .sub-title {
-    padding-bottom: 10px;
-  }
 
   ${media.phone(css`
     transform: none;
@@ -39,15 +37,20 @@ const Footer = styled.footer`
 `
 
 const Article = styled.article`
-  white-space: pre-line;
-  padding-bottom: 20px;
+  ${({ pre }) => pre && css`
+    white-space: pre-line;
+
+    p {
+      margin: 0;
+    }
+  `};
+
+  padding-bottom: 40px;
   position: relative;
   border-bottom: 1px solid #f8f8f8;
 
-  ol {
+  ol, ul {
     margin: 0;
-    padding: 0;
-    list-style-position: inside;
   }
 
   p, li {
@@ -56,12 +59,22 @@ const Article = styled.article`
 
     ${media.phone(css`
       text-align: left;
-      font-size: 1.8rem;
     `)}
 
     strong {
       font-weight: 900;
     }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: justify;
+    font-weight: 800;
+    margin-bottom: 3.0rem;
+    margin-top: 6.0rem;
+
+    ${media.phone(css`
+      text-align: left;
+    `)}
   }
 `
 
@@ -79,12 +92,8 @@ const Post = ({ post, relatedPosts }) => {
       <HeaderImage post={post} />
       <Content margin={6}>
         <Header post={post} />
-        {post.subTitle &&
-          <h2 className='sub-title'>
-            {post.subTitle}
-          </h2>
-        }
         <Article
+          pre={post.categories.some(category => pre.includes(category))}
           dangerouslySetInnerHTML={{ __html: post.content.md.html }}
         />
         <Footer>
@@ -96,8 +105,8 @@ const Post = ({ post, relatedPosts }) => {
             related={relatedPosts}
             post={post}
           />
-          {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
         </Footer>
+        {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
       </Content>
     </>
   )

@@ -19,7 +19,13 @@ const Wrapper = styled.header`
     ${media.phone(css`
       word-wrap: break-word;
       font-size: 4rem;
+      hyphens: auto;
     `)}
+  }
+
+  h2 {
+    ${fontSize(1.8)};
+    padding-bottom: 10px;
   }
 
   time p,
@@ -35,6 +41,7 @@ const Header = ({ post }) => (
       <p>{post.date || post.createdAt}</p>
     </time>
     <h1>{post.title}</h1>
+    {post.subTitle && <h2>{post.subTitle}</h2>}
     <span>por</span> <Link to='/contacto'>{post.author.name}</Link>
   </Wrapper>
 )

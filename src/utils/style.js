@@ -83,8 +83,8 @@ export const fontSize = size => css`
     font-size: ${size - (size/10)}rem;
   `)}
 
-  ${media.xlarge(css`
-    font-size: ${size * 1.3}rem;
+  ${media.xxlarge(css`
+    font-size: ${size * 1.2}rem;
   `)}
 `
 
@@ -146,10 +146,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.5;
-  }
-
-  p {
-    margin: 0;
   }
 
   img {

@@ -6,13 +6,11 @@ import { PostCard } from '../../utils/UI'
 import { media } from '../../utils/style'
 
 const Wrapper = styled.div`
-  border-bottom: 1px solid #f8f8f8;
-
   .posts {
     display: flex;
     justify-content: space-between;
 
-    ${media.phone(css`
+    ${media.mobile(css`
       flex-direction: column;
     `)}
   }
