@@ -5,10 +5,11 @@ import GatsbyImg from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
 import { timeToRead } from '../helpers'
-import { fontSize } from '../style'
+import { fontSize, media } from '../style'
 
-const Article = styled.article`
+const Article = styled.div`
   display: flex;
+
   box-shadow: rgba(27, 37, 64, 0.2) 0px 4px 4px 0px;
 
   :hover {
@@ -42,6 +43,10 @@ const LinkWrapper = styled(Link)`
     color: ${({ theme }) => theme.mainColor};
     text-decoration: none;
   }
+
+  ${media.mobile(css`
+    flex-basis: 50%;
+  `)}
 `
 
 const Overlay = styled.div`

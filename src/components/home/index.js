@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { MailForm, LatestsPosts, Search } from './sections'
-import { Section } from '../../utils/UI'
+import { MailForm, Search } from './sections'
+import { Section, PostsGrid } from '../../utils/UI'
 
 const Home = ({ data: { posts: { edges, totalCount } } }) => (
-  <Section>
+  <Section margin={2}>
     <Search />
-    <LatestsPosts
-      edges={edges}
+    <PostsGrid
       totalCount={totalCount}
+      posts={edges}
     />
     <MailForm />
   </Section>

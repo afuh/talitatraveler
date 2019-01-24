@@ -3,13 +3,14 @@ import React, { Component, createContext } from 'react'
 const { Provider, Consumer } = createContext()
 
 export class PostsToShowProvider extends Component {
+  posts = 6
   state = {
-    postsToShow: 6
+    postsToShow: this.posts
   }
 
   handlePostsToShow = () => {
     this.setState(state => ({
-      postsToShow: state.postsToShow + 4
+      postsToShow: state.postsToShow + this.posts
     }))
   }
 
