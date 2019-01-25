@@ -11,8 +11,6 @@ import Header from './header'
 import RelatedPosts from './relatedPosts'
 import Categories from './categories'
 
-const pre = ['Charlas', 'Poesía']
-
 const Content = styled(Section)`
   background: ${({ theme }) => theme.white};
   transform: translateY(-150px);
@@ -37,7 +35,7 @@ const Footer = styled.footer`
 `
 
 const Article = styled.article`
-  ${({ pre }) => pre && css`
+  ${({ whiteSpace }) => whiteSpace && css`
     white-space: pre-line;
 
     p {
@@ -93,7 +91,7 @@ const Post = ({ post, relatedPosts }) => {
       <Content margin={6}>
         <Header post={post} />
         <Article
-          pre={post.categories.some(category => pre.includes(category))}
+          whiteSpace={post.whiteSpace}
           dangerouslySetInnerHTML={{ __html: post.content.md.html }}
         />
         <Footer>
