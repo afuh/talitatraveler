@@ -35,17 +35,13 @@ const Footer = styled.footer`
 `
 
 const Article = styled.article`
-  ${({ whiteSpace }) => whiteSpace && css`
-    white-space: pre-line;
-
-    p {
-      margin: 0;
-    }
-  `};
-
   padding-bottom: 40px;
   position: relative;
   border-bottom: 1px solid #f8f8f8;
+
+  p {
+    white-space: ${({ whiteSpace }) => whiteSpace ? "pre-line" : "normal"}
+  }
 
   ol, ul {
     margin: 0;
@@ -75,11 +71,6 @@ const Article = styled.article`
     `)}
   }
 
-  p img + em {
-    font-size: 1.4rem;
-    color: #545454;
-  }
-
   sup {
     margin: 0 0.2rem;
     line-height: 1;
@@ -99,8 +90,7 @@ const Article = styled.article`
       font-style: italic;
       font-size: 1.4rem;
       text-align: center;
-      color: #545454;
-
+      color: ${({ theme }) => theme.lightGray};
     }
   }
 
@@ -117,6 +107,12 @@ const Article = styled.article`
         display: inline;
       }
     }
+  }
+
+  blockquote {
+    color: ${({ theme }) => theme.lightGray};
+    border-left: 2px solid rgba(0,0,0,0.13);
+    padding-left: 2rem;
   }
 `
 
