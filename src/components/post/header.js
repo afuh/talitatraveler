@@ -24,8 +24,7 @@ const Wrapper = styled.header`
   }
 
   h2 {
-    ${fontSize(1.8)};
-    padding-bottom: 10px;
+    ${fontSize(2.2)};
   }
 
   time p,

@@ -141,7 +141,7 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
-  p, li {
+  p, li, figcaption {
     font-family: 'Noto Serif KR', serif;
     font-size: 1.6rem;
     font-weight: 500;

@@ -74,6 +74,50 @@ const Article = styled.article`
       text-align: left;
     `)}
   }
+
+  p img + em {
+    font-size: 1.4rem;
+    color: #545454;
+  }
+
+  sup {
+    margin: 0 0.2rem;
+    line-height: 1;
+  }
+
+  .footnote-backref {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  figure {
+    margin: 0;
+    figcaption {
+      font-style: italic;
+      font-size: 1.4rem;
+      text-align: center;
+      color: #545454;
+
+    }
+  }
+
+  .footnotes {
+    margin-top: 24px;
+    ol {
+      margin-top: 14px;
+    }
+    li {
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      p {
+        font-size: 1.4rem;
+        display: inline;
+      }
+    }
+  }
 `
 
 const Post = ({ post, relatedPosts }) => {
