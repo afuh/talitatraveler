@@ -9,7 +9,6 @@ const findIcon = name => {
 
 const Content = styled.footer`
   background: ${({ theme }) => theme.white};
-  box-shadow: ${({ theme }) => theme.shadow};
   display: flex;
   justify-content: center;
   align-items: center;
