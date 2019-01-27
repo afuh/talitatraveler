@@ -3,13 +3,12 @@ import PropTypes from 'prop-types'
 import { DiscussionEmbed } from 'disqus-react'
 import styled, { css } from 'styled-components'
 
-import { Section, SocialLinks } from '../../utils/UI'
+import { Section, SocialLinks, CategoryList } from '../../utils/UI'
 import { media, Article } from '../../utils/style'
 
 import HeaderImage from './headerImage'
 import Header from './header'
 import RelatedPosts from './relatedPosts'
-import Categories from './categories'
 
 const Content = styled(Section)`
   background: ${({ theme }) => theme.white};
@@ -54,7 +53,7 @@ const Post = ({ post, relatedPosts }) => {
         />
         <Footer>
           <div className='social-wrapper'>
-            <Categories categories={post.categories}/>
+            <CategoryList categories={post.categories}/>
             <SocialLinks post={post} />
           </div>
           <RelatedPosts

@@ -27,23 +27,20 @@ const Link = styled(GatsbyLink)`
   transition: ${({ theme }) => theme.transition};
 `
 
-const Categories = ({ categories }) => (
+export const CategoryList = ({ categories }) => (
   <Wrapper>
-    {
-      categories.map(category => (
-        <Link
-          key={category}
-          to={`/categorias/${categoryToSlug(category)}`}
-        >
-          {category}
-        </Link>
-      ))
-    }
+    {categories.map(category => (
+      <Link
+        key={category}
+        to={`/categorias/${categoryToSlug(category)}`}
+      >
+        {category}
+      </Link>
+    ))}
   </Wrapper>
 )
 
-Categories.propTypes = {
+
+CategoryList.propTypes = {
   categories: PropTypes.array.isRequired
 }
-
-export default Categories

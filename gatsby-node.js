@@ -55,8 +55,8 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
               .replace(/[\u0300-\u036f]/g, "")
               .replace(/ /g, '-')
 
-            if (!allCategories.filter(i => i.category === category).length) {
-              allCategories.push({ category, slug })
+            if (!allCategories.filter(cat => cat === category).length) {
+              allCategories.push(category)
             }
 
             // Create category page

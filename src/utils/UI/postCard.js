@@ -73,7 +73,7 @@ const Title = styled.h2`
 
 export const PostCard = ({ node }) => (
   <LinkWrapper
-    to={node.slug}
+    to={"/" + node.slug}
   >
     <Article>
       <div className='content'>
