@@ -47,12 +47,11 @@ const ButtonWrapper = styled.div`
   `};
 `
 
-const Grid = ({ posts, header, totalCount, postsToShow, onShowMorePosts }) => {
+const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
   const count = totalCount ? postsToShow : Infinity
 
   return (
     <>
-      {header && <h1>{header}</h1>}
       <Wrapper>
         {posts.map((post, i) => i < count && (
           <PostCard
@@ -76,8 +75,7 @@ const Grid = ({ posts, header, totalCount, postsToShow, onShowMorePosts }) => {
 
 Grid.propTypes = {
   posts: PropTypes.array.isRequired,
-  header: PropTypes.string,
-  totalCount: PropTypes.number.isRequired,
+  totalCount: PropTypes.number,
   postsToShow: PropTypes.number.isRequired,
   onShowMorePosts: PropTypes.func.isRequired
 }

@@ -7,6 +7,7 @@ import { categoryToSlug } from '../../utils/helpers'
 
 const Wrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `
 
 const Link = styled(GatsbyLink)`
@@ -27,10 +28,11 @@ const Link = styled(GatsbyLink)`
   transition: ${({ theme }) => theme.transition};
 `
 
-export const CategoryList = ({ categories }) => (
+export const CategoryList = ({ categories, style }) => (
   <Wrapper>
     {categories.map(category => (
       <Link
+        style={{ ...style }}
         key={category}
         to={`/categorias/${categoryToSlug(category)}`}
       >
@@ -42,5 +44,6 @@ export const CategoryList = ({ categories }) => (
 
 
 CategoryList.propTypes = {
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  style: PropTypes.object
 }
