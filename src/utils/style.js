@@ -1,9 +1,10 @@
-import { css, createGlobalStyle } from 'styled-components'
+import styled, { css, createGlobalStyle } from 'styled-components'
 
 export const theme = {
   black: "#212129",
   white: "#fff",
   gray: "#9F9FA3",
+  lightGray: "#00000080",
   mainColor: "#FF5722",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
   transition: 'all .3s ease'
@@ -56,21 +57,6 @@ export const media = {
     }
   `
 }
-
-export const flex = opt => css`
-  display: flex;
-
-  flex-direction: ${opt.dir|| "row"};
-  justify-content: ${opt.x || "center"};
-  align-items: ${opt.y || "center"};
-`
-
-export const hover = inner => css`
-  &:hover,
-  &:focus {
-    ${inner}
-  }
-`
 
 export const fontSize = size => css`
   font-size: ${size}rem;
@@ -156,5 +142,89 @@ export const GlobalStyle = createGlobalStyle`
     &:focus {
       outline: 0;
     }
+  }
+`
+
+export const Article = styled.article`
+  padding-bottom: 40px;
+  position: relative;
+  border-bottom: 1px solid #f8f8f8;
+
+  p {
+    white-space: ${({ whiteSpace }) => whiteSpace ? "pre-line" : "normal"}
+  }
+
+  ol, ul {
+    margin: 0;
+  }
+
+  p, li {
+    ${fontSize(1.6)};
+    text-align: justify;
+
+    ${media.phone(css`
+      text-align: left;
+    `)}
+
+    strong {
+      font-weight: 900;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-align: justify;
+    font-weight: 800;
+    margin-bottom: 3.0rem;
+    margin-top: 6.0rem;
+
+    ${media.phone(css`
+      text-align: left;
+    `)}
+  }
+
+  sup {
+    margin: 0 0.2rem;
+    line-height: 1;
+  }
+
+  .footnote-backref {
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: none;
+    }
+  }
+
+  figure {
+    margin: 0;
+    figcaption {
+      font-style: italic;
+      font-size: 1.4rem;
+      text-align: center;
+      color: ${theme.lightGray};
+    }
+  }
+
+  .footnotes {
+    margin-top: 24px;
+
+    ol {
+      margin-top: 14px;
+    }
+    
+    li {
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      p {
+        font-size: 1.4rem;
+        display: inline;
+      }
+    }
+  }
+
+  blockquote {
+    color: ${theme.lightGray};
+    border-left: 2px solid rgba(0,0,0,0.13);
+    padding-left: 2rem;
   }
 `
