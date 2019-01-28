@@ -1,43 +1,16 @@
 import React, { Component } from 'react'
-import { StaticQuery, graphql, Link } from 'gatsby'
+import { StaticQuery, graphql, Link, navigate } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
+import Downshift from 'downshift'
+import computeScrollIntoView from 'compute-scroll-into-view'
 
-const Form = styled.form`
+const InputWrapper = styled.div`
   margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-`
-
-const Button = styled.button`
-  color: ${({ theme }) => theme.gray};
-  background: #f6f6f6;
-  border: none;
-  border-left: 1px solid #c8c8c880;
-  padding: 0 40px;
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  line-height: 2;
-  text-align: center;
-  text-transform: uppercase;
-  outline: none;
-  align-self: stretch;
-
-  cursor: ${({ loading }) => !loading && "pointer"};
-
-  ${({ loading, theme }) => !loading && css`
-    :active,
-    :focus,
-    :hover {
-      border-left: 1px solid ${theme.mainColor};
-      color: ${theme.mainColor};
-    }
-  `}
-
-  transition: ${({ theme }) => theme.transition};
 `
 
 const Input = styled.input`
@@ -56,8 +29,15 @@ const Input = styled.input`
 `
 
 const Post = styled.div`
+  filter: grayscale(100%);
+
+  ${({ highlighted }) => highlighted && css`
+    filter: grayscale(0);
+    background: #f6f6f6;
+  `};
+
   display: flex;
-  margin: 20px 0;
+  padding: 20px;
 
   .text {
     flex: 1;
@@ -78,40 +58,39 @@ const Post = styled.div`
       margin-bottom: 6px;
     }
   }
-
 `
 
 class SearchForm extends Component {
+  searchIn = post => Object.values(post).map(value => this.normalize(value))
+  normalize = str => str && str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, "")
+
+  findWord = (search, post) => {
+    const searchIn = this.searchIn({
+      title: post.title,
+      subTitle: post.subTitle,
+      content: post.content.text
+    })
+
+    return searchIn.some(str => RegExp('\\b' + this.normalize(search), "i").test(str))
+  }
+
   state = {
-    search: '',
     filteredPosts: []
   }
 
   handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
+    const filteredPosts = this.handleFilter(e.target.value)
+    this.setState({ filteredPosts })
   }
 
-  handleSubmit = e => {
-    e.preventDefault()
-    const { search } = this.state
+  handleFilter(search){
     const { posts } = this.props
 
-    if (search.length) {
-      const filteredPosts = this.handleFilter(search, posts)
-      this.setState({ filteredPosts })
-    }
-  }
-
-  handleFilter(word, posts){
-    const findWord = (word, post) => {
-      const searchIn = [post.title, post.subTitle, post.content.md.text]
-      return searchIn.some(str => RegExp('\\b' + word, "i").test(str))
-    }
-
     return posts.reduce((acc, post) => {
-      if (findWord(word, post)) {
+      if (this.findWord(search, post)) {
         acc.push(post)
       }
       return acc
@@ -122,41 +101,70 @@ class SearchForm extends Component {
     const { filteredPosts } = this.state
 
     return (
-      <>
-        <Form
-          onSubmit={this.handleSubmit}
-        >
-          <Input
-            name="search"
-            placeholder='Buscar...'
-            onChange={this.handleChange}
-          />
-          <Button>buscar</Button>
-        </Form>
-          {filteredPosts.map(post => (
-            <Post
-              key={post.slug}
-            >
-              <div style={{ marginRight: 20, flexBasis: '14%' }}>
-                <Link to={"/" + post.slug}>
-                <GatsbyImg
-                  style={{ height: 120 }}
-                  fluid={post.headerImage.fluid}
-                  alt={post.headerImage.description}
-                  title={post.headerImage.description}
-                />
-                </Link>
-              </div>
-              <div className='text'>
-                <h3><Link to={"/" + post.slug}>{post.title}</Link></h3>
-                <time dateTime={(post.date || post.createdAt).replace(/\//g, "-")}>
-                  <p>{post.date || post.createdAt}</p>
-                </time>
-                <p>{post.content.md.excerpt}</p>
-              </div>
-            </Post>
-          ))}
-      </>
+      <Downshift
+        itemToString={post => (post === null ? '' : post.title)}
+        onChange={({ slug }) => navigate(slug)}
+        scrollIntoView={node => {
+          if (!node) return
+
+          const [ action ] = computeScrollIntoView(node, {
+            scrollMode: 'if-needed',
+            block: 'nearest',
+            inline: 'nearest'
+          })
+          if (!action) return
+
+          action.el.scrollTop = action.top
+          action.el.scrollLeft = action.left
+        }}
+      >
+        {({ getInputProps, getItemProps, highlightedIndex, getMenuProps, isOpen }) => (
+          <div>
+            <InputWrapper>
+              <Input
+                {...getInputProps({
+                  type: 'text',
+                  placeholder: 'Buscar...',
+                  id: 'search',
+                  onChange: e => {
+                    e.persist()
+                    this.handleChange(e)
+                  }
+                })}
+                name="search"
+                placeholder='Buscar...'
+              />
+            </InputWrapper>
+            <div {...getMenuProps()} >
+              {isOpen && filteredPosts.map((post, index) => (
+                <Post
+                  {...getItemProps({ item: post })}
+                  key={post.slug}
+                  highlighted={index === highlightedIndex}
+                >
+                <div style={{ marginRight: 20, flexBasis: '14%' }}>
+                  <Link to={"/" + post.slug}>
+                    <GatsbyImg
+                      style={{ height: 120 }}
+                      fluid={post.headerImage.fluid}
+                      alt={post.headerImage.description}
+                      title={post.headerImage.description}
+                    />
+                  </Link>
+                </div>
+                <div className='text'>
+                  <h3><Link to={"/" + post.slug}>{post.title}</Link></h3>
+                  <time dateTime={(post.date || post.createdAt).replace(/\//g, "-")}>
+                    <p>{post.date || post.createdAt}</p>
+                  </time>
+                  <p>{post.content.md.excerpt}</p>
+                </div>
+              </Post>
+            ))}
+          </div>
+        </div>
+      )}
+      </Downshift>
     )
   }
 }
@@ -184,8 +192,10 @@ const query = graphql`
       edges {
         node {
           title
+          subTitle
           slug
           content {
+            text: content
             md: childMarkdownRemark {
               text: rawMarkdownBody
               excerpt(pruneLength: 240)
