@@ -1,32 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import { Link } from 'gatsby'
+import styled from 'styled-components'
+import { FaAngleRight as Arrow } from 'react-icons/fa'
+import { PostsGrid, Section } from '../../utils/UI'
 
-import { PostCard, Section } from '../../utils/UI'
-import { media } from '../../utils/style'
-
-const Wrapper = styled.div`
+const Title = styled.h3`
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  ${media.phone(css`
-    flex-direction: column;
-  `)}
+  align-items: center;
 `
-
 const Category = ({ edges, category }) => (
   <Section margin={2}>
-    <h1>{category}</h1>
-    <Wrapper>
-      {edges.map(post => (
-        <PostCard
-          mini
-          key={post.node.id}
-          node={post.node}
-        />
-      ))}
-    </Wrapper>
+    <Title>
+      <Link to='/categorias'>Categorías </Link> <Arrow/> {category}
+    </Title>
+    <PostsGrid
+      posts={edges}
+      header={category}
+    />
   </Section>
 )
 

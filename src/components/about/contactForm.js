@@ -26,7 +26,7 @@ export const Button = styled.button`
     }
   `}
 
-  transition: all .2s;
+  transition: ${({ theme }) => theme.transition};
 `
 
 const inputStyle = css`

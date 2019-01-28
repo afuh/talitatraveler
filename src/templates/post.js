@@ -51,6 +51,7 @@ export const query = graphql`
       subTitle
       slug
       categories
+      whiteSpace
       headerImage {
         description
         fluid(maxWidth: 2000) {

@@ -87,14 +87,8 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          {
-            resolve: `gatsby-remark-images`,
-            options: {
-              maxWidth: 900,
-              linkImagesToOriginal: true
-            }
-          },
-          'gatsby-remark-smartypants',
+          'gatsby-remark-figure-caption',
+          'gatsby-remark-numbered-footnotes',
           'gatsby-remark-responsive-iframe'
         ]
       }
