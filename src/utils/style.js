@@ -174,8 +174,7 @@ export const Article = styled.article`
   h1, h2, h3, h4, h5, h6 {
     text-align: justify;
     font-weight: 800;
-    margin-bottom: 3.0rem;
-    margin-top: 6.0rem;
+    margin: 3.0rem 0;
 
     ${media.phone(css`
       text-align: left;
@@ -211,7 +210,7 @@ export const Article = styled.article`
     ol {
       margin-top: 14px;
     }
-    
+
     li {
       margin-bottom: 12px;
       font-size: 1.4rem;
