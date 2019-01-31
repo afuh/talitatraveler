@@ -1,11 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import Search from './search'
 import { CategoryList, Section } from '../../utils/UI'
+import { fontSize } from '../../utils/style'
+
+const Wrapper = styled(Section)`
+  padding-top: 4%;
+
+  h3 {
+    ${fontSize(3.2)};
+    font-weight: 900;
+  }
+`
 
 const Categories = ({ categories }) => (
-  <Section margin={2}>
+  <Wrapper margin={2}>
     <h3>Categorías</h3>
     <CategoryList
       style={{
@@ -16,7 +27,7 @@ const Categories = ({ categories }) => (
       categories={categories}
     />
     <Search />
-  </Section>
+  </Wrapper>
 )
 
 Categories.propTypes = {
