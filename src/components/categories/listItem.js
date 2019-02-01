@@ -4,19 +4,20 @@ import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
-const Wrapper = styled.div`
+import { media } from '../../utils/style'
+
+const Wrapper = styled.article`
   filter: grayscale(100%);
+  display: flex;
+  padding: 20px;
 
   ${({ highlighted }) => highlighted && css`
     filter: grayscale(0);
     background: #f6f6f6;
   `};
 
-  display: flex;
-  padding: 20px;
-
   .text {
-    flex: 1;
+    flex: 5;
 
     h3 {
       margin-top: 0;
@@ -34,23 +35,53 @@ const Wrapper = styled.div`
       margin-bottom: 6px;
     }
   }
+
+  .image {
+    margin-right: 20px;
+    flex: 1;
+
+    &.mobile {
+      display: none;
+    }
+
+    ${media.custom(1200, css`
+      flex: 2;
+    `)}
+
+    ${media.mobile(css`
+      flex: 3;
+    `)}
+
+    ${media.phone(css`
+      display: none;
+    `)}
+  }
 `
+
+const Image = ({ headerImage, slug }) => (
+  <div className={`image`}>
+    <Link to={"/" + slug}>
+      <GatsbyImg
+        style={{ height: '100%' }}
+        fluid={headerImage.fluid}
+        alt={headerImage.description}
+        title={headerImage.description}
+      />
+    </Link>
+  </div>
+)
+
+Image.propTypes = {
+  headerImage: PropTypes.object.isRequired,
+  slug: PropTypes.string.isRequired
+}
 
 const ListItem = ({ post, getItemProps, highlighted }) => (
   <Wrapper
     {...getItemProps({ item: post })}
     highlighted={highlighted}
   >
-    <div style={{ marginRight: 20, flexBasis: '14%' }}>
-      <Link to={"/" + post.slug}>
-        <GatsbyImg
-          style={{ height: 120 }}
-          fluid={post.headerImage.fluid}
-          alt={post.headerImage.description}
-          title={post.headerImage.description}
-        />
-      </Link>
-    </div>
+    <Image {...post} />
     <div className='text'>
       <h3><Link to={"/" + post.slug}>{post.title}</Link></h3>
       <time dateTime={(post.date || post.createdAt).replace(/\//g, "-")}>
@@ -60,7 +91,6 @@ const ListItem = ({ post, getItemProps, highlighted }) => (
     </div>
   </Wrapper>
 )
-
 
 ListItem.propTypes = {
   post: PropTypes.object.isRequired,

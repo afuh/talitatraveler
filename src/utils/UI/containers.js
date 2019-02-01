@@ -7,10 +7,6 @@ export const Section = styled.section`
   ${({ margin }) => css`
     margin: 0 ${margin}%;
 
-    ${media.phone(css`
-      margin: 0 ${margin - 2}%;
-    `)}
-
     ${media.medium(css`
       margin: 0 ${margin*2}%;
     `)}
