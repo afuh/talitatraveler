@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { StaticQuery, graphql, Link, navigate } from 'gatsby'
+import { StaticQuery, graphql, navigate } from 'gatsby'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
-import GatsbyImg from 'gatsby-image'
+import styled from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
+
+import { searchWord } from '../../utils/helpers'
+import ListItem from './listItem'
 
 const InputWrapper = styled.div`
   margin-top: 40px;
@@ -28,55 +30,7 @@ const Input = styled.input`
   }
 `
 
-const Post = styled.div`
-  filter: grayscale(100%);
-
-  ${({ highlighted }) => highlighted && css`
-    filter: grayscale(0);
-    background: #f6f6f6;
-  `};
-
-  display: flex;
-  padding: 20px;
-
-  .text {
-    flex: 1;
-
-    h3 {
-      margin-top: 0;
-      margin-bottom: 2px;
-    }
-
-    p {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    time p {
-      font-size: 1.2rem;
-      color: ${({ theme }) => theme.gray};
-      margin-bottom: 6px;
-    }
-  }
-`
-
 class SearchForm extends Component {
-  searchIn = post => Object.values(post).map(value => this.normalize(value))
-  normalize = str => str && str
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, "")
-
-  findWord = (search, post) => {
-    const searchIn = this.searchIn({
-      title: post.title,
-      subTitle: post.subTitle,
-      content: post.content.text
-    })
-
-    return searchIn.some(str => RegExp('\\b' + this.normalize(search), "i").test(str))
-  }
-
   state = {
     filteredPosts: []
   }
@@ -90,7 +44,7 @@ class SearchForm extends Component {
     const { posts } = this.props
 
     return posts.reduce((acc, post) => {
-      if (this.findWord(search, post)) {
+      if (searchWord(search, post)) {
         acc.push(post)
       }
       return acc
@@ -135,31 +89,14 @@ class SearchForm extends Component {
                 placeholder='Buscar...'
               />
             </InputWrapper>
-            <div {...getMenuProps()} >
+            <div {...getMenuProps()}>
               {isOpen && filteredPosts.map((post, index) => (
-                <Post
-                  {...getItemProps({ item: post })}
+                <ListItem
                   key={post.slug}
+                  post={post}
+                  getItemProps={getItemProps}
                   highlighted={index === highlightedIndex}
-                >
-                <div style={{ marginRight: 20, flexBasis: '14%' }}>
-                  <Link to={"/" + post.slug}>
-                    <GatsbyImg
-                      style={{ height: 120 }}
-                      fluid={post.headerImage.fluid}
-                      alt={post.headerImage.description}
-                      title={post.headerImage.description}
-                    />
-                  </Link>
-                </div>
-                <div className='text'>
-                  <h3><Link to={"/" + post.slug}>{post.title}</Link></h3>
-                  <time dateTime={(post.date || post.createdAt).replace(/\//g, "-")}>
-                    <p>{post.date || post.createdAt}</p>
-                  </time>
-                  <p>{post.content.md.excerpt}</p>
-                </div>
-              </Post>
+                />
             ))}
           </div>
         </div>

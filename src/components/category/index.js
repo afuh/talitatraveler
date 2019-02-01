@@ -8,7 +8,7 @@ import { PostsGrid, Section } from '../../utils/UI'
 
 
 const Wrapper = styled(Section)`
-  padding-top: 4%;
+  padding-top: ${({ theme }) => theme.categoryPadding};
   position: relative;
 
   h3 {
