@@ -40,10 +40,6 @@ const Wrapper = styled.article`
     margin-right: 20px;
     flex: 1;
 
-    &.mobile {
-      display: none;
-    }
-
     ${media.custom(1200, css`
       flex: 2;
     `)}
@@ -59,7 +55,7 @@ const Wrapper = styled.article`
 `
 
 const Image = ({ headerImage, slug }) => (
-  <div className={`image`}>
+  <div className='image'>
     <Link to={"/" + slug}>
       <GatsbyImg
         style={{ height: '100%' }}
