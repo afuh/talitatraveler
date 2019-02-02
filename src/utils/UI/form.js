@@ -26,7 +26,7 @@ export const Label = styled.label`
   display: block;
   font-size: 1.1rem;
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   line-height: 1;
   text-transform: uppercase;
 `
@@ -53,11 +53,12 @@ export const Submit = styled.button`
   padding: 10px 40px;
   font-size: 1.2rem;
   font-weight: 900;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.1em;
   line-height: 2;
   text-align: center;
   text-transform: uppercase;
   outline: none;
+  user-select: none;
 
   cursor: ${({ loading }) => !loading && "pointer"};
 

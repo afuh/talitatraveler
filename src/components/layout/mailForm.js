@@ -4,76 +4,98 @@ import styled, { css } from 'styled-components'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { isEmail, isEmpty, normalizeEmail } from 'validator'
 
-import { Spinner } from '../../utils/UI/icons'
+import { Spinner, Envelope } from '../../utils/UI/icons'
+import { Form, Input, Submit, Fieldset } from '../../utils/UI/'
 
 const msg = {
   invalidEmail: 'Esta dirección de correo parece falsa o no váldia, por favor tratá con otra 😉',
   tooManyRequests: 'Demasiadas solicitudes de registro! 🤔'
 }
 
-const Wrapper = styled.section`
-  margin: 20px 0;
+const Wrapper = styled.div`
+  padding: 10px 30px;
   position: relative;
+  width: 600px;
 
-  fieldset {
-    padding: 20px;
-    margin: 0;
-    border: none;
+  h3 {
+    font-weight: 900;
+    margin-bottom: 4px;
+
   }
 `
 
-const Form = styled.form`
-  display: flex;
-
-  ${({ blur }) => blur && css`
-    filter: blur(2px);
-  `}
-
-  transition: ${({ theme }) => theme.transition};
-`
-
-const Input = styled.input`
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid ${({ theme }) => theme.black};
-  padding: 16px;
-
-  width: 100%;
-
-  &:focus {
-    border-bottom: 1px solid ${({ theme }) => theme.mainColor};
-    box-shadow: inset 0 2px 20px rgba(0,0,0,0.17);
-
-    &::-webkit-input-placeholder {
-      color: ${({ theme }) => theme.mainColor};
-      transition: ${({ theme }) => theme.transition};
-    }
-  }
-  transition: ${({ theme }) => theme.transition};
-`
-
-const Button = styled.button`
-  box-shadow: ${({ theme }) => theme.shadow};
-  border: none;
-  cursor: pointer;
-  margin: 0 10px;
-  flex-basis: 30%;
-
-  &:hover {
-    color: ${({ theme }) => theme.mainColor};
-  }
-
-  transition: ${({ theme }) => theme.transition};
-`
-
-const Message = styled.p`
-  margin: 24px 0 0;
-  font-size: 14px;
+const Message = styled.span`
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 20px;
   color: ${({ theme }) => theme.black};
 
   ${({ error }) => error && css`
-    color: red;
+    color: #F44336;
   `}
+`
+
+const Subscription = styled(Form)`
+
+  .email {
+    background: #fff;
+    display: flex;
+    padding: 10px;
+
+    .icon {
+      flex-basis: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    svg {
+      width: 60%;
+      height: 60%;
+    }
+
+    input,
+    button {
+      border-radius: 0;
+    }
+
+    input {
+      font-size: 1.8rem;
+      vertical-align: middle;
+      background: transparent;
+      margin: 0;
+
+      &::placeholder {
+        color: #9b9b9b;
+        font-size: 1.8rem;
+      }
+    }
+
+    button {
+      padding: 10px;
+      border: none;
+
+      :active,
+      :focus,
+      :hover {
+        background: ${({ theme }) => theme.lightGray};
+      }
+    }
+  }
+`
+
+const SpinWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  background: transparent;
+
+  min-width: 100%;
+  min-height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const DisplayMessage = ({ response }) => {
@@ -102,19 +124,6 @@ const DisplayMessage = ({ response }) => {
 DisplayMessage.propTypes = {
   response: PropTypes.object.isRequired
 }
-
-const SpinWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  background: transparent;
-
-  min-width: 100%;
-  min-height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
 
 const Spin = () => (
   <SpinWrapper>
@@ -168,29 +177,33 @@ class MailForm extends Component {
 
     return (
       <Wrapper>
-        <fieldset
-          disabled={loading}
-        >
-          <h2>Suscribite a Talita Traveler</h2>
-          <p>Recibí los últimos posts directamente en tu casilla de E-mail</p>
-          <Form
-            onSubmit={this.handleSubmit}
+        <h3>Suscribite a Talita Traveler</h3>
+        <span>Recibí los últimos posts directamente en tu casilla de E-mail</span>
+        <Fieldset disabled={loading}>
+          <Subscription
+            method='post'
             blur={loading}
+            onSubmit={this.handleSubmit}
           >
-            <Input
-              required
-              placeholder='Tu dirección de E-mail'
-              type="email"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-            <Button>
-              Enviar
-            </Button>
-          </Form>
-          {response && <DisplayMessage response={response} />}
-        </fieldset>
+            <div className='email'>
+              <div className='icon'>
+                <Envelope color='#9b9b9b'/>
+              </div>
+              <Input
+                required
+                placeholder='tu@email.com'
+                type="email"
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+              />
+              <Submit>
+                Enviar
+              </Submit>
+            </div>
+            {response && <DisplayMessage response={response} />}
+          </Subscription>
+        </Fieldset>
         {loading && <Spin />}
       </Wrapper>
     )
