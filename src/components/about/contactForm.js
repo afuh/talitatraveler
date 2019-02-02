@@ -1,78 +1,9 @@
 import React, { Component } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { isEmail, isEmpty, normalizeEmail } from 'validator'
 
 import { Spinner } from '../../utils/UI/icons'
-
-export const Button = styled.button`
-  border-radius: 6px;
-  padding: 10px 40px;
-  font-size: 1.2rem;
-  font-weight: 900;
-  letter-spacing: 0.2em;
-  line-height: 2;
-  text-align: center;
-  text-transform: uppercase;
-  outline: none;
-
-  cursor: ${({ loading }) => !loading && "pointer"};
-
-  ${({ loading, theme }) => !loading && css`
-    :active,
-    :focus,
-    :hover {
-      border: 1px solid ${theme.mainColor};
-      color: ${theme.mainColor};
-    }
-  `}
-
-  transition: ${({ theme }) => theme.transition};
-`
-
-const inputStyle = css`
-  border: none;
-  border-radius: 6px;
-  background: whitesmoke;
-  display: block;
-  margin: 10px 0 20px;
-  padding: 0.9rem;
-  transition: .2s border-color;
-
-  &:focus {
-    outline: 0;
-  }
-`
-
-const Form = styled.form`
-  width: 100%;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-`
-
-const Label = styled.label`
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  line-height: 1;
-  text-transform: uppercase;
-
-  ${({ nonHuman }) => nonHuman && css`
-    display: none;
-  `}
-`
-
-const Input = styled.input`
-  ${inputStyle}
-  width: 100%;
-`
-
-const Textarea = styled.textarea`
-  ${inputStyle}
-  height: 14rem;
-  width: 100%;
-`
+import { Form, Label, Input, Textarea, Submit, Fieldset } from '../../utils/UI/'
 
 const SubmitArea = styled.div`
   display: flex;
@@ -155,9 +86,8 @@ class ContactForm extends Component {
     const { name, email, message, loading, notification } = this.state
 
     return (
-      <fieldset
+      <Fieldset
         disabled={loading}
-        style={{ border: 'none', padding: 0 }}
       >
         <Form
           name='contact'
@@ -166,7 +96,7 @@ class ContactForm extends Component {
           data-netlify-honeypot="last-name"
           onSubmit={this.handleSubmit}
         >
-          <Label nonHuman>
+          <Label style={{ display: "none" }}>
             Don’t fill out this field if you’re a human.
             <Input type="text" name="last-name" />
           </Label>
@@ -203,17 +133,21 @@ class ContactForm extends Component {
           </Label>
           <SubmitArea>
             {notification && <p style={{ marginRight: 20 }}>{notification}</p>}
-            <Button
+            <Submit
               loading={loading}
               type="submit"
             >
               {loading ? <Spinner /> : "Enviar"}
-            </Button>
+            </Submit>
           </SubmitArea>
 
-          <Input type="hidden" name="form-name" value="contact" />
+          <Input
+            type="hidden"
+            name="form-name"
+            value="contact"
+          />
         </Form>
-      </fieldset>
+      </Fieldset>
     )
   }
 }
