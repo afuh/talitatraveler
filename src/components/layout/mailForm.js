@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { isEmail, isEmpty, normalizeEmail } from 'validator'
 
-import { Spinner } from '../../../utils/UI/icons'
+import { Spinner } from '../../utils/UI/icons'
 
 const msg = {
   invalidEmail: 'Esta dirección de correo parece falsa o no váldia, por favor tratá con otra 😉',
@@ -19,8 +19,6 @@ const Wrapper = styled.section`
     padding: 20px;
     margin: 0;
     border: none;
-    background: ${({ theme }) => theme.white};
-    background: whitesmoke;
   }
 `
 
