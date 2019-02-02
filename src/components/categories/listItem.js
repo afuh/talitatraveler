@@ -13,7 +13,7 @@ const Wrapper = styled.article`
 
   ${({ highlighted }) => highlighted && css`
     filter: grayscale(0);
-    background: #f6f6f6;
+    background: ${({ theme }) => theme.lightGray};
   `};
 
   .text {

@@ -15,7 +15,7 @@ const Link = styled(GatsbyLink)`
   font-size: 1rem;
   font-weight: bold;
   padding: 8px;
-  background: #f6f6f6;
+  background: ${({ theme }) => theme.lightGray};
   margin-right: 4px;
   color: ${({ theme }) => theme.gray};
 

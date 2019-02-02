@@ -19,7 +19,7 @@ const Input = styled.input`
   flex: 1;
 
   border: none;
-  background: #f6f6f6;
+  background: ${({ theme }) => theme.lightGray};
 
   display: block;
   padding: 2rem;
