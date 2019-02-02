@@ -9,9 +9,15 @@ import Footer from './footer'
 import SEO from '../../utils/seo'
 import { theme, GlobalStyle, media } from '../../utils/style'
 
+const height = {
+  header: 80,
+  footer: 300
+}
+
 const Main = styled.main`
   max-width: 84%;
   margin: 0 auto;
+  min-height: calc(100vh - ${height.header}px);
 
   ${media.phone(css`
     max-width: none;
@@ -22,17 +28,23 @@ const Main = styled.main`
 const Layout = ({ children }) => (
   <StaticQuery
     query={query}
-    render={({ site: { meta } }) => (
+    render={({ site: { meta }, contact }) => (
       <>
         <GlobalStyle />
         <SEO />
         <ThemeProvider theme={theme}>
           <>
-            <Header nav={meta.nav} />
+            <Header
+              nav={meta.nav}
+              height={height.header}
+            />
             <Main>
               {children}
             </Main>
-            <Footer social={[]}/>
+            <Footer
+              social={contact.social}
+              height={height.footer}
+            />
           </>
         </ThemeProvider>
       </>
@@ -57,6 +69,12 @@ export default ({ children }) => (
 
 const query = graphql`
   query LAYOUT_QUERY {
+    contact: contentfulContactInfo {
+      social {
+        name
+        url
+      }
+    }
     site {
       meta: siteMetadata {
         nav {

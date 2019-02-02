@@ -2,41 +2,46 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const findIcon = name => {
-  const Component = require("react-icons/fa")['Fa' + name]
-  return <Component />
-}
+import { SocialIcon } from '../../utils/UI/icons'
+import MailForm from './mailForm'
 
 const Content = styled.footer`
-  background: ${({ theme }) => theme.white};
+  background: ${({ theme }) => theme.lightGray};
   display: flex;
   justify-content: center;
   align-items: center;
 `
 
-const Icon = styled.a`
-  border: none;
-  padding: 10px;
-  margin: 10px;
-  font-size: 22px;
-  opacity: 0.6;
+const IconsWrapper = styled.div`
+  display: flex;
 `
 
-const Footer = ({ social }) => (
-  <Content>
+const SocialIcons = ({ social }) => (
+  <IconsWrapper>
     {social.map(item => (
-      <Icon
-        key={item.icon}
+      <SocialIcon
+        key={item.name}
+        name={item.name}
         href={item.url}
-      >
-        {findIcon(item.icon)}
-      </Icon>
+      />
     ))}
+  </IconsWrapper>
+)
+
+SocialIcons.propTypes = {
+  social: PropTypes.array.isRequired
+}
+
+const Footer = ({ social, height }) => (
+  <Content style={{ height }} >
+    <SocialIcons social={social} />
+    <MailForm />
   </Content>
 )
 
 Footer.propTypes = {
-  social: PropTypes.array.isRequired
+  social: PropTypes.array.isRequired,
+  height: PropTypes.number.isRequired
 }
 
 export default Footer
