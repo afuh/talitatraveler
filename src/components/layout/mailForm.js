@@ -105,7 +105,10 @@ const DisplayMessage = ({ response }) => {
     [ message ] = message.split('<')
   }
 
-  if (message.includes('This email address looks fake or invalid')) {
+  if (
+    message.includes('This email address looks fake or invalid') ||
+    message.includes('invalid email address and cannot be imported.')
+  ) {
     message = msg.invalidEmail
   }
 
