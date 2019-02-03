@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { StaticQuery, graphql, navigate } from 'gatsby'
+
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
@@ -14,13 +15,17 @@ const InputWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `
 
 const Input = styled.input`
-  flex: 1;
+  ${({ theme }) => theme && css`
+    caret-color: ${theme.mainColor};
+    background: ${theme.lightGray};
+  `};
 
+  flex: 1;
   border: none;
-  background: ${({ theme }) => theme.lightGray};
 
   display: block;
   padding: 2rem;
@@ -32,8 +37,17 @@ const Input = styled.input`
 `
 
 class SearchForm extends Component {
+  searchInput = React.createRef();
   state = {
     filteredPosts: []
+  }
+
+  componentDidMount(){
+    const { location } = this.props
+
+    if (location.state && location.state.focus) {
+      this.searchInput.current.focus()
+    }
   }
 
   handleChange = e => {
@@ -77,7 +91,9 @@ class SearchForm extends Component {
           <div>
             <InputWrapper>
               <Input
+                ref={this.searchInput}
                 {...getInputProps({
+                  name: 'search',
                   type: 'text',
                   placeholder: 'Buscar...',
                   id: 'search',
@@ -86,8 +102,6 @@ class SearchForm extends Component {
                     this.handleChange(e)
                   }
                 })}
-                name="search"
-                placeholder='Buscar...'
               />
             </InputWrapper>
             <div {...getMenuProps()}>
