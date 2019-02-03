@@ -15,20 +15,25 @@ const Contact = ({ contact }) => (
       <h2>Contacto</h2>
       <p>Podés mandarme un <a href={`mailto:${contact.mail}`}>mail</a></p>
       <IconsWrapper>
-        {contact.social.map(icon => (
-          <SocialIcon
-            key={icon.name}
-            href={icon.url}
-            name={icon.name}
-          />
-        ))}
+        {contact.map(icon => {
+          if (icon.name.match(/facebook|twitter/i)) {
+            return (
+              <SocialIcon
+                key={icon.name}
+                href={icon.url}
+                name={icon.name}
+              />
+            )
+          }
+          return null
+        })}
       </IconsWrapper>
       <ContactForm />
   </Section>
 )
 
 Contact.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.array.isRequired
 }
 
 export default Contact
