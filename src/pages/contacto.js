@@ -4,14 +4,14 @@ import { graphql } from 'gatsby'
 
 import SEO from '../utils/seo'
 import Layout from '../components/layout'
-import About from '../components/about'
+import Contact from '../components/contact'
 
-const AboutPage = ({ data: { author } }) => (
+const AboutPage = ({ data: { contact } }) => (
   <Layout>
     <SEO
       title='Contacto'
     />
-    <About author={author} />
+    <Contact contact={contact} />
   </Layout>
 )
 
@@ -22,20 +22,11 @@ AboutPage.propTypes = {
 export default AboutPage
 
 export const query = graphql`
-  query ABOUT_PAGE_QUERY {
-    author: contentfulAuthor(name: { regex: "/talita/i" }) {
-      name
-      about {
-        md: childMarkdownRemark {
-          html
-        }
-      }
-      contact {
-        mail
-        social {
-          name
-          url
-        }
+  query CONTACT_PAGE_QUERY {
+    contact: contentfulContactInfo {
+      social {
+        name
+        url
       }
     }
   }

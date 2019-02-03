@@ -1,3 +1,9 @@
+const mainNav = [
+  { name: 'Inicio', path: '/' },
+  { name: "Categorías", path: '/categorias' },
+  { name: "Sobre mi", path: '/sobre-mi' }
+]
+
 module.exports = {
   title: 'Talita traveler',
   titleTemplate: '%s | Talita traveler',
@@ -8,7 +14,11 @@ module.exports = {
   themeColor: '#000',
   backgroundColor: '#fff',
   nav: [
-    { name: 'Home', path: '/' },
-    { name: "Categorías", path: '/categorias' }
+    ...mainNav
+  ],
+  footerNav: [
+    ...mainNav,
+    { name: "Contacto", path: '/contacto' },
+    { name: "Buscar", path: '/categorias' }
   ]
 }

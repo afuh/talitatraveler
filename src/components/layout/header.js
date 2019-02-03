@@ -3,30 +3,52 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import { theme } from '../../utils/style'
-
 const Content = styled.header`
   background: ${({ theme }) => theme.white};
   padding: 20px;
+  display: flex;
+  align-items: center;
 `
 
-const Header = ({ nav }) => (
-  <Content>
+const NavLink = styled(Link)`
+  color: black;
+  font-weight: 900;
+  font-size: 1.8rem;
+  padding: 1.4rem 2rem;
+
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &.${({ activeClassName }) => activeClassName} {
+    color: ${({ theme }) => theme.mainColor};
+  }
+
+  transition: ${({ theme }) => theme.transition};
+`
+
+NavLink.defaultProps = {
+  activeClassName: 'active'
+}
+
+const Header = ({ nav, height }) => (
+  <Content style={{ height }}>
     {nav.map(item => (
-      <Link
-        activeStyle={{ color: theme.mainColor }}
-        style={{ marginRight: 10 }}
+      <NavLink
         key={item.name}
         to={item.path}
       >
         {item.name}
-      </Link>
+      </NavLink>
     ))}
   </Content>
 )
 
 Header.propTypes = {
-  nav: PropTypes.array.isRequired
+  nav: PropTypes.array.isRequired,
+  height: PropTypes.number.isRequired
 }
 
 export default Header

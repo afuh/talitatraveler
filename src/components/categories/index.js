@@ -7,7 +7,7 @@ import { CategoryList, Section } from '../../utils/UI'
 import { fontSize } from '../../utils/style'
 
 const Wrapper = styled(Section)`
-  padding-top: 4%;
+  padding-top: ${({ theme }) => theme.categoryPadding};
 
   h3 {
     ${fontSize(3.2)};
@@ -15,15 +15,17 @@ const Wrapper = styled(Section)`
   }
 `
 
+const CategoryStyle = {
+  fontSize: "2rem",
+  margin: '0 8px 8px 0',
+  padding: "10px 20px"
+}
+
 const Categories = ({ categories }) => (
   <Wrapper margin={2}>
     <h3>Categorías</h3>
     <CategoryList
-      style={{
-        fontSize: "2rem",
-        margin: '0 8px 8px 0',
-        padding: "10px 20px"
-      }}
+      style={CategoryStyle}
       categories={categories}
     />
     <Search />

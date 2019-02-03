@@ -34,6 +34,21 @@ Spinner.propTypes = {
   color: PropTypes.string
 }
 
+export const Envelope = ({ size, color }) => (
+  <Svg size={size} viewBox="0 0 20 20">
+    <g fillRule="evenodd" clipRule="evenodd">
+      <path fill={color || '#000'} d="M3.333 4.167A.838.838 0 0 0 2.5 5v10c0 .456.377.833.833.833h13.334A.838.838 0 0 0 17.5 15V5a.838.838 0 0 0-.833-.833H3.333zM.833 5c0-1.377 1.124-2.5 2.5-2.5h13.334c1.377 0 2.5 1.123 2.5 2.5v10c0 1.377-1.123 2.5-2.5 2.5H3.333a2.505 2.505 0 0 1-2.5-2.5V5z"></path>
+      <path fill={color || '#000'} d="M.984 4.522a.833.833 0 0 1 1.16-.205L10 9.817l7.856-5.5a.833.833 0 0 1 .955 1.366l-8.333 5.833c-.287.2-.669.2-.956 0L1.19 5.683a.833.833 0 0 1-.205-1.16z"></path>
+    </g>
+  </Svg>
+)
+
+Envelope.propTypes = {
+  size: PropTypes.number,
+  color: PropTypes.string
+}
+
+
 export const SocialWrapper = styled.a`
   border: none;
   border-radius: 50%;
@@ -53,6 +68,9 @@ export const SocialWrapper = styled.a`
 
 export const SocialIcon = ({ name, href, style, as }) => {
   const findIcon = name => {
+    // capitalize the name
+    name = name.replace(/\b\w/g, l => l.toUpperCase())
+    
     const Component = require("react-icons/fa")['Fa' + name]
     return <Component />
   }
