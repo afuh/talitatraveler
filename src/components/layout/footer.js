@@ -71,7 +71,7 @@ ListLink.propTypes = {
   name: PropTypes.string.isRequired
 }
 
-const Nav = ({ nav, social, siteUrl }) => (
+const Nav = ({ nav, external }) => (
   <>
     <div className='list'>
       {nav.map(item => (
@@ -83,7 +83,7 @@ const Nav = ({ nav, social, siteUrl }) => (
       ))}
     </div>
     <div className='list'>
-      {social.map(item => (
+      {external.map(item => (
         <ListLink
           icon
           key={item.name}
@@ -91,19 +91,13 @@ const Nav = ({ nav, social, siteUrl }) => (
           name={item.name}
         />
       ))}
-      <ListLink
-        icon
-        path={siteUrl + '/rss.xml'}
-        name='rss'
-      />
     </div>
   </>
 )
 
 Nav.propTypes = {
-  social: PropTypes.array.isRequired,
-  nav: PropTypes.array.isRequired,
-  siteUrl: PropTypes.string.isRequired
+  external: PropTypes.array.isRequired,
+  nav: PropTypes.array.isRequired
 }
 
 const Footer = props => (
@@ -118,9 +112,8 @@ const Footer = props => (
 )
 
 Footer.propTypes = {
-  social: PropTypes.array.isRequired,
   nav: PropTypes.array.isRequired,
-  siteUrl: PropTypes.string.isRequired
+  external: PropTypes.array.isRequired
 }
 
 export default Footer

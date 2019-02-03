@@ -24,7 +24,7 @@ const Main = styled.main`
 const Layout = ({ children }) => (
   <StaticQuery
     query={query}
-    render={({ site: { meta }, contact }) => (
+    render={({ site: { meta } }) => (
       <>
         <GlobalStyle />
         <SEO />
@@ -39,9 +39,8 @@ const Layout = ({ children }) => (
               {children}
             </Main>
             <Footer
-              siteUrl={meta.siteUrl}
+              external={meta.external}
               nav={meta.footerNav}
-              social={contact.social}
             />
           </>
         </ThemeProvider>
@@ -58,15 +57,8 @@ export default Layout
 
 const query = graphql`
   query LAYOUT_QUERY {
-    contact: contentfulContactInfo {
-      social {
-        name
-        url
-      }
-    }
     site {
       meta: siteMetadata {
-        siteUrl
         nav {
           name
           path
@@ -74,6 +66,10 @@ const query = graphql`
         footerNav {
           name
           path
+        }
+        external {
+          name
+          url
         }
       }
     }

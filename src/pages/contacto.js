@@ -6,12 +6,12 @@ import SEO from '../utils/seo'
 import Layout from '../components/layout'
 import Contact from '../components/contact'
 
-const AboutPage = ({ data: { contact } }) => (
+const AboutPage = ({ data: { site: { meta } } }) => (
   <Layout>
     <SEO
       title='Contacto'
     />
-    <Contact contact={contact} />
+    <Contact contact={meta.external} />
   </Layout>
 )
 
@@ -23,10 +23,12 @@ export default AboutPage
 
 export const query = graphql`
   query CONTACT_PAGE_QUERY {
-    contact: contentfulContactInfo {
-      social {
-        name
-        url
+    site {
+      meta: siteMetadata {
+        external {
+          name
+          url
+        }
       }
     }
   }
