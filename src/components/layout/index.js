@@ -57,15 +57,7 @@ Layout.propTypes = {
   location: PropTypes.object.isRequired
 }
 
-export default ({ children }) => (
-  <Location>
-    {({ location }) => (
-      <Layout location={location}>
-        {children}
-      </Layout>
-    )}
-  </Location>
-)
+export default Layout
 
 const query = graphql`
   query LAYOUT_QUERY {

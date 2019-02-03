@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
+import withLocation from '../../utils/context/withLocation'
 import { searchWord } from '../../utils/helpers'
 import ListItem from './listItem'
 
@@ -107,21 +108,28 @@ class SearchForm extends Component {
 }
 
 SearchForm.propTypes = {
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  location: PropTypes.object.isRequired
 }
 
-const Search = () => (
+
+const Search = ({ location }) => (
   <StaticQuery
     query={query}
     render={({ posts: { edges } }) => (
       <SearchForm
+        location={location}
         posts={edges.map(({ node }) => node)}
       />
     )}
   />
 )
 
-export default Search
+Search.propTypes = {
+  location: PropTypes.object.isRequired
+}
+
+export default withLocation(Search)
 
 const query = graphql`
   {
