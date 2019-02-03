@@ -1,5 +1,3 @@
-const siteUrl = 'https://talitatraveler.netlify.com'
-
 const mainNav = [
   { name: 'Inicio', path: '/' },
   { name: "Categorías", path: '/categorias' },
@@ -10,7 +8,7 @@ module.exports = {
   title: 'Talita traveler',
   titleTemplate: '%s | Talita traveler',
   description: "Desde otro lado.",
-  siteUrl, // no trailing slash
+  siteUrl: 'https://talitatraveler.netlify.com', // no trailing slash
   favicon: '/images/icon-32x32.png',
   image: '/images/cover-1440x720.jpg',
   themeColor: '#000',
@@ -21,6 +19,6 @@ module.exports = {
   footerNav: [
     ...mainNav,
     { name: "Contacto", path: '/contacto' },
-    { name: "rss", path: siteUrl + '/rss.xml' }
+    { name: "Buscar", path: '/categorias' }
   ]
 }
