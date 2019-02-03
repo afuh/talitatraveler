@@ -13,14 +13,13 @@ const msg = {
 }
 
 const Wrapper = styled.div`
-  padding: 10px 30px;
   position: relative;
   width: 600px;
 
-  h3 {
-    font-weight: 900;
-    margin-bottom: 4px;
-
+  fieldset {
+    ${({ loading }) => loading && css`
+      filter: blur(2px);
+    `};
   }
 `
 
@@ -37,7 +36,6 @@ const Message = styled.span`
 `
 
 const Subscription = styled(Form)`
-
   .email {
     background: #fff;
     display: flex;
@@ -177,12 +175,15 @@ class MailForm extends Component {
 
   render(){
     const { response, loading, email } = this.state
+    const { wrapperStyles, header } = this.props
 
     return (
-      <Wrapper>
-        <h3>Suscribite a Talita Traveler</h3>
-        <span>Recibí los últimos posts directamente en tu casilla de E-mail</span>
+      <Wrapper
+        loading={loading}
+        style={{ ...wrapperStyles }}
+      >
         <Fieldset disabled={loading}>
+          {header()}
           <Subscription
             method='post'
             blur={loading}
@@ -211,6 +212,20 @@ class MailForm extends Component {
       </Wrapper>
     )
   }
+}
+
+MailForm.propTypes = {
+  wrapperStyles: PropTypes.object,
+  header: PropTypes.func.isRequired
+}
+
+MailForm.defaultProps = {
+  header: () => (
+    <>
+      <h3 style={{ fontWeight: 900, marginBottom: 4 }}>Suscribite a Talita Traveler</h3>
+      <span>Recibí los últimos posts directamente en tu casilla de E-mail</span>
+    </>
+  )
 }
 
 export default MailForm
