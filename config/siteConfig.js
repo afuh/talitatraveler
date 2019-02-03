@@ -21,6 +21,6 @@ module.exports = {
   footerNav: [
     ...mainNav,
     { name: "Contacto", path: '/contacto' },
-    { name: "rss", path: siteUrl + '/rss.xml', external: true }
+    { name: "rss", path: siteUrl + '/rss.xml' }
   ]
 }
