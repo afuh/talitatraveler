@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
-import { Location } from '@reach/router'
 import styled, { ThemeProvider, css } from 'styled-components'
 
 import Header from './header'
@@ -9,15 +8,12 @@ import Footer from './footer'
 import SEO from '../../utils/seo'
 import { theme, GlobalStyle, media } from '../../utils/style'
 
-const height = {
-  header: 80,
-  footer: 300
-}
+const headerHeight = 80
 
 const Main = styled.main`
   max-width: 84%;
   margin: 0 auto;
-  min-height: calc(100vh - ${height.header}px);
+  min-height: calc(100vh - ${headerHeight}px);
 
   ${media.phone(css`
     max-width: none;
@@ -34,16 +30,18 @@ const Layout = ({ children }) => (
         <SEO />
         <ThemeProvider theme={theme}>
           <>
+
             <Header
               nav={meta.nav}
-              height={height.header}
+              height={headerHeight}
             />
             <Main>
               {children}
             </Main>
             <Footer
+              siteUrl={meta.siteUrl}
+              nav={meta.footerNav}
               social={contact.social}
-              height={height.footer}
             />
           </>
         </ThemeProvider>
@@ -53,8 +51,7 @@ const Layout = ({ children }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  location: PropTypes.object.isRequired
+  children: PropTypes.node.isRequired
 }
 
 export default Layout
@@ -69,7 +66,12 @@ const query = graphql`
     }
     site {
       meta: siteMetadata {
+        siteUrl
         nav {
+          name
+          path
+        }
+        footerNav {
           name
           path
         }

@@ -68,6 +68,9 @@ export const SocialWrapper = styled.a`
 
 export const SocialIcon = ({ name, href, style, as }) => {
   const findIcon = name => {
+    // capitalize the name
+    name = name.replace(/\b\w/g, l => l.toUpperCase())
+    
     const Component = require("react-icons/fa")['Fa' + name]
     return <Component />
   }

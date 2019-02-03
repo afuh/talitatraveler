@@ -14,7 +14,7 @@ const msg = {
 
 const Wrapper = styled.div`
   position: relative;
-  width: 600px;
+  width: 440px;
 
   fieldset {
     ${({ loading }) => loading && css`
@@ -39,7 +39,7 @@ const Subscription = styled(Form)`
   .email {
     background: #fff;
     display: flex;
-    padding: 10px;
+    padding: 4px 8px; 
 
     .icon {
       flex-basis: 10%;
