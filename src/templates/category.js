@@ -36,7 +36,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          ...PostCard_Small
+          ...PostCard
         }
       }
     }
