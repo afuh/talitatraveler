@@ -14,7 +14,7 @@ const flex = css`
 
 const Wrapper = styled.footer`
   .nav {
-    background: ${({ theme }) => theme.lightGray};
+    background: ${({ theme }) => theme.mainColor};
     padding: 20px;
 
     .list {
@@ -26,16 +26,16 @@ const Wrapper = styled.footer`
       margin-right: 20px;
 
       a {
+        font-weight: 700;
         color: ${({ theme }) => theme.black};
+        transition: none;
 
         &:hover,
         &:active,
         &:focus {
-          color: ${({ theme }) => theme.mainColor};
+          color: ${({ theme }) => theme.white};
           text-decoration: none;
         }
-
-        transition: ${({ theme }) => theme.transition};
       }
     }
   }

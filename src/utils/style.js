@@ -7,7 +7,7 @@ export const theme = {
   lightGray: "#f6f6f6",
   mainColor: "#4ABDAC",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
-  transition: 'all .3s ease',
+  transition: 'all .2s ease',
   categoryPadding: '20px'
 }
 
@@ -90,7 +90,7 @@ const defaultFont = [
 export const GlobalStyle = createGlobalStyle`
   *::selection {
     color: ${theme.white};
-    background: ${theme.black};
+    background: ${theme.mainColor};
   }
 
   html {

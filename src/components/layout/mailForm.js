@@ -39,7 +39,7 @@ const Subscription = styled(Form)`
   .email {
     background: #fff;
     display: flex;
-    padding: 4px 8px; 
+    padding-left: 8px;
 
     .icon {
       flex-basis: 10%;
@@ -62,7 +62,7 @@ const Subscription = styled(Form)`
       font-size: 1.8rem;
       vertical-align: middle;
       background: transparent;
-      margin: 0;
+      margin: 4px 0;
 
       &::placeholder {
         color: #9b9b9b;
@@ -71,13 +71,14 @@ const Subscription = styled(Form)`
     }
 
     button {
-      padding: 10px;
-      border: none;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      transition: none;
 
       :active,
       :focus,
       :hover {
-        background: ${({ theme }) => theme.lightGray};
+        border: 1px solid ${({ theme }) => theme.mainColor};
       }
     }
   }
@@ -222,8 +223,8 @@ MailForm.propTypes = {
 MailForm.defaultProps = {
   header: () => (
     <>
-      <h3 style={{ fontWeight: 900, marginBottom: 4 }}>Suscribite a Talita Traveler</h3>
-      <span>Recibí los últimos posts directamente en tu casilla de E-mail</span>
+      <h2 style={{ fontWeight: 900, marginBottom: 4 }}>Suscribite</h2>
+      <span>Sólo te va a llegar un mail cuando publique algo nuevo, ¡nada de spam!</span>
     </>
   )
 }
