@@ -27,7 +27,7 @@ const RelatedPosts = ({ post, related }) => {
         {
           suggestions.map((post, i) => i < 3 && (
             <PostCard
-              mini
+              small
               key={post.slug}
               node={post}
             />

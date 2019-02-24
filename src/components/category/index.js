@@ -11,7 +11,7 @@ const Wrapper = styled(Section)`
   padding-top: ${({ theme }) => theme.categoryPadding};
   position: relative;
 
-  h3 {
+  .title {
     display: flex;
     align-items: center;
     ${fontSize(3.2)};
@@ -28,9 +28,7 @@ const Wrapper = styled(Section)`
 const Category = ({ edges, category }) => (
   <Wrapper margin={2}>
     <div className='category'><Link to='/categorias'>Categoría  </Link> </div>
-    <h3>
-      {category}
-    </h3>
+    <h3 className='title'>{category}</h3>
     <PostsGrid
       posts={edges}
       header={category}

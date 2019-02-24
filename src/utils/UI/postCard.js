@@ -57,7 +57,7 @@ const Overlay = styled.div`
   }
 
   h2 {
-    font-size: 3rem;
+    font-size: ${p => p.small ? 2.4 : 3}rem;
   }
 
   h3 {
@@ -80,11 +80,13 @@ const Overlay = styled.div`
   }
 `
 
-export const PostCard = ({ node }) => (
+export const PostCard = ({ node, small }) => (
   <Wrapper to={"/" + node.slug}>
     <Article>
       <div className='content'>
-        <Overlay>
+        <Overlay
+          small={small}
+        >
           <Time post={node} />
           <h2>{node.title}</h2>
           <h3>{node.subTitle}</h3>
@@ -101,5 +103,10 @@ export const PostCard = ({ node }) => (
 )
 
 PostCard.propTypes = {
-  node: PropTypes.object.isRequired
+  node: PropTypes.object.isRequired,
+  small: PropTypes.bool
+}
+
+PostCard.defaultProps = {
+  small: false
 }

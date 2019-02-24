@@ -55,7 +55,6 @@ const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
       <Wrapper>
         {posts.map((post, i) => i < count && (
           <PostCard
-            mini
             key={post.node.id}
             node={post.node}
           />
