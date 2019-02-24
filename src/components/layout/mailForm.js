@@ -111,7 +111,10 @@ const DisplayMessage = ({ response }) => {
     message = msg.invalidEmail
   }
 
-  if (message.includes('has too many recent signup requests')) {
+  if (
+    message.includes('many recent signup requests') ||
+    message.includes('many subscribe attempts')
+  ) {
     message = msg.tooManyRequests
   }
 
