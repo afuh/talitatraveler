@@ -1,32 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
+const border = css`
+  span {
+    border-bottom: 3px solid ${({ theme }) => theme.mainColor};
+  }
+`
+
 const Content = styled.header`
-  background: ${({ theme }) => theme.white};
-  padding: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
 `
 
 const NavLink = styled(Link)`
-  color: black;
-  font-weight: 900;
-  font-size: 1.8rem;
+  color: ${({ theme }) => theme.black};
+  font-weight: 700;
+  font-size: 2rem;
   padding: 1.4rem 2rem;
 
   &:hover,
   &:active,
   &:focus {
     text-decoration: none;
+    color: ${({ theme }) => theme.black};
+    ${border}
   }
 
   &.${({ activeClassName }) => activeClassName} {
-    color: ${({ theme }) => theme.mainColor};
+    ${border}
   }
-
-  transition: ${({ theme }) => theme.transition};
 `
 
 NavLink.defaultProps = {
@@ -40,7 +45,7 @@ const Header = ({ nav, height }) => (
         key={item.name}
         to={item.path}
       >
-        {item.name}
+        <span>{item.name}</span>
       </NavLink>
     ))}
   </Content>

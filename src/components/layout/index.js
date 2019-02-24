@@ -8,7 +8,7 @@ import Footer from './footer'
 import SEO from '../../utils/seo'
 import { theme, GlobalStyle, media } from '../../utils/style'
 
-const headerHeight = 80
+const headerHeight = 120
 
 const Main = styled.main`
   max-width: 84%;
