@@ -11,7 +11,9 @@ export const PostCard = graphql`
   fragment PostCard on ContentfulPost {
     id
     title
+    subTitle
     slug
+    ...Dates
     headerImage {
       description
       fluid(maxWidth: 800) {

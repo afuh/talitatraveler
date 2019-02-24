@@ -4,19 +4,12 @@ import { Link } from 'gatsby'
 import GatsbyImg from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
-import { fontSize, media } from '../style'
+import { media } from '../style'
+import { Time } from '../UI'
 
-const LinkWrapper = styled(Link)`
+const Wrapper = styled(Link)`
   flex: 1;
   flex-basis: 33%;
-  color: ${({ theme }) => theme.black};
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: ${({ theme }) => theme.mainColor};
-    text-decoration: none;
-  }
 
   ${media.mobile(css`
     flex-basis: 50%;
@@ -39,46 +32,62 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 12px;
   z-index: 1;
 
   display: flex;
   justify-content: center;
-  align-items: center;
-
-  padding: 12px;
+  flex-direction: column;
 
   background: rgba(0, 0, 0, 0.5);
+  color: ${({ theme }) => theme.white};
+
+  time, h3 {
+    color: #cfd0d1;
+  }
+
+  time, h2, h3 {
+    text-align: center;
+    margin: 0;
+    transition: ${({ theme }) => theme.transition};
+  }
+
+  time {
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
 
   &:hover,
   &:active,
   &:focus {
     background: rgba(0, 0, 0, 0.2);
+    color: ${({ theme }) => theme.white};
 
-    h2 {
+    h3, time {
       opacity: 0;
     }
+
+    h2 {
+      opacity: 0.7;
+    }
   }
-
-  transition: ${({ theme }) => theme.transition};
-`
-
-const Title = styled.h2`
-  color: ${({ theme }) => theme.white};
-  text-align: center;
-  opacity: 1;
-  ${fontSize(2.6)};
-
-  transition: ${({ theme }) => theme.transition};
 `
 
 export const PostCard = ({ node }) => (
-  <LinkWrapper
-    to={"/" + node.slug}
-  >
+  <Wrapper to={"/" + node.slug}>
     <Article>
       <div className='content'>
         <Overlay>
-          <Title>{node.title}</Title>
+          <Time post={node} />
+          <h2>{node.title}</h2>
+          <h3>{node.subTitle}</h3>
         </Overlay>
         <GatsbyImg
           style={{ height: 240 }}
@@ -88,7 +97,7 @@ export const PostCard = ({ node }) => (
         />
       </div>
     </Article>
-  </LinkWrapper>
+  </Wrapper>
 )
 
 PostCard.propTypes = {
