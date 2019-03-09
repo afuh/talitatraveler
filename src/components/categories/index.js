@@ -21,18 +21,21 @@ const CategoryStyle = {
   padding: "10px 20px"
 }
 
-const Categories = ({ categories }) => (
+const Categories = ({ categories, location }) => (
   <Wrapper margin={2}>
     <h3>Categorías</h3>
     <CategoryList
       style={CategoryStyle}
       categories={categories}
     />
-    <Search />
+    <Search
+      location={location}
+    />
   </Wrapper>
 )
 
 Categories.propTypes = {
+  location: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired
 }
 

@@ -6,7 +6,6 @@ import styled, { css } from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
-import withLocation from '../../utils/context/withLocation'
 import { searchWord } from '../../utils/helpers'
 import ListItem from './listItem'
 
@@ -126,7 +125,6 @@ SearchForm.propTypes = {
   location: PropTypes.object.isRequired
 }
 
-
 const Search = ({ location }) => {
   const { posts: { edges } } = useStaticQuery(query)
 
@@ -142,7 +140,7 @@ Search.propTypes = {
   location: PropTypes.object.isRequired
 }
 
-export default withLocation(Search)
+export default Search
 
 const query = graphql`
   query SEARCH_POSTS_QUERY {
