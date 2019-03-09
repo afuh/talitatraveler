@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Section, PostsGrid } from '../../utils/UI'
 
 const Home = ({ data: { posts: { edges, totalCount } } }) => (
-  <Section margin={2}>
+  <Section>
     <PostsGrid
       totalCount={totalCount}
       posts={edges}

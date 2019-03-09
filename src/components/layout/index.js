@@ -11,7 +11,6 @@ import { useSiteMeta } from '../../utils/hooks'
 const headerHeight = 120
 
 const Main = styled.main`
-  max-width: 84%;
   margin: 0 auto;
   min-height: calc(100vh - ${headerHeight}px);
 

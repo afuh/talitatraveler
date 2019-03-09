@@ -22,5 +22,5 @@ Section.propTypes = {
 }
 
 Section.defaultProps = {
-  margin: 8
+  margin: 0
 }

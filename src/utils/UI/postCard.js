@@ -18,7 +18,6 @@ const Wrapper = styled(Link)`
 
 const Article = styled.article`
   display: flex;
-  padding: 4px;
 
   .content {
     position: relative;
@@ -92,7 +91,7 @@ export const PostCard = ({ node, small }) => (
           <h3>{node.subTitle}</h3>
         </Overlay>
         <GatsbyImg
-          style={{ height: 240 }}
+          style={{ height: 280 }}
           fluid={node.headerImage.fluid}
           alt={node.headerImage.description}
           title={node.headerImage.description}
