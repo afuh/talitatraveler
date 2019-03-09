@@ -46,7 +46,7 @@ const Overlay = styled.div`
   }
 
   h2 {
-    font-size: ${p => p.small ? 2.4 : 3.2}rem;
+    font-size: ${p => p.small ? 2.4 : 3}rem;
   }
 
   h3 {
