@@ -8,7 +8,8 @@ export const theme = {
   mainColor: "#4ABDAC",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
   transition: 'all .2s ease',
-  categoryPadding: '20px'
+  categoryPadding: '20px',
+  headerHeight: 120
 }
 
 const screenBreak = {

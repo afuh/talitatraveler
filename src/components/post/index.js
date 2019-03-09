@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { DiscussionEmbed } from 'disqus-react'
 import styled, { css } from 'styled-components'
+import GatsbyImg from 'gatsby-image'
 
 import { Section, SocialLinks, CategoryList } from '../../utils/UI'
 import { media, Article } from '../../utils/style'
 
-import HeaderImage from './headerImage'
 import Header from './header'
 import RelatedPosts from './relatedPosts'
 
@@ -33,6 +33,19 @@ const Footer = styled.footer`
   }
 `
 
+const HeaderImage = ({ image }) => (
+  <GatsbyImg
+    style={{ maxHeight: '84vh' }}
+    fluid={image.fluid}
+    alt={image.description}
+    title={image.description}
+  />
+)
+
+HeaderImage.propTypes = {
+  image: PropTypes.object.isRequired
+}
+
 const Post = ({ post, relatedPosts }) => {
   const disqusProps = {
     shortname: process.env.GATSBY_DISQUSS,
@@ -44,7 +57,7 @@ const Post = ({ post, relatedPosts }) => {
 
   return (
     <>
-      <HeaderImage post={post} />
+      <HeaderImage image={post.headerImage} />
       <Content margin={6}>
         <Header post={post} />
         <Article

@@ -8,7 +8,7 @@ import SEO from '../../utils/seo'
 import { theme, GlobalStyle, media } from '../../utils/style'
 import { useSiteMeta } from '../../utils/hooks'
 
-const headerHeight = 120
+const { headerHeight } = theme
 
 const Main = styled.main`
   margin: 0 auto;
