@@ -13,7 +13,6 @@ export const PostCard = graphql`
     title
     subTitle
     slug
-    ...Dates
     headerImage {
       description
       fluid(maxWidth: 800) {

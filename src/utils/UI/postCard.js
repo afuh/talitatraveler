@@ -5,7 +5,6 @@ import GatsbyImg from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
 import { media } from '../style'
-import { Time } from '../UI'
 
 const Wrapper = styled(Link)`
   flex: 1;
@@ -38,29 +37,22 @@ const Overlay = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   color: ${({ theme }) => theme.white};
 
-  time, h3 {
-    color: #cfd0d1;
-  }
-
-  time, h2, h3 {
+  h2, h3 {
     text-align: center;
     margin: 0;
-    transition: ${({ theme }) => theme.transition};
-  }
-
-  time {
-    font-size: 1rem;
   }
 
   h2 {
-    font-size: ${p => p.small ? 2.4 : 3}rem;
+    font-size: ${p => p.small ? 2.4 : 3.2}rem;
   }
 
   h3 {
+    color: #cfd0d1;
     font-size: 1.4rem;
+    transition: ${({ theme }) => theme.transition};
   }
 
   &:hover,
@@ -69,14 +61,17 @@ const Overlay = styled.div`
     background: rgba(0, 0, 0, 0.2);
     color: ${({ theme }) => theme.white};
 
-    h3, time {
+    h3 {
       opacity: 0;
     }
 
     h2 {
-      opacity: 0.7;
+      text-shadow: 3px 3px 10px #3e3e3e70;
     }
+
   }
+
+  transition: ${({ theme }) => theme.transition};
 `
 
 export const PostCard = ({ node, small }) => (
@@ -86,12 +81,11 @@ export const PostCard = ({ node, small }) => (
         <Overlay
           small={small}
         >
-          <Time post={node} />
           <h2>{node.title}</h2>
           <h3>{node.subTitle}</h3>
         </Overlay>
         <GatsbyImg
-          style={{ height: 280 }}
+          style={{ height: 300 }}
           fluid={node.headerImage.fluid}
           alt={node.headerImage.description}
           title={node.headerImage.description}
