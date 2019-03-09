@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StaticQuery, graphql, navigate } from 'gatsby'
+import { useStaticQuery, graphql, navigate } from 'gatsby'
 
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
@@ -127,17 +127,16 @@ SearchForm.propTypes = {
 }
 
 
-const Search = ({ location }) => (
-  <StaticQuery
-    query={query}
-    render={({ posts: { edges } }) => (
-      <SearchForm
-        location={location}
-        posts={edges.map(({ node }) => node)}
-      />
-    )}
-  />
-)
+const Search = ({ location }) => {
+  const { posts: { edges } } = useStaticQuery(query)
+
+  return (
+    <SearchForm
+      location={location}
+      posts={edges.map(({ node }) => node)}
+    />
+  )
+}
 
 Search.propTypes = {
   location: PropTypes.object.isRequired
@@ -146,7 +145,7 @@ Search.propTypes = {
 export default withLocation(Search)
 
 const query = graphql`
-  {
+  query SEARCH_POSTS_QUERY {
     posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
       edges {
         node {

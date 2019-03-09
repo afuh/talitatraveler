@@ -11,7 +11,6 @@ module.exports = {
   titleTemplate: '%s | Talita traveler',
   description: "Desde otro lado.",
   siteUrl, // no trailing slash
-  favicon: '/images/icon-32x32.png',
   image: '/images/cover-1440x720.jpg',
   themeColor: '#000',
   backgroundColor: '#fff',

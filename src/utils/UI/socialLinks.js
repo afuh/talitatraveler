@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { StaticQuery, graphql } from "gatsby"
 import { FacebookShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share'
 
 import { SocialIcon } from '../../utils/UI/icons'
+import { useSiteMeta } from '../../utils/hooks'
 
 const Wrapper = styled.div`
   display: flex;
@@ -16,59 +16,44 @@ const Wrapper = styled.div`
   }
 `
 
-export const SocialLinks = ({ post }) => (
-  <StaticQuery
-    query={query}
-    render={({ site: { siteMetadata: { siteUrl } } }) => {
-      const url = siteUrl + "/" + post.slug
+export const SocialLinks = ({ post }) => {
+  const { siteUrl } = useSiteMeta()
+  const url = siteUrl + "/" + post.slug
 
-      return (
-        <Wrapper>
-          <FacebookShareButton
-            url={url}
-            quote={post.content.md.excerpt}
-          >
-            <SocialIcon
-              as='div'
-              name='Facebook'
-            />
-          </FacebookShareButton>
-          <TwitterShareButton
-            url={url}
-            title={post.title}
-            hashtags={post.categories}
-          >
-            <SocialIcon
-              as='div'
-              name='Twitter'
-            />
-          </TwitterShareButton>
-          <WhatsappShareButton
-            url={url}
-            title={post.title}
-          >
-            <SocialIcon
-              as='div'
-              name='Whatsapp'
-            />
-          </WhatsappShareButton>
-        </Wrapper>
-      )
-    }}
-  />
-
-)
+  return (
+    <Wrapper>
+      <FacebookShareButton
+        url={url}
+        quote={post.content.md.excerpt}
+      >
+        <SocialIcon
+          as='div'
+          name='Facebook'
+        />
+      </FacebookShareButton>
+      <TwitterShareButton
+        url={url}
+        title={post.title}
+        hashtags={post.categories}
+      >
+        <SocialIcon
+          as='div'
+          name='Twitter'
+        />
+      </TwitterShareButton>
+      <WhatsappShareButton
+        url={url}
+        title={post.title}
+      >
+        <SocialIcon
+          as='div'
+          name='Whatsapp'
+        />
+      </WhatsappShareButton>
+    </Wrapper>
+  )
+}
 
 SocialLinks.propTypes = {
   post: PropTypes.object.isRequired
 }
-
-const query = graphql`
-  {
-    site {
-      siteMetadata {
-        siteUrl
-      }
-    }
-  }
-`
