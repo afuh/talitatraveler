@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
 import { media } from '../../utils/style'
+import { Time } from '../../utils/UI'
 
 const Wrapper = styled.article`
   filter: grayscale(100%);
@@ -18,21 +19,24 @@ const Wrapper = styled.article`
 
   .text {
     flex: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     h3 {
       margin-top: 0;
       margin-bottom: 2px;
     }
 
-    p {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    time p {
+    time {
       font-size: 1.2rem;
       color: ${({ theme }) => theme.gray};
       margin-bottom: 6px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 1.5rem;
     }
   }
 
@@ -79,10 +83,10 @@ const ListItem = ({ post, getItemProps, highlighted }) => (
   >
     <Image {...post} />
     <div className='text'>
-      <h3><Link to={"/" + post.slug}>{post.title}</Link></h3>
-      <time dateTime={(post.date || post.createdAt).replace(/\//g, "-")}>
-        <p>{post.date || post.createdAt}</p>
-      </time>
+      <div>
+        <h3><Link to={"/" + post.slug}>{post.title}</Link></h3>
+        <Time post={post}/>
+      </div>
       <p>{post.content.md.excerpt}</p>
     </div>
   </Wrapper>
