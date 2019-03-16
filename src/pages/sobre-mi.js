@@ -30,13 +30,6 @@ export const query = graphql`
           html
         }
       }
-      contact {
-        mail
-        social {
-          name
-          url
-        }
-      }
     }
   }
 `

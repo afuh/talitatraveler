@@ -14,6 +14,7 @@ module.exports = {
   image: '/images/cover-1440x720.jpg',
   themeColor: '#000',
   backgroundColor: '#fff',
+  email: 'talita@talitatraveler.com',
   external: [
     { name: "Facebook", url: 'https://www.facebook.com/talitraveler' },
     { name: "Twitter", url: 'https://twitter.com/talita_traveler' },

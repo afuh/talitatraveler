@@ -75,12 +75,12 @@ HeaderImage.propTypes = {
 }
 
 const Hero = ({ scrollId }) => {
-  const { hero: { header, image } } = useStaticQuery(query)
+  const { content: { heroTitle, heroImage } } = useStaticQuery(query)
 
   return (
     <Wrapper>
-      <HeaderImage image={image}>
-        <h1>{header}</h1>
+      <HeaderImage image={heroImage}>
+        <h1>{heroTitle}</h1>
       </HeaderImage>
       <div className='icon-wrapper'>
         <Icon
@@ -101,9 +101,9 @@ Hero.propTypes = {
 
 const query = graphql`
   query HERO_QUERY {
-    hero: contentfulHero {
-      header
-      image {
+    content: contentfulContent {
+      heroTitle
+      heroImage {
         description
         fluid(maxWidth: 2000) {
           ...GatsbyContentfulFluid_withWebp

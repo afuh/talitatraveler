@@ -13,9 +13,9 @@ const IconsWrapper = styled.div`
 const Contact = ({ contact }) => (
   <Section margin={2}>
       <h2>Contacto</h2>
-      <p>Podés mandarme un <a href={`mailto:${contact.mail}`}>mail</a></p>
+      <p>Podés mandarme un <a href={`mailto:${contact.email}`}>mail</a></p>
       <IconsWrapper>
-        {contact.map(icon => {
+        {contact.external.map(icon => {
           if (icon.name.match(/facebook|twitter/i)) {
             return (
               <SocialIcon
@@ -33,7 +33,10 @@ const Contact = ({ contact }) => (
 )
 
 Contact.propTypes = {
-  contact: PropTypes.array.isRequired
+  contact: PropTypes.shape({
+    external: PropTypes.array,
+    mail: PropTypes.string
+  }).isRequired
 }
 
 export default Contact

@@ -6,14 +6,12 @@ import Layout from '../components/layout'
 import Contact from '../components/contact'
 
 const AboutPage = () => {
-  const { external } = useSiteMeta()
+  const { external, email } = useSiteMeta()
 
   return (
     <Layout>
-      <SEO
-        title='Contacto'
-      />
-      <Contact contact={external} />
+      <SEO title='Contacto' />
+      <Contact contact={{ external, email }} />
     </Layout>
   )
 }

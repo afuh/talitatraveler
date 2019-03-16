@@ -23,6 +23,7 @@ export const useSiteMeta = () => {
               name
               url
             }
+            email
           }
         }
       }
