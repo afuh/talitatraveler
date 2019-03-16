@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'gatsby'
-
-const border = css`
-  span {
-    border-bottom: 3px solid ${({ theme }) => theme.mainColor};
-  }
-`
 
 const Content = styled.header`
   display: flex;
@@ -25,12 +19,11 @@ const NavLink = styled(Link)`
   &:active,
   &:focus {
     text-decoration: none;
-    color: ${({ theme }) => theme.black};
-    ${border}
+    color: ${({ theme }) => theme.mainColor};
   }
 
   &.${({ activeClassName }) => activeClassName} {
-    ${border}
+    color: ${({ theme }) => theme.mainColor};
   }
 `
 
