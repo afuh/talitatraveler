@@ -61,9 +61,9 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "dev": "gatsby develop",
+    "dev": "gatsby develop -H 0.0.0.0",
     "test": "stylelint './src/**/*.js' && eslint src/.",
-    "serve": "gatsby serve --open"
+    "start": "gatsby serve --open"
   },
   "keywords": [
     "gatsby"
