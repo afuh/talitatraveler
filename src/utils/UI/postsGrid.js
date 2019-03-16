@@ -11,28 +11,32 @@ const Wrapper = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  margin-bottom: 20px;
-
   ${media.phone(css`
     flex-direction: column;
   `)}
 `
 
 const MoreButton = styled.button`
-  width: 120px;
-  height: 120px;
-
   border: none;
-  border-radius: 50%;
-  font-size: 5.0rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  padding: 1rem 2rem;
 
+  display: flex;
+  align-items: center;
   cursor: pointer;
+
+  ${({ theme }) => theme && css`
+    background: ${theme.white};
+    color: ${theme.mainColor};
+    border: 2px solid ${theme.mainColor};
+  `}
 
   &:hover {
     ${({ theme }) => theme && css`
       background: ${theme.mainColor};
       color: ${theme.white};
-    `};
+    `}
   }
 
   transition: ${({ theme }) => theme.transition};
@@ -41,6 +45,7 @@ const MoreButton = styled.button`
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
+  padding: 80px 0;
 
   ${({ hide }) => hide && css`
     display: none;
@@ -64,7 +69,7 @@ const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
       {totalCount &&
         <ButtonWrapper hide={postsToShow > totalCount}>
           <MoreButton onClick={onShowMorePosts}>
-            ☟
+            Cargar más
           </MoreButton>
         </ButtonWrapper>
       }
