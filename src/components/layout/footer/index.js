@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import Link from '../../utils/link'
+import Link from '../../../utils/link'
+import { SocialIcon } from '../../../utils/UI/icons'
+
 import MailForm from './mailForm'
-import { SocialIcon } from '../../utils/UI/icons'
 
 const flex = css`
   display: flex;
@@ -13,9 +14,13 @@ const flex = css`
 `
 
 const Wrapper = styled.footer`
+  margin-top: 200px;
+
   .nav {
     background: ${({ theme }) => theme.mainColor};
-    padding: 20px;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
 
     .list {
       padding: 2px 0;
@@ -23,7 +28,7 @@ const Wrapper = styled.footer`
     }
 
     .link {
-      margin-right: 20px;
+      margin: 0 20px;
 
       a {
         font-weight: 700;
@@ -45,6 +50,10 @@ const Wrapper = styled.footer`
     padding: 40px 0;
     background: ${({ theme }) => theme.lightGray}80;
   }
+
+  .subscribe-inner {
+    max-width: 520px;
+  }
 `
 
 const ListLink = ({ path, name, icon }) => (
@@ -56,6 +65,7 @@ const ListLink = ({ path, name, icon }) => (
         name={name}
       /> :
       <Link
+        style={{ color: '#fff' }}
         to={path}
         state={name !== 'Buscar' ? {} : { focus: true }}
         >
@@ -103,10 +113,14 @@ Nav.propTypes = {
 const Footer = props => (
   <Wrapper>
     <div className='subscribe'>
-      <MailForm />
+      <div className='subscribe-inner'>
+        <MailForm />
+      </div>
     </div>
     <div className='nav'>
-      <Nav {...props} />
+      <div className='nav-inner'>
+        <Nav {...props} />
+      </div>
     </div>
   </Wrapper>
 )

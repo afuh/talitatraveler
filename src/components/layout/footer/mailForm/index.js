@@ -1,38 +1,25 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { isEmail, isEmpty, normalizeEmail } from 'validator'
 
-import { Spinner, Envelope } from '../../utils/UI/icons'
-import { Form, Input, Submit, Fieldset } from '../../utils/UI/'
+import { Envelope } from '../../../../utils/UI/icons'
+import { Form, Input, Submit, Fieldset } from '../../../../utils/UI/'
 
-const msg = {
-  invalidEmail: 'Esta dirección de correo parece falsa o no váldia, por favor tratá con otra 😉',
-  tooManyRequests: 'Demasiadas solicitudes de registro! 🤔'
-}
+import DisplayMessage from './displayMessage'
+import Header from './header'
+import msg from './messages'
+import LoadingOverlay from './loadingOverlay'
 
 const Wrapper = styled.div`
   position: relative;
-  width: 440px;
+  width: 100%;
 
   fieldset {
     ${({ loading }) => loading && css`
       filter: blur(2px);
     `};
   }
-`
-
-const Message = styled.span`
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 1.3;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.black};
-
-  ${({ error }) => error && css`
-    color: #F44336;
-  `}
 `
 
 const Subscription = styled(Form)`
@@ -84,58 +71,6 @@ const Subscription = styled(Form)`
   }
 `
 
-const SpinWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  background: transparent;
-
-  min-width: 100%;
-  min-height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const DisplayMessage = ({ response }) => {
-  let message = response.msg ? response.msg.replace(/([0-9]|-)/g, '').trim() : ''
-
-  if (message.includes('Ya estás suscrito')) {
-    [ message ] = message.split('<')
-  }
-
-  if (
-    message.includes('This email address looks fake or invalid') ||
-    message.includes('invalid email address and cannot be imported.')
-  ) {
-    message = msg.invalidEmail
-  }
-
-  if (
-    message.includes('many recent signup requests') ||
-    message.includes('many subscribe attempts')
-  ) {
-    message = msg.tooManyRequests
-  }
-
-  return (
-    <Message
-      error={response.result && response.result === 'error' && true}>
-      {message}
-    </Message>
-  )
-}
-
-DisplayMessage.propTypes = {
-  response: PropTypes.object.isRequired
-}
-
-const Spin = () => (
-  <SpinWrapper>
-    <Spinner color={'#FF5722'} />
-  </SpinWrapper>
-)
-
 class MailForm extends Component {
   state = {
     email: '',
@@ -179,15 +114,11 @@ class MailForm extends Component {
 
   render(){
     const { response, loading, email } = this.state
-    const { wrapperStyles, header } = this.props
 
     return (
-      <Wrapper
-        loading={loading}
-        style={{ ...wrapperStyles }}
-      >
+      <Wrapper loading={loading}>
         <Fieldset disabled={loading}>
-          {header()}
+          <Header />
           <Subscription
             method='post'
             blur={loading}
@@ -212,24 +143,10 @@ class MailForm extends Component {
             {response && <DisplayMessage response={response} />}
           </Subscription>
         </Fieldset>
-        {loading && <Spin />}
+        {loading && <LoadingOverlay />}
       </Wrapper>
     )
   }
-}
-
-MailForm.propTypes = {
-  wrapperStyles: PropTypes.object,
-  header: PropTypes.func.isRequired
-}
-
-MailForm.defaultProps = {
-  header: () => (
-    <>
-      <h2 style={{ fontWeight: 900, marginBottom: 4 }}>Suscribite</h2>
-      <span>Sólo te va a llegar un mail cuando publique algo nuevo, ¡nada de spam!</span>
-    </>
-  )
 }
 
 export default MailForm
