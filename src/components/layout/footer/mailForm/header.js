@@ -4,10 +4,11 @@ import styled from 'styled-components'
 import { useSiteContent } from '../../../../utils/hooks'
 
 const HeaderWrapper = styled.div`
-  margin-bottom: 12px;
+  margin: 12px 0;
 
   h2 {
     font-weight: 900;
+    margin: 0;
     margin-bottom: 4px;
   }
 

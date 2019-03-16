@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
+
+import { media } from '../../utils/style'
 
 const Content = styled.header`
   display: flex;
@@ -25,6 +27,10 @@ const NavLink = styled(Link)`
   &.${({ activeClassName }) => activeClassName} {
     color: ${({ theme }) => theme.mainColor};
   }
+  ${media.phone(css`
+    font-size: 1.6rem;
+    padding: 1.4rem;
+  `)}
 `
 
 NavLink.defaultProps = {

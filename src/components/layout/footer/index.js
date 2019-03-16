@@ -2,63 +2,66 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
+import { media } from '../../../utils/style'
 import Link from '../../../utils/link'
 import { SocialIcon } from '../../../utils/UI/icons'
 
 import MailForm from './mailForm'
 
-const flex = css`
+const SubscribeWrapper = styled.div`
+
   display: flex;
   justify-content: center;
   align-items: center;
+
+  padding: 80px 0;
+  background: ${({ theme }) => theme.lightGray}80;
+
+  ${media.phone(css`
+    padding: 80px 10px;
+  `)}
+
+  .inner {
+    max-width: 520px;
+  }
 `
 
-const Wrapper = styled.footer`
-  margin-top: 200px;
+const NavWrapper = styled.div`
+  background: ${({ theme }) => theme.mainColor};
+  padding: 40px 0;
 
-  .subscribe {
-    ${flex}
-    padding: 40px 0;
-    background: ${({ theme }) => theme.lightGray}80;
+  .list {
+    padding: 10px 0;
 
-    .subscribe-inner {
-      max-width: 520px;
+    .list-inner {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
   }
 
-  .nav {
-    background: ${({ theme }) => theme.mainColor};
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
+  .link {
+    padding: 4px 20px;
 
-    .list {
-      padding: 2px 0;
-      ${flex}
-    }
+    a {
+      margin: 0;
+      font-weight: 700;
+      color: ${({ theme }) => theme.black};
+      transition: none;
 
-    .link {
-      margin: 0 20px;
-
-      a {
-        font-weight: 700;
-        color: ${({ theme }) => theme.black};
-        transition: none;
-
-        &.test {
-          &:hover,
-          &:active,
-          &:focus {
-            color: ${({ theme }) => theme.black} !important;
-          }
-        }
-
+      &.test {
         &:hover,
         &:active,
         &:focus {
-          color: ${({ theme }) => theme.white};
-          text-decoration: none;
+          color: ${({ theme }) => theme.black} !important;
         }
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        color: ${({ theme }) => theme.white};
+        text-decoration: none;
       }
     }
   }
@@ -68,7 +71,7 @@ const ListLink = ({ path, name, icon }) => (
   <div className='link'>
     {icon ?
       <SocialIcon
-        style={{ marginBottom: 0, fontSize: '2rem' }}
+        style={{ fontSize: '2rem' }}
         href={path}
         name={name}
       /> :
@@ -90,28 +93,30 @@ ListLink.propTypes = {
   name: PropTypes.string.isRequired
 }
 
-const Nav = ({ nav, external }) => (
-  <>
-    <div className='list'>
-      {nav.map(item => (
+const List = ({ data, ...others }) => (
+  <div className='list'>
+    <div className='list-inner'>
+      {data.map(item => (
         <ListLink
+          {...others}
           key={item.name}
           path={item.path}
           name={item.name}
         />
       ))}
     </div>
-    <div className='list'>
-      {external.map(item => (
-        <ListLink
-          icon
-          key={item.name}
-          path={item.url}
-          name={item.name}
-        />
-      ))}
-    </div>
-  </>
+  </div>
+)
+
+List.propTypes = {
+  data: PropTypes.array.isRequired
+}
+
+const Nav = ({ nav, external }) => (
+  <NavWrapper>
+    <List data={nav} />
+    <List data={external} icon />
+  </NavWrapper>
 )
 
 Nav.propTypes = {
@@ -120,26 +125,18 @@ Nav.propTypes = {
 }
 
 const Subscribe = () => (
-  <div className='subscribe'>
-    <div className='subscribe-inner'>
+  <SubscribeWrapper>
+    <div className='inner'>
       <MailForm />
     </div>
-  </div>
-)
-
-const Navigation = props => (
-  <div className='nav'>
-    <div className='nav-inner'>
-      <Nav {...props} />
-    </div>
-  </div>
+  </SubscribeWrapper>
 )
 
 const Footer = props => (
-  <Wrapper>
+  <footer>
     <Subscribe />
-    <Navigation {...props}/>
-  </Wrapper>
+    <Nav {...props}/>
+  </footer>
 )
 
 Footer.propTypes = {

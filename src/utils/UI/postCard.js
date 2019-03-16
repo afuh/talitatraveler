@@ -1,10 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import GatsbyImg from 'gatsby-image'
+import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
 import { media } from '../style'
+
+const GatsbyImg = styled(Img)`
+  height: 300px;
+
+  ${media.phone(css`
+    height: 40vh;
+  `)}
+`
 
 const Wrapper = styled(Link)`
   flex: 1;
@@ -85,7 +93,6 @@ export const PostCard = ({ node, small }) => (
           <h3>{node.subTitle}</h3>
         </Overlay>
         <GatsbyImg
-          style={{ height: 300 }}
           fluid={node.headerImage.fluid}
           alt={node.headerImage.description}
           title={node.headerImage.description}

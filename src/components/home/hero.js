@@ -1,11 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import GatsbyImg from 'gatsby-image'
+import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 import { FaChevronDown } from 'react-icons/fa'
 import { scroller } from 'react-scroll'
 
 import { useSiteContent } from '../../utils/hooks'
+
+const GatsbyImg = styled(Img)`
+  ${({ theme }) => theme && css`
+    height: calc(70vh - ${theme.headerHeight/2}px);
+  `};
+`
 
 const Icon = styled(FaChevronDown)`
   width: 30px;
@@ -24,15 +30,14 @@ const Wrapper = styled.div`
     min-height: calc(100vh - ${theme.headerHeight}px);
   `};
 
-  display: flex;
-  flex-direction: column;
-
   .icon-wrapper {
-    flex: 1;
-
     display: flex;
     justify-content: center;
     align-items: center;
+
+    ${({ theme }) => theme && css`
+      height: calc(30vh - ${theme.headerHeight/2}px);
+    `};
   }
 `
 
@@ -62,7 +67,6 @@ const Overlay = styled.div`
 const HeaderImage = ({ image, children }) => (
   <div style={{ position: 'relative' }}>
     <GatsbyImg
-      style={{ height: 480 }}
       fluid={image.fluid}
       alt={image.description}
       title={image.description}
