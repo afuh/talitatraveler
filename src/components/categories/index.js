@@ -23,7 +23,6 @@ const CategoryStyle = {
 
 const Categories = ({ categories, location }) => (
   <Wrapper margin={2}>
-    <h3>Categorías</h3>
     <CategoryList
       style={CategoryStyle}
       categories={categories}
