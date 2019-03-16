@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useStaticQuery, graphql } from 'gatsby'
 import GatsbyImg from 'gatsby-image'
 import styled, { css } from 'styled-components'
 import { FaChevronDown } from 'react-icons/fa'
 import { scroller } from 'react-scroll'
+
+import { useSiteContent } from '../../utils/hooks'
 
 const Icon = styled(FaChevronDown)`
   width: 30px;
@@ -75,7 +76,7 @@ HeaderImage.propTypes = {
 }
 
 const Hero = ({ scrollId }) => {
-  const { content: { heroTitle, heroImage } } = useStaticQuery(query)
+  const { heroTitle, heroImage } = useSiteContent()
 
   return (
     <Wrapper>
@@ -98,19 +99,5 @@ const Hero = ({ scrollId }) => {
 Hero.propTypes = {
   scrollId: PropTypes.string.isRequired
 }
-
-const query = graphql`
-  query HERO_QUERY {
-    content: contentfulContent {
-      heroTitle
-      heroImage {
-        description
-        fluid(maxWidth: 2000) {
-          ...GatsbyContentfulFluid_withWebp
-        }
-      }
-    }
-  }
-`
 
 export default Hero
