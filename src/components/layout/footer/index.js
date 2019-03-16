@@ -16,6 +16,16 @@ const flex = css`
 const Wrapper = styled.footer`
   margin-top: 200px;
 
+  .subscribe {
+    ${flex}
+    padding: 40px 0;
+    background: ${({ theme }) => theme.lightGray}80;
+
+    .subscribe-inner {
+      max-width: 520px;
+    }
+  }
+
   .nav {
     background: ${({ theme }) => theme.mainColor};
     padding: 40px 20px;
@@ -35,6 +45,14 @@ const Wrapper = styled.footer`
         color: ${({ theme }) => theme.black};
         transition: none;
 
+        &.test {
+          &:hover,
+          &:active,
+          &:focus {
+            color: ${({ theme }) => theme.black} !important;
+          }
+        }
+
         &:hover,
         &:active,
         &:focus {
@@ -43,16 +61,6 @@ const Wrapper = styled.footer`
         }
       }
     }
-  }
-
-  .subscribe {
-    ${flex}
-    padding: 40px 0;
-    background: ${({ theme }) => theme.lightGray}80;
-  }
-
-  .subscribe-inner {
-    max-width: 520px;
   }
 `
 
@@ -65,6 +73,7 @@ const ListLink = ({ path, name, icon }) => (
         name={name}
       /> :
       <Link
+        className={'test'}
         style={{ color: '#fff' }}
         to={path}
         state={name !== 'Buscar' ? {} : { focus: true }}
@@ -110,18 +119,26 @@ Nav.propTypes = {
   nav: PropTypes.array.isRequired
 }
 
+const Subscribe = () => (
+  <div className='subscribe'>
+    <div className='subscribe-inner'>
+      <MailForm />
+    </div>
+  </div>
+)
+
+const Navigation = props => (
+  <div className='nav'>
+    <div className='nav-inner'>
+      <Nav {...props} />
+    </div>
+  </div>
+)
+
 const Footer = props => (
   <Wrapper>
-    <div className='subscribe'>
-      <div className='subscribe-inner'>
-        <MailForm />
-      </div>
-    </div>
-    <div className='nav'>
-      <div className='nav-inner'>
-        <Nav {...props} />
-      </div>
-    </div>
+    <Subscribe />
+    <Navigation {...props}/>
   </Wrapper>
 )
 
