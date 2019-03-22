@@ -140,11 +140,18 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  input {
+    ${media.phone(css`
+      font-size: 1.6rem;
+    `)}
+  }
+
   button, input {
     &:focus {
       outline: 0;
     }
   }
+
 `
 
 export const Article = styled.article`
