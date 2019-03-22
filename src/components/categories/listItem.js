@@ -21,11 +21,15 @@ const Wrapper = styled.article`
     flex: 5;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 
     h3 {
       margin-top: 0;
       margin-bottom: 2px;
+
+      a:hover {
+        text-decoration: none;
+      }
     }
 
     time {
@@ -36,11 +40,16 @@ const Wrapper = styled.article`
 
     p {
       margin: 0;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+
+      ${media.mobile(css`
+        font-size: 1.6rem;
+      `)}
     }
   }
 
   .image {
+    height: 180px;
     margin-right: 20px;
     flex: 1;
 
@@ -59,16 +68,17 @@ const Wrapper = styled.article`
 `
 
 const Image = ({ headerImage, slug }) => (
-  <div className='image'>
-    <Link to={"/" + slug}>
-      <GatsbyImg
-        style={{ height: '100%' }}
-        fluid={headerImage.fluid}
-        alt={headerImage.description}
-        title={headerImage.description}
-      />
-    </Link>
-  </div>
+  <Link
+    className='image'
+    to={"/" + slug}
+  >
+    <GatsbyImg
+      style={{ height: '100%' }}
+      fluid={headerImage.fluid}
+      alt={headerImage.description}
+      title={headerImage.description}
+    />
+  </Link>
 )
 
 Image.propTypes = {
