@@ -7,7 +7,7 @@ import styled, { css } from 'styled-components'
 import { media } from '../style'
 
 const GatsbyImg = styled(Img)`
-  height: 300px;
+  height: ${p => p.height}px;
 
   ${media.phone(css`
     height: 40vh;
@@ -17,6 +17,14 @@ const GatsbyImg = styled(Img)`
 const Wrapper = styled(Link)`
   flex: 1;
   flex-basis: 33%;
+
+  ${p => p.gutter && css`
+    margin: 0 ${p.gutter/2}px;
+
+    ${media.mobile(css`
+      margin: ${p.gutter/2}px 0;
+    `)}
+  `}
 
   ${media.mobile(css`
     flex-basis: 50%;
@@ -82,8 +90,11 @@ const Overlay = styled.div`
   transition: ${({ theme }) => theme.transition};
 `
 
-export const PostCard = ({ node, small }) => (
-  <Wrapper to={"/" + node.slug}>
+export const PostCard = ({ node, small, gutter, height }) => (
+  <Wrapper
+    to={"/" + node.slug}
+    gutter={gutter}
+  >
     <Article>
       <div className='content'>
         <Overlay
@@ -93,6 +104,7 @@ export const PostCard = ({ node, small }) => (
           <h3>{node.subTitle}</h3>
         </Overlay>
         <GatsbyImg
+          height={height}
           fluid={node.headerImage.fluid}
           alt={node.headerImage.description}
           title={node.headerImage.description}
@@ -104,9 +116,12 @@ export const PostCard = ({ node, small }) => (
 
 PostCard.propTypes = {
   node: PropTypes.object.isRequired,
-  small: PropTypes.bool
+  small: PropTypes.bool,
+  gutter: PropTypes.number,
+  height: PropTypes.number
 }
 
 PostCard.defaultProps = {
-  small: false
+  small: false,
+  height: 300
 }

@@ -28,6 +28,8 @@ const RelatedPosts = ({ post, related }) => {
           suggestions.map((post, i) => i < 3 && (
             <PostCard
               small
+              height={240}
+              gutter={10}
               key={post.slug}
               node={post}
             />
