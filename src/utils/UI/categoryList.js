@@ -1,16 +1,34 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { categoryToSlug } from '../../utils/helpers'
+import { media } from '../../utils/style'
 
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  ${p => p.big && css`
+    a.category {
+      font-size: 2rem;
+      margin: 0 8px 8px 0;
+      padding: 10px 20px;
+
+      ${media.phone(css`
+        flex: 1;
+        margin: 4px;
+        text-align: center;
+        font-size: 1.5rem;
+      `)}
+    }
+  `}
 `
 
-const Link = styled(GatsbyLink)`
+const Link = styled(GatsbyLink).attrs({
+  className: 'category'
+})`
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: bold;
@@ -28,8 +46,8 @@ const Link = styled(GatsbyLink)`
   transition: ${({ theme }) => theme.transition};
 `
 
-export const CategoryList = ({ categories, style }) => (
-  <Wrapper>
+export const CategoryList = ({ categories, style, big }) => (
+  <Wrapper big={big}>
     {categories.map(category => (
       <Link
         style={{ ...style }}
@@ -45,5 +63,10 @@ export const CategoryList = ({ categories, style }) => (
 
 CategoryList.propTypes = {
   categories: PropTypes.array.isRequired,
-  style: PropTypes.object
+  style: PropTypes.object,
+  big: PropTypes.bool
+}
+
+CategoryList.defaultProps = {
+  big: false
 }

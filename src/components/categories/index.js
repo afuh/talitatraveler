@@ -15,16 +15,10 @@ const Wrapper = styled(Section)`
   }
 `
 
-const CategoryStyle = {
-  fontSize: "2rem",
-  margin: '0 8px 8px 0',
-  padding: "10px 20px"
-}
-
 const Categories = ({ categories, location }) => (
   <Wrapper margin={2}>
     <CategoryList
-      style={CategoryStyle}
+      big
       categories={categories}
     />
     <Search
