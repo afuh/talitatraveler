@@ -23,7 +23,7 @@ export default AboutPage
 
 export const query = graphql`
   query ABOUT_PAGE_QUERY {
-    author: contentfulAuthor(name: { regex: "/talita/i" }) {
+    author: contentfulAuthor {
       name
       about {
         md: childMarkdownRemark {

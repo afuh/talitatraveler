@@ -100,7 +100,7 @@ const List = ({ data, ...others }) => (
         <ListLink
           {...others}
           key={item.name}
-          path={item.path}
+          path={item.path || item.url}
           name={item.name}
         />
       ))}
