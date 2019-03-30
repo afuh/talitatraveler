@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Link } from 'gatsby'
 
 import { Section } from '../../utils/UI'
 
@@ -14,9 +13,6 @@ const About = ({ author }) => (
     <div style={{ marginRight: 20, paddingBottom: 50 }}>
       <h1>{author.name}</h1>
       <Description dangerouslySetInnerHTML={{ __html: author.bio.md.html }}/>
-      <Link to='/contacto'>
-        contacto
-      </Link>
     </div>
   </Section>
 )

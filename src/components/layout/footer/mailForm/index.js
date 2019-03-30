@@ -52,7 +52,7 @@ const Subscription = styled(Form)`
       margin: 4px 0;
 
       &::placeholder {
-        color: #9b9b9b;
+        color: ${({ theme }) => theme.gray};
         font-size: 1.8rem;
       }
     }

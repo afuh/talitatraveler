@@ -5,6 +5,7 @@ export const theme = {
   white: "#fff",
   gray: "#9F9FA3",
   lightGray: "#f6f6f6",
+  // lightGray: "linear-gradient(rgba(239, 250, 246, 0.5) 0%,rgba(244, 250, 246, 0.5) 100%)",
   mainColor: "#008080",
   shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
   transition: 'all .2s ease',

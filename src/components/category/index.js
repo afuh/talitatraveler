@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { fontSize } from '../../utils/style'
-import { PostsGrid, Section } from '../../utils/UI'
-
+import { PostsGrid, Section, Separator } from '../../utils/UI'
 
 const Wrapper = styled(Section)`
   padding-top: ${({ theme }) => theme.categoryPadding};
@@ -25,7 +24,7 @@ const Wrapper = styled(Section)`
 
 const Category = ({ edges, category }) => (
   <Wrapper>
-    <h3 className='title'>{category}</h3>
+    <Separator text={category} />
     <PostsGrid
       posts={edges}
       header={category}

@@ -91,8 +91,7 @@ const Hero = ({ scrollId }) => {
         <Icon
           onClick={() => scroller.scrollTo(scrollId, {
             duration: 1000,
-            smooth: "easeOutQuint",
-            offset: -20
+            smooth: "easeOutQuint"
           })}
         />
       </div>
