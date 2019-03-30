@@ -13,7 +13,6 @@ const SEO = ({ title, description, image, pathname }) => {
     external
   } = useSiteMeta()
 
-
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
@@ -21,7 +20,7 @@ const SEO = ({ title, description, image, pathname }) => {
     image: {
       url: image ? image.url : `${siteUrl}${defaultImage}`,
       contentType: image ? image.contentType : "image/jpeg",
-      size: image ? image.size : { width: "1440", height: "720" }
+      size: image ? image.size : { width: "720", height: "360" }
     }
   }
 

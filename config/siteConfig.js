@@ -7,12 +7,12 @@ const mainNav = [
 ]
 
 module.exports = {
-  title: 'Talita Traveler',
-  titleTemplate: '%s',
+  title: 'talita traveler',
   description: "Desde otro lado.",
   siteUrl,
-  image: '/images/cover-1440x720.jpg',
-  themeColor: '#000',
+  image: '/images/cover-720x360.jpg',
+  icon: 'src/assets/avatar-512x512.png',
+  themeColor: '#008080',
   backgroundColor: '#fff',
   email: 'talita@talitatraveler.com',
   external: [

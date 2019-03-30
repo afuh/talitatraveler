@@ -66,7 +66,7 @@ module.exports = {
         background_color: siteConfig.backgroundColor,
         theme_color: siteConfig.themeColor,
         display: "standalone",
-        icon: `src/assets/icon-512x512.png`
+        icon: siteConfig.icon
       }
     },
     {
