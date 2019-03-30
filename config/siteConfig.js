@@ -1,16 +1,16 @@
-const siteUrl = 'https://talitatraveler.netlify.com'
+const siteUrl = 'https://talitatraveler.netlify.com' // no trailing slash
 
 const mainNav = [
   { name: 'Inicio', path: '/' },
   { name: "Categorías", path: '/categorias' },
-  { name: "Sobre mi", path: '/sobre-mi' }
+  { name: "Sobre mí", path: '/sobre-mi' }
 ]
 
 module.exports = {
-  title: 'Talita traveler',
-  titleTemplate: '%s | Talita traveler',
+  title: 'Talita Traveler',
+  titleTemplate: '%s',
   description: "Desde otro lado.",
-  siteUrl, // no trailing slash
+  siteUrl,
   image: '/images/cover-1440x720.jpg',
   themeColor: '#000',
   backgroundColor: '#fff',

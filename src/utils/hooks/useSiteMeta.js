@@ -10,7 +10,6 @@ export const useSiteMeta = () => {
             description
             siteUrl
             image
-            titleTemplate
             nav {
               name
               path

@@ -10,7 +10,6 @@ const SEO = ({ title, description, image, pathname }) => {
     description: defaultDescription,
     image: defaultImage,
     siteUrl,
-    titleTemplate,
     external
   } = useSiteMeta()
 
@@ -32,7 +31,7 @@ const SEO = ({ title, description, image, pathname }) => {
   return (
     <Helmet
       htmlAttributes={{ lang: "es" }}
-      titleTemplate={titleTemplate}
+      titleTemplate={!title ? defaultTitle : `%s | ${defaultTitle}`}
       title={seo.title}
     >
       <meta name="description" content={seo.description} />
