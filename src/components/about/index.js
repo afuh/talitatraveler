@@ -13,7 +13,7 @@ const About = ({ author }) => (
   <Section margin={2}>
     <div style={{ marginRight: 20, paddingBottom: 50 }}>
       <h1>{author.name}</h1>
-      <Description dangerouslySetInnerHTML={{ __html: author.about.md.html }}/>
+      <Description dangerouslySetInnerHTML={{ __html: author.bio.md.html }}/>
       <Link to='/contacto'>
         contacto
       </Link>
@@ -22,7 +22,10 @@ const About = ({ author }) => (
 )
 
 About.propTypes = {
-  author: PropTypes.object.isRequired
+  author: PropTypes.shape({
+    name: PropTypes.string,
+    bio: PropTypes.object
+  }).isRequired
 }
 
 export default About

@@ -9,7 +9,7 @@ import About from '../components/about'
 const AboutPage = ({ data: { author } }) => (
   <Layout>
     <SEO
-      title='Sobre mi'
+      title='Sobre mí'
     />
     <About author={author} />
   </Layout>
@@ -23,9 +23,9 @@ export default AboutPage
 
 export const query = graphql`
   query ABOUT_PAGE_QUERY {
-    author: contentfulAuthor {
-      name
-      about {
+    author: contentfulContent {
+      name: authorName
+      bio: authorBio {
         md: childMarkdownRemark {
           html
         }

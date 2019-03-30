@@ -74,10 +74,6 @@ export const query = graphql`
           html
         }
       }
-      author {
-        name
-        slug
-      }
       ...Dates
       suggestions {
         ...PostCard
