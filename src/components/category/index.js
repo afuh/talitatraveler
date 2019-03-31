@@ -6,7 +6,6 @@ import { fontSize } from '../../utils/style'
 import { PostsGrid, Section, Separator } from '../../utils/UI'
 
 const Wrapper = styled(Section)`
-  padding-top: ${({ theme }) => theme.categoryPadding};
   position: relative;
 
   .title {

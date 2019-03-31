@@ -7,7 +7,7 @@ import { CategoryList, Section } from '../../utils/UI'
 import { fontSize } from '../../utils/style'
 
 const Wrapper = styled(Section)`
-  padding-top: ${({ theme }) => theme.categoryPadding};
+  padding-top: 20px;
 
   h3 {
     ${fontSize(3.2)};
