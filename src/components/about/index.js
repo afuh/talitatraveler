@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
-import { Section, Separator } from '../../utils/UI'
+import { Section, Separator, Paragraph } from '../../utils/UI'
 import { media } from '../../utils/style'
 
 const Wrapper = styled.div`
@@ -12,21 +12,12 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  p {
-    white-space: pre-line;
-    text-align: justify;
-  }
-
   h1 {
     margin-top: 0;
   }
 
   ${media.mobile(css`
     margin-top: 40px;
-
-    p {
-      text-align: left;
-    }
   `)}
 `
 
@@ -107,7 +98,7 @@ const About = ({ author }) => (
     >
       <h1>{author.name}</h1>
       <Inner>
-        <div
+        <Paragraph
           className='text'
           dangerouslySetInnerHTML={{ __html: author.bio.md.html }}
         />
