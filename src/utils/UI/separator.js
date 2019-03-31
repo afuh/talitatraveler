@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-  height: 120px;
+  height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   h2 {
     margin: 0;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.8rem;
   }
 `
 
