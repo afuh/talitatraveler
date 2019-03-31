@@ -60,7 +60,6 @@ const Subscription = styled(Form)`
     button {
       padding: 0 20px;
       border: 1px solid transparent;
-      transition: none;
 
       :active,
       :focus,
