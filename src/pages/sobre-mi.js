@@ -30,9 +30,11 @@ export const query = graphql`
           html
         }
       }
-      avatar: authorAvatar {
+      avatars: authorAvatars {
+        description
+        title
         fluid(maxWidth: 600) {
-          ...GatsbyContentfulFluid_withWebp
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
     }
