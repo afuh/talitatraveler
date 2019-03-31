@@ -4,11 +4,12 @@ export const theme = {
   black: "#212129",
   white: "#fff",
   gray: "#9F9FA3",
-  lightGray: "#f6f6f6",
-  mainColor: "#FF5722",
-  shadow: '0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08)',
-  transition: 'all .3s ease',
-  categoryPadding: '20px'
+  lightGray: "rgba(239, 243, 245, 0.5)",
+  mainColor: "#008080",
+  shadow: 'rgba(8, 35, 51, 0.03) 0px 0px 2px, rgba(8, 35, 51, 0.05) 0px 3px 6px',
+  innerShadow: 'rgba(0, 0, 0, 0.02) 1px -3px 9px 3px inset',
+  transition: 'all .2s ease',
+  headerHeight: 120
 }
 
 const screenBreak = {
@@ -90,7 +91,7 @@ const defaultFont = [
 export const GlobalStyle = createGlobalStyle`
   *::selection {
     color: ${theme.white};
-    background: ${theme.black};
+    background: ${theme.mainColor};
   }
 
   html {
@@ -139,11 +140,18 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
 
+  input {
+    ${media.phone(css`
+      font-size: 1.6rem;
+    `)}
+  }
+
   button, input {
     &:focus {
       outline: 0;
     }
   }
+
 `
 
 export const Article = styled.article`

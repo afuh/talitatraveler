@@ -9,7 +9,7 @@ import About from '../components/about'
 const AboutPage = ({ data: { author } }) => (
   <Layout>
     <SEO
-      title='Sobre mi'
+      title='Sobre mí'
     />
     <About author={author} />
   </Layout>
@@ -23,18 +23,18 @@ export default AboutPage
 
 export const query = graphql`
   query ABOUT_PAGE_QUERY {
-    author: contentfulAuthor(name: { regex: "/talita/i" }) {
-      name
-      about {
+    author: contentfulContent {
+      name: authorName
+      bio: authorBio {
         md: childMarkdownRemark {
           html
         }
       }
-      contact {
-        mail
-        social {
-          name
-          url
+      avatars: authorAvatars {
+        description
+        title
+        fluid(maxWidth: 600) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
     }

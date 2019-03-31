@@ -41,7 +41,7 @@ export const query = graphql`
     ) {
       edges {
         node {
-          ...PostCard_Big
+          ...PostCard
         }
       }
     }
@@ -55,7 +55,7 @@ export const query = graphql`
       headerImage {
         description
         fluid(maxWidth: 2000) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
+          ...GatsbyContentfulFluid_withWebp
         }
         file {
           url
@@ -74,13 +74,9 @@ export const query = graphql`
           html
         }
       }
-      author {
-        name
-        slug
-      }
       ...Dates
       suggestions {
-        ...PostCard_Small
+        ...PostCard
       }
     }
   }

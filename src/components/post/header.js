@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
 import { media, fontSize } from '../../utils/style'
+import { Time } from '../../utils/UI'
 
 const Wrapper = styled.header`
   padding-bottom: 40px;
@@ -27,7 +28,6 @@ const Wrapper = styled.header`
     ${fontSize(2.2)};
   }
 
-  time p,
   span  {
     font-size: 1.4rem;
     color: ${({ theme }) => theme.gray};
@@ -36,12 +36,10 @@ const Wrapper = styled.header`
 
 const Header = ({ post }) => (
   <Wrapper>
-    <time dateTime={(post.date || post.createdAt).replace(/\//g, "-")}>
-      <p>{post.date || post.createdAt}</p>
-    </time>
+    <Time post={post} />
     <h1>{post.title}</h1>
     {post.subTitle && <h2>{post.subTitle}</h2>}
-    <span>por</span> <Link to='/contacto'>{post.author.name}</Link>
+    <span>por</span> <Link to='/contacto'>Talita</Link>
   </Wrapper>
 )
 

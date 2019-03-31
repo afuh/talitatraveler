@@ -30,13 +30,13 @@ CategoryTemplate.propTypes = {
 export default CategoryTemplate
 
 export const pageQuery = graphql`
-  query CATEGORY_TEMPLATE_QUER($category: [String!]) {
+  query CATEGORY_TEMPLATE_QUERY($category: [String!]) {
     posts: allContentfulPost(
       filter: { categories: { in: $category } }
     ) {
       edges {
         node {
-          ...PostCard_Small
+          ...PostCard
         }
       }
     }

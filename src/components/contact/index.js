@@ -3,37 +3,36 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ContactForm from './contactForm'
-import { SocialIcon } from '../../utils/UI/icons'
-import { Section } from '../../utils/UI'
+import { Section, Separator, Paragraph } from '../../utils/UI'
 
-const IconsWrapper = styled.div`
+const Wrapper = styled.div`
+  padding: 2% 5%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const Contact = ({ contact }) => (
-  <Section margin={2}>
-      <h2>Contacto</h2>
-      <p>Podés mandarme un <a href={`mailto:${contact.mail}`}>mail</a></p>
-      <IconsWrapper>
-        {contact.map(icon => {
-          if (icon.name.match(/facebook|twitter/i)) {
-            return (
-              <SocialIcon
-                key={icon.name}
-                href={icon.url}
-                name={icon.name}
-              />
-            )
-          }
-          return null
-        })}
-      </IconsWrapper>
-      <ContactForm />
-  </Section>
+  <>
+    <Separator text='Contacto' />
+    <Wrapper>
+      <Section
+        margin={2}
+        style={{ maxWidth: 600 }}
+      >
+        <Paragraph
+          dangerouslySetInnerHTML={{ __html: contact.text.md.html }}
+        />
+        <ContactForm />
+      </Section>
+    </Wrapper>
+  </>
 )
 
 Contact.propTypes = {
-  contact: PropTypes.array.isRequired
+  contact: PropTypes.shape({
+    text: PropTypes.object
+  }).isRequired
 }
 
 export default Contact

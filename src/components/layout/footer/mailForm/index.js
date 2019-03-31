@@ -1,20 +1,19 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import addToMailchimp from 'gatsby-plugin-mailchimp'
 import { isEmail, isEmpty, normalizeEmail } from 'validator'
 
-import { Spinner, Envelope } from '../../utils/UI/icons'
-import { Form, Input, Submit, Fieldset } from '../../utils/UI/'
+import { Envelope } from '../../../../utils/UI/icons'
+import { Form, Input, Submit, Fieldset } from '../../../../utils/UI/'
 
-const msg = {
-  invalidEmail: 'Esta dirección de correo parece falsa o no váldia, por favor tratá con otra 😉',
-  tooManyRequests: 'Demasiadas solicitudes de registro! 🤔'
-}
+import DisplayMessage from './displayMessage'
+import Header from './header'
+import msg from './messages'
+import LoadingOverlay from './loadingOverlay'
 
 const Wrapper = styled.div`
   position: relative;
-  width: 440px;
+  width: 100%;
 
   fieldset {
     ${({ loading }) => loading && css`
@@ -23,23 +22,11 @@ const Wrapper = styled.div`
   }
 `
 
-const Message = styled.span`
-  font-size: 1.4rem;
-  font-weight: 500;
-  line-height: 1.3;
-  margin-top: 20px;
-  color: ${({ theme }) => theme.black};
-
-  ${({ error }) => error && css`
-    color: #F44336;
-  `}
-`
-
 const Subscription = styled(Form)`
   .email {
     background: #fff;
     display: flex;
-    padding: 4px 8px; 
+    padding-left: 8px;
 
     .icon {
       flex-basis: 10%;
@@ -62,75 +49,26 @@ const Subscription = styled(Form)`
       font-size: 1.8rem;
       vertical-align: middle;
       background: transparent;
-      margin: 0;
+      margin: 4px 0;
 
       &::placeholder {
-        color: #9b9b9b;
+        color: ${({ theme }) => theme.gray};
         font-size: 1.8rem;
       }
     }
 
     button {
-      padding: 10px;
-      border: none;
+      padding: 0 20px;
+      border: 1px solid transparent;
 
       :active,
       :focus,
       :hover {
-        background: ${({ theme }) => theme.lightGray};
+        border: 1px solid ${({ theme }) => theme.mainColor};
       }
     }
   }
 `
-
-const SpinWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  background: transparent;
-
-  min-width: 100%;
-  min-height: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const DisplayMessage = ({ response }) => {
-  let message = response.msg ? response.msg.replace(/([0-9]|-)/g, '').trim() : ''
-
-  if (message.includes('Ya estás suscrito')) {
-    [ message ] = message.split('<')
-  }
-
-  if (
-    message.includes('This email address looks fake or invalid') ||
-    message.includes('invalid email address and cannot be imported.')
-  ) {
-    message = msg.invalidEmail
-  }
-
-  if (message.includes('has too many recent signup requests')) {
-    message = msg.tooManyRequests
-  }
-
-  return (
-    <Message
-      error={response.result && response.result === 'error' && true}>
-      {message}
-    </Message>
-  )
-}
-
-DisplayMessage.propTypes = {
-  response: PropTypes.object.isRequired
-}
-
-const Spin = () => (
-  <SpinWrapper>
-    <Spinner color={'#FF5722'} />
-  </SpinWrapper>
-)
 
 class MailForm extends Component {
   state = {
@@ -175,15 +113,11 @@ class MailForm extends Component {
 
   render(){
     const { response, loading, email } = this.state
-    const { wrapperStyles, header } = this.props
 
     return (
-      <Wrapper
-        loading={loading}
-        style={{ ...wrapperStyles }}
-      >
+      <Wrapper loading={loading}>
         <Fieldset disabled={loading}>
-          {header()}
+          <Header />
           <Subscription
             method='post'
             blur={loading}
@@ -208,24 +142,10 @@ class MailForm extends Component {
             {response && <DisplayMessage response={response} />}
           </Subscription>
         </Fieldset>
-        {loading && <Spin />}
+        {loading && <LoadingOverlay />}
       </Wrapper>
     )
   }
-}
-
-MailForm.propTypes = {
-  wrapperStyles: PropTypes.object,
-  header: PropTypes.func.isRequired
-}
-
-MailForm.defaultProps = {
-  header: () => (
-    <>
-      <h3 style={{ fontWeight: 900, marginBottom: 4 }}>Suscribite a Talita Traveler</h3>
-      <span>Recibí los últimos posts directamente en tu casilla de E-mail</span>
-    </>
-  )
 }
 
 export default MailForm

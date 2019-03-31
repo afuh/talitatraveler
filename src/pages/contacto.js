@@ -6,28 +6,25 @@ import SEO from '../utils/seo'
 import Layout from '../components/layout'
 import Contact from '../components/contact'
 
-const AboutPage = ({ data: { site: { meta } } }) => (
+const AboutPage = ({ data: { contact: { text } } }) => (
   <Layout>
-    <SEO
-      title='Contacto'
-    />
-    <Contact contact={meta.external} />
+    <SEO title='Contacto' />
+    <Contact contact={{ text }} />
   </Layout>
 )
+
+export default AboutPage
 
 AboutPage.propTypes = {
   data: PropTypes.object.isRequired
 }
 
-export default AboutPage
-
 export const query = graphql`
   query CONTACT_PAGE_QUERY {
-    site {
-      meta: siteMetadata {
-        external {
-          name
-          url
+    contact: contentfulContent {
+      text: contactText {
+        md: childMarkdownRemark {
+          html
         }
       }
     }

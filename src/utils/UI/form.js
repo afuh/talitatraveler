@@ -3,8 +3,7 @@ import styled, { css } from 'styled-components'
 
 const inputBaseStyle = css`
   border: none;
-  border-radius: 6px;
-  background: whitesmoke;
+  background: ${({ theme }) => theme.lightGray};
   display: block;
   margin: 10px 0 20px;
   padding: 0.9rem;
@@ -48,7 +47,6 @@ export const Fieldset = styled.fieldset`
 `
 
 export const Submit = styled.button`
-  border-radius: 6px;
   border: 1px solid #00000020;
   padding: 10px 40px;
   font-size: 1.2rem;
@@ -70,8 +68,6 @@ export const Submit = styled.button`
       color: ${theme.mainColor};
     }
   `}
-
-  transition: ${({ theme }) => theme.transition};
 `
 
 Submit.propTypes = {

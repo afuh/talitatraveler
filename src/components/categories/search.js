@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
-import { StaticQuery, graphql, navigate } from 'gatsby'
+import { useStaticQuery, graphql, navigate } from 'gatsby'
 
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
-import withLocation from '../../utils/context/withLocation'
 import { searchWord } from '../../utils/helpers'
 import ListItem from './listItem'
 
+const Wrapper = styled.div`
+  margin: 40px 0 80px;
+`
+
 const InputWrapper = styled.div`
-  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,12 +28,13 @@ const Input = styled.input`
 
   flex: 1;
   border: none;
-
   display: block;
+  border-radius: 0;
   padding: 2rem;
   transition: .2s border-color;
 
   &:focus {
+    box-shadow: ${({ theme }) => theme.shadow};
     outline: 0;
   }
 `
@@ -87,7 +90,7 @@ class SearchForm extends Component {
           action.el.scrollLeft = action.left
         }}
       >
-        {({ getInputProps, getItemProps, highlightedIndex, getMenuProps, isOpen }) => (
+        {({ getInputProps, getItemProps, highlightedIndex, getMenuProps }) => (
           <div>
             <InputWrapper>
               <Input
@@ -105,7 +108,7 @@ class SearchForm extends Component {
               />
             </InputWrapper>
             <div {...getMenuProps()}>
-              {isOpen && filteredPosts.map((post, index) => (
+              {filteredPosts.map((post, index) => (
                 <ListItem
                   key={post.slug}
                   post={post}
@@ -126,27 +129,27 @@ SearchForm.propTypes = {
   location: PropTypes.object.isRequired
 }
 
+const Search = ({ location }) => {
+  const { posts: { edges } } = useStaticQuery(query)
 
-const Search = ({ location }) => (
-  <StaticQuery
-    query={query}
-    render={({ posts: { edges } }) => (
+  return (
+    <Wrapper>
       <SearchForm
         location={location}
         posts={edges.map(({ node }) => node)}
       />
-    )}
-  />
-)
+    </Wrapper>
+  )
+}
 
 Search.propTypes = {
   location: PropTypes.object.isRequired
 }
 
-export default withLocation(Search)
+export default Search
 
 const query = graphql`
-  {
+  query SEARCH_POSTS_QUERY {
     posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
       edges {
         node {

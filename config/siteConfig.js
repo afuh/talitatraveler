@@ -1,20 +1,20 @@
-const siteUrl = 'https://talitatraveler.netlify.com'
+const siteUrl = 'https://talitatraveler.netlify.com' // no trailing slash
 
 const mainNav = [
   { name: 'Inicio', path: '/' },
   { name: "Categorías", path: '/categorias' },
-  { name: "Sobre mi", path: '/sobre-mi' }
+  { name: "Sobre mí", path: '/sobre-mi' }
 ]
 
 module.exports = {
-  title: 'Talita traveler',
-  titleTemplate: '%s | Talita traveler',
+  title: 'talita traveler',
   description: "Desde otro lado.",
-  siteUrl, // no trailing slash
-  favicon: '/images/icon-32x32.png',
-  image: '/images/cover-1440x720.jpg',
-  themeColor: '#000',
+  siteUrl,
+  image: '/images/cover-720x360.jpg',
+  icon: 'src/assets/avatar-512x512.png',
+  themeColor: '#008080',
   backgroundColor: '#fff',
+  email: 'talita@talitatraveler.com',
   external: [
     { name: "Facebook", url: 'https://www.facebook.com/talitraveler' },
     { name: "Twitter", url: 'https://twitter.com/talita_traveler' },

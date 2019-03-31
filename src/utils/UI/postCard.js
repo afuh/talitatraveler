@@ -1,22 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import GatsbyImg from 'gatsby-image'
+import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
-import { fontSize, media } from '../style'
+import { media } from '../style'
 
-const LinkWrapper = styled(Link)`
+const GatsbyImg = styled(Img)`
+  height: ${p => p.height}px;
+
+  ${media.phone(css`
+    height: 40vh;
+  `)}
+`
+
+const Wrapper = styled(Link)`
   flex: 1;
   flex-basis: 33%;
-  color: ${({ theme }) => theme.black};
 
-  &:hover,
-  &:active,
-  &:focus {
-    color: ${({ theme }) => theme.mainColor};
-    text-decoration: none;
-  }
+  ${p => p.gutter && css`
+    margin: 0 ${p.gutter/2}px;
+
+    ${media.mobile(css`
+      margin: ${p.gutter/2}px 0;
+    `)}
+  `}
 
   ${media.mobile(css`
     flex-basis: 50%;
@@ -25,7 +33,6 @@ const LinkWrapper = styled(Link)`
 
 const Article = styled.article`
   display: flex;
-  padding: 4px;
 
   .content {
     position: relative;
@@ -39,58 +46,82 @@ const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
+  padding: 12px;
   z-index: 1;
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
 
-  padding: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: ${({ theme }) => theme.white};
 
-  background: rgba(0, 0, 0, 0.5);
+  h2, h3 {
+    text-align: center;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: ${p => p.small ? 2.4 : 3}rem;
+  }
+
+  h3 {
+    color: #cfd0d1;
+    font-size: 1.4rem;
+    transition: ${({ theme }) => theme.transition};
+  }
 
   &:hover,
   &:active,
   &:focus {
     background: rgba(0, 0, 0, 0.2);
+    color: ${({ theme }) => theme.white};
 
-    h2 {
+    h3 {
       opacity: 0;
     }
+
+    h2 {
+      text-shadow: 3px 3px 10px #3e3e3e70;
+    }
+
   }
 
   transition: ${({ theme }) => theme.transition};
 `
 
-const Title = styled.h2`
-  color: ${({ theme }) => theme.white};
-  text-align: center;
-  opacity: 1;
-  ${fontSize(2.6)};
-
-  transition: ${({ theme }) => theme.transition};
-`
-
-export const PostCard = ({ node }) => (
-  <LinkWrapper
+export const PostCard = ({ node, small, gutter, height }) => (
+  <Wrapper
     to={"/" + node.slug}
+    gutter={gutter}
   >
     <Article>
       <div className='content'>
-        <Overlay>
-          <Title>{node.title}</Title>
+        <Overlay
+          small={small}
+        >
+          <h2>{node.title}</h2>
+          <h3>{node.subTitle}</h3>
         </Overlay>
         <GatsbyImg
-          style={{ height: 240 }}
+          height={height}
           fluid={node.headerImage.fluid}
           alt={node.headerImage.description}
           title={node.headerImage.description}
         />
       </div>
     </Article>
-  </LinkWrapper>
+  </Wrapper>
 )
 
 PostCard.propTypes = {
-  node: PropTypes.object.isRequired
+  node: PropTypes.object.isRequired,
+  small: PropTypes.bool,
+  gutter: PropTypes.number,
+  height: PropTypes.number
+}
+
+PostCard.defaultProps = {
+  small: false,
+  height: 300
 }

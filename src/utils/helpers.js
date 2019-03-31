@@ -10,9 +10,9 @@ export const searchWord = (search, post) => {
   const searchIn = post => Object.values(post).map(value => normalize(value))
 
   const normalize = str => str && str
-  .toLowerCase()
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, "")
 
   const res = searchIn({
     title: post.title,

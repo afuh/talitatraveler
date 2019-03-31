@@ -1,19 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { fontSize } from '../../utils/style'
-import { PostsGrid, Section } from '../../utils/UI'
-
+import { PostsGrid, Section, Separator } from '../../utils/UI'
 
 const Wrapper = styled(Section)`
-  padding-top: ${({ theme }) => theme.categoryPadding};
   position: relative;
 
-  h3 {
-    display: flex;
-    align-items: center;
+  .title {
+    text-align: center;
     ${fontSize(3.2)};
     font-weight: 900;
   }
@@ -26,11 +22,8 @@ const Wrapper = styled(Section)`
 `
 
 const Category = ({ edges, category }) => (
-  <Wrapper margin={2}>
-    <div className='category'><Link to='/categorias'>Categoría  </Link> </div>
-    <h3>
-      {category}
-    </h3>
+  <Wrapper>
+    <Separator text={category} />
     <PostsGrid
       posts={edges}
       header={category}
