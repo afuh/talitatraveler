@@ -12,9 +12,13 @@ const SubscribeWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 80px 0;
-  background: ${({ theme }) => theme.lightGray};
+
+  ${({ theme }) => theme && css`
+    background: ${theme.lightGray};
+    box-shadow: ${theme.innerShadow}
+  `};
+
 
   ${media.phone(css`
     padding: 80px 10px;

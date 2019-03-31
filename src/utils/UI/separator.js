@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
   height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${({ theme }) => theme.lightGray};
+
+  ${({ theme }) => theme && css`
+    background: ${theme.lightGray};
+    box-shadow: ${theme.innerShadow};
+  `};
 
   h2 {
     margin: 0;

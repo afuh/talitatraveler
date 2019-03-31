@@ -33,14 +33,19 @@ const Link = styled(GatsbyLink).attrs({
   font-size: 1rem;
   font-weight: bold;
   padding: 8px;
-  background: ${({ theme }) => theme.lightGray};
   margin-right: 4px;
-  color: ${({ theme }) => theme.gray};
+  ${({ theme }) => theme && css`
+    background: ${theme.lightGray};
+    color: ${theme.gray};
+  `};
 
   &:hover {
-    color: #fff;
-    background: ${({ theme }) => theme.mainColor};
     text-decoration: none;
+    color: #fff;
+    ${({ theme }) => theme && css`
+      box-shadow: ${theme.shadow};
+      background: ${theme.mainColor};
+    `};
   }
 
   transition: ${({ theme }) => theme.transition};

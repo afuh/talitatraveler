@@ -34,6 +34,7 @@ const Input = styled.input`
   transition: .2s border-color;
 
   &:focus {
+    box-shadow: ${({ theme }) => theme.shadow};
     outline: 0;
   }
 `

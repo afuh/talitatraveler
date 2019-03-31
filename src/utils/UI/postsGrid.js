@@ -27,6 +27,7 @@ const MoreButton = styled.button`
   cursor: pointer;
 
   ${({ theme }) => theme && css`
+    box-shadow: ${theme.shadow};
     background: ${theme.white};
     color: ${theme.mainColor};
     border: 2px solid ${theme.mainColor};
