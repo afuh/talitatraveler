@@ -52,6 +52,10 @@ module.exports = {
           {
             family: "Noto Serif KR",
             variants: ["500", "700", "900"]
+          },
+          {
+            family: "Raleway",
+            variants: ["500", "700", "900"]
           }
         ]
       }
