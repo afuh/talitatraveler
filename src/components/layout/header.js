@@ -13,7 +13,7 @@ const Content = styled.header`
 
 const NavLink = styled(Link)`
   color: ${({ theme }) => theme.black};
-  font-weight: 700;
+  font-weight: 800;
   font-size: 2rem;
   padding: 1.4rem 2rem;
 

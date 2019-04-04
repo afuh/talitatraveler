@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
-  height: 110px;
+  height: 140px;
   display: flex;
   justify-content: center;
   align-items: center;

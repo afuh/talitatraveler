@@ -25,6 +25,8 @@ const Wrapper = styled.header`
   }
 
   h2 {
+    margin-top: 0;
+    font-weight: 800;
     ${fontSize(2.2)};
   }
 

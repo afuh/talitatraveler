@@ -19,7 +19,6 @@ const SubscribeWrapper = styled.div`
     box-shadow: ${theme.innerShadow}
   `};
 
-
   ${media.phone(css`
     padding: 80px 10px;
   `)}

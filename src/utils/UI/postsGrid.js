@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 const MoreButton = styled.button`
   border: none;
+  font-family: 'Raleway', sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   padding: 1rem 2rem;

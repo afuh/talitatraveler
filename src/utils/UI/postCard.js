@@ -53,7 +53,7 @@ const Overlay = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   color: ${({ theme }) => theme.white};
 
   h2, h3 {
@@ -62,13 +62,14 @@ const Overlay = styled.div`
   }
 
   h2 {
-    font-size: ${p => p.small ? 2.4 : 3}rem;
+    font-size: ${p => p.small ? 2.2 : 3}rem;
+    font-weight: 800;
   }
 
   h3 {
-    color: #cfd0d1;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     transition: ${({ theme }) => theme.transition};
+    font-weight: 700;
   }
 
   &:hover,
