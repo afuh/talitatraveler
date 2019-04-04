@@ -8,7 +8,7 @@ import { SocialIcon } from '../../../utils/UI/icons'
 
 import MailForm from './mailForm'
 
-const SubscribeWrapper = styled.div`
+const SubscribeWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@ const SubscribeWrapper = styled.div`
   }
 `
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   background: ${({ theme }) => theme.mainColor};
   padding: 40px 0;
 

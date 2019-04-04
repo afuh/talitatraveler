@@ -58,7 +58,7 @@ const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
   const count = totalCount ? postsToShow : Infinity
 
   return (
-    <>
+    <section>
       <Wrapper>
         {posts.map((post, i) => i < count && (
           <PostCard
@@ -75,7 +75,7 @@ const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
           </MoreButton>
         </ButtonWrapper>
       }
-    </>
+    </section>
   )
 }
 

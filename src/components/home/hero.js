@@ -26,7 +26,7 @@ const Icon = styled(FaChevronDown)`
   transition: all 0.2s ease-in;
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   ${({ theme }) => theme && css`
     min-height: calc(100vh - ${theme.headerHeight}px);
   `};
