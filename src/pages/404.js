@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  span {
+  p {
     margin: 0;
     font-size: 400px;
 
@@ -79,16 +79,16 @@ const NotFoundPage = () => {
   return (
     <Layout>
       <Wrapper>
-        <span>4</span>
+        <p>4</p>
         <ImageWrapper loading={loading}>
-          <span className='placeholder' />
+          <p className='placeholder' />
           <img
             onLoad={() => setLoading(false)}
             src='https://source.unsplash.com/random/300/?cat,cats'
             alt='🐈'
           />
         </ImageWrapper>
-        <span>4</span>
+        <p>4</p>
       </Wrapper>
     </Layout>
   )
