@@ -14,6 +14,24 @@ export const useSiteContent = () => {
           }
           subscriptionTitle
           subscriptionSubtitle
+          contactText {
+            md: childMarkdownRemark {
+              html
+            }
+          }
+          authorName
+          authorBio {
+            md: childMarkdownRemark {
+              html
+            }
+          }
+          authorAvatars {
+            description
+            title
+            fluid(maxWidth: 600) {
+              ...GatsbyContentfulFluid_withWebp_noBase64
+            }
+          }
         }
       }
     `

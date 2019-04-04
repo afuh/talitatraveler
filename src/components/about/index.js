@@ -5,6 +5,7 @@ import GatsbyImg from 'gatsby-image'
 
 import { Section, SectionHeader, Paragraph } from '../../utils/UI'
 import { media } from '../../utils/style'
+import { useSiteContent } from '../../utils/hooks'
 
 const Wrapper = styled.div`
   padding: 5%;
@@ -88,33 +89,29 @@ Avatar.propTypes = {
   avatars: PropTypes.array.isRequired
 }
 
-const About = ({ author }) => (
-  <>
-  <SectionHeader text='Sobre mí' />
-  <Wrapper>
-    <Section
-      margin={2}
-      style={{ maxWidth: 1400 }}
-    >
-      <h1>{author.name}</h1>
-      <Inner>
-        <Paragraph
-          className='text'
-          dangerouslySetInnerHTML={{ __html: author.bio.md.html }}
-        />
-        <Avatar avatars={author.avatars} />
-      </Inner>
-    </Section>
-  </Wrapper>
-  </>
-)
+const About = () => {
+  const { authorName, authorBio, authorAvatars } = useSiteContent()
 
-About.propTypes = {
-  author: PropTypes.shape({
-    name: PropTypes.string,
-    bio: PropTypes.object,
-    avatars: PropTypes.array
-  }).isRequired
+  return (
+    <>
+    <SectionHeader text='Sobre mí' />
+    <Wrapper>
+      <Section
+        margin={2}
+        style={{ maxWidth: 1400 }}
+      >
+        <h1>{authorName}</h1>
+        <Inner>
+          <Paragraph
+            className='text'
+            dangerouslySetInnerHTML={{ __html: authorBio.md.html }}
+          />
+          <Avatar avatars={authorAvatars} />
+        </Inner>
+      </Section>
+    </Wrapper>
+    </>
+  )
 }
 
 export default About

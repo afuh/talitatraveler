@@ -7,9 +7,7 @@ import Categories from '../components/categories'
 
 const AllCategories = ({ pageContext: { allCategories }, location }) => (
   <Layout>
-    <SEO
-      title='Categorías'
-    />
+    <SEO title='Categorías' />
     <Categories
       categories={allCategories}
       location={location}

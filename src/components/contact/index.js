@@ -1,9 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import ContactForm from './contactForm'
 import { Section, SectionHeader, Paragraph } from '../../utils/UI'
+import { useSiteContent } from '../../utils/hooks'
 
 const Wrapper = styled.div`
   padding: 2% 5%;
@@ -12,27 +12,25 @@ const Wrapper = styled.div`
   align-items: center;
 `
 
-const Contact = ({ contact }) => (
-  <>
-    <SectionHeader text='Contacto' />
-    <Wrapper>
-      <Section
-        margin={2}
-        style={{ maxWidth: 600 }}
-      >
-        <Paragraph
-          dangerouslySetInnerHTML={{ __html: contact.text.md.html }}
-        />
-        <ContactForm />
-      </Section>
-    </Wrapper>
-  </>
-)
+const Contact = () => {
+  const { contactText } = useSiteContent()
 
-Contact.propTypes = {
-  contact: PropTypes.shape({
-    text: PropTypes.object
-  }).isRequired
+  return (
+    <>
+      <SectionHeader text='Contacto' />
+      <Wrapper>
+        <Section
+          margin={2}
+          style={{ maxWidth: 600 }}
+        >
+          <Paragraph
+            dangerouslySetInnerHTML={{ __html: contactText.md.html }}
+          />
+          <ContactForm />
+        </Section>
+      </Wrapper>
+    </>
+  )
 }
 
 export default Contact

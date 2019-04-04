@@ -1,42 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
 
 import SEO from '../utils/seo'
 import Layout from '../components/layout'
 import About from '../components/about'
 
-const AboutPage = ({ data: { author } }) => (
+const AboutPage = () => (
   <Layout>
-    <SEO
-      title='Sobre mí'
-    />
-    <About author={author} />
+    <SEO title='Sobre mí' />
+    <About />
   </Layout>
 )
 
-AboutPage.propTypes = {
-  data: PropTypes.object.isRequired
-}
-
 export default AboutPage
-
-export const query = graphql`
-  query ABOUT_PAGE_QUERY {
-    author: contentfulContent {
-      name: authorName
-      bio: authorBio {
-        md: childMarkdownRemark {
-          html
-        }
-      }
-      avatars: authorAvatars {
-        description
-        title
-        fluid(maxWidth: 600) {
-          ...GatsbyContentfulFluid_withWebp_noBase64
-        }
-      }
-    }
-  }
-`
