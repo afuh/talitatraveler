@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Hero from './hero'
-import { PostsGrid, Separator } from '../../utils/UI'
+import { PostsGrid, SectionHeader } from '../../utils/UI'
 
 const scrollId = 'post-grid'
 
 const Home = ({ data: { posts: { edges, totalCount } } }) => (
   <div>
     <Hero scrollId={scrollId} />
-    <Separator
+    <SectionHeader
       id={scrollId}
       text='Últimos posts'
     />

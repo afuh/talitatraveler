@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { fontSize } from '../../utils/style'
-import { PostsGrid, Section, Separator } from '../../utils/UI'
+import { PostsGrid, Section, SectionHeader } from '../../utils/UI'
 
 const Wrapper = styled(Section)`
   position: relative;
@@ -23,7 +23,7 @@ const Wrapper = styled(Section)`
 
 const Category = ({ edges, category }) => (
   <Wrapper>
-    <Separator text={category} />
+    <SectionHeader text={category} />
     <PostsGrid
       posts={edges}
       header={category}

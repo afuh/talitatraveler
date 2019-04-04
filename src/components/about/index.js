@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
-import { Section, Separator, Paragraph } from '../../utils/UI'
+import { Section, SectionHeader, Paragraph } from '../../utils/UI'
 import { media } from '../../utils/style'
 
 const Wrapper = styled.div`
@@ -90,7 +90,7 @@ Avatar.propTypes = {
 
 const About = ({ author }) => (
   <>
-  <Separator text='Sobre mí' />
+  <SectionHeader text='Sobre mí' />
   <Wrapper>
     <Section
       margin={2}
