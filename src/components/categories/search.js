@@ -46,11 +46,13 @@ class SearchForm extends Component {
   }
 
   componentDidMount(){
-    const { location } = this.props
+    const { location, posts } = this.props
 
     if (location.state && location.state.focus) {
       this.searchInput.current.focus()
     }
+
+    this.setState({ filteredPosts: posts })
   }
 
   handleChange = e => {
@@ -98,7 +100,7 @@ class SearchForm extends Component {
                 {...getInputProps({
                   name: 'search',
                   type: 'text',
-                  placeholder: 'Buscar...',
+                  placeholder: 'Filtrar...',
                   id: 'search',
                   onChange: e => {
                     e.persist()
