@@ -4,7 +4,7 @@ require("dotenv").config({
 
 const siteConfig = require('./config/siteConfig')
 
-const feed = `{
+const feedQuery = `{
   allContentfulPost(sort: { fields: createdAt, order: DESC  }) {
     edges {
       node {
@@ -25,7 +25,7 @@ const feed = `{
         content {
           md: childMarkdownRemark {
             html
-            excerpt
+            excerpt(pruneLength: 250)
           }
         }
       }
@@ -93,7 +93,8 @@ module.exports = {
         plugins: [
           'gatsby-remark-figure-caption',
           'gatsby-remark-numbered-footnotes',
-          'gatsby-remark-responsive-iframe'
+          'gatsby-remark-responsive-iframe',
+          'gatsby-remark-external-links'
         ]
       }
     },
@@ -121,19 +122,19 @@ module.exports = {
     {
       resolve: `gatsby-plugin-feed`,
       options: {
+        setup: () => ({
+          title: siteConfig.title,
+          description: siteConfig.description,
+          feed_url: siteConfig.siteUrl + `/rss.xml`,
+          site_url: siteConfig.siteUrl,
+          image_url: siteConfig.siteUrl + siteConfig.image
+        }),
         feeds: [
           {
-            query: feed,
+            query: feedQuery,
             title: siteConfig.title,
             description: siteConfig.description,
             output: '/rss.xml',
-            setup: () => ({
-              title: siteConfig.title,
-              description: siteConfig.description,
-              feed_url: siteConfig.siteUrl + `/rss.xml`,
-              site_url: siteConfig.siteUrl,
-              image_url: siteConfig.siteUrl + siteConfig.image
-            }),
             serialize: ({ query: { allContentfulPost } }) =>
               allContentfulPost.edges.map(({ node }) => ({
                 title: node.title,
