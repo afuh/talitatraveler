@@ -18,7 +18,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
     allCategories: path.resolve('src/templates/allCategories.js')
   }
 
-  const post = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     resolve(
       graphql(
         `
@@ -86,15 +86,9 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
                 allCategories
               }
             })
-
           })
-
         })
       })
     )
   })
-
-  return Promise.all([
-    post
-  ])
 }

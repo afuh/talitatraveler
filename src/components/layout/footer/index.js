@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import { Link } from "gatsby"
 
 import { media } from '../../../utils/style'
-import Link from '../../../utils/link'
 import { SocialIcon } from '../../../utils/UI/icons'
 
 import MailForm from './mailForm'

@@ -48,7 +48,6 @@ Envelope.propTypes = {
   color: PropTypes.string
 }
 
-
 export const SocialWrapper = styled.a`
   border: none;
   border-radius: 50%;
@@ -70,7 +69,7 @@ export const SocialIcon = ({ name, href, style, as }) => {
   const findIcon = name => {
     // capitalize the name
     name = name.replace(/\b\w/g, l => l.toUpperCase())
-    
+
     const Component = require("react-icons/fa")['Fa' + name]
     return <Component />
   }

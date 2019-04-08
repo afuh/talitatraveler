@@ -94,22 +94,22 @@ const About = () => {
 
   return (
     <>
-    <SectionHeader text='Sobre mí' />
-    <Wrapper>
-      <Section
-        margin={2}
-        style={{ maxWidth: 1400 }}
-      >
-        <h1>{authorName}</h1>
-        <Inner>
-          <Paragraph
-            className='text'
-            dangerouslySetInnerHTML={{ __html: authorBio.md.html }}
-          />
-          <Avatar avatars={authorAvatars} />
-        </Inner>
-      </Section>
-    </Wrapper>
+      <SectionHeader text='Sobre mí' />
+      <Wrapper>
+        <Section
+          margin={2}
+          style={{ maxWidth: 1400 }}
+        >
+          <h1>{authorName}</h1>
+          <Inner>
+            <Paragraph
+              className='text'
+              dangerouslySetInnerHTML={{ __html: authorBio.md.html }}
+            />
+            <Avatar avatars={authorAvatars} />
+          </Inner>
+        </Section>
+      </Wrapper>
     </>
   )
 }

@@ -41,7 +41,7 @@ const Header = ({ post }) => (
     <Time post={post} />
     <h1>{post.title}</h1>
     {post.subTitle && <h2>{post.subTitle}</h2>}
-    <span>por</span> <Link to='/contacto'>Talita</Link>
+    <span>por</span> <Link to='/sobre-mi'>Talita</Link>
   </Wrapper>
 )
 
