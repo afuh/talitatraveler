@@ -1,4 +1,4 @@
-const siteUrl = 'https://talitatraveler.netlify.com' // no trailing slash
+const siteUrl = 'https://talitatraveler.com' // no trailing slash
 
 const mainNav = [
   { name: 'Inicio', path: '/' },
