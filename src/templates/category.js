@@ -8,9 +8,7 @@ import Category from '../components/category'
 
 const CategoryTemplate = ({ pageContext, data: { posts: { edges } } }) => (
   <Layout>
-    <SEO
-      title={pageContext.category}
-    />
+    <SEO title={pageContext.category} />
     <Category
       category={pageContext.category}
       edges={edges}

@@ -25,7 +25,6 @@ const PostTemplate = ({ data: { post, suggested } }) => (
   </Layout>
 )
 
-
 PostTemplate.propTypes = {
   data: PropTypes.object.isRequired
 }

@@ -14,6 +14,12 @@ const Wrapper = styled.div`
     margin: 2% 2% 2% 0;
     cursor: pointer;
   }
+
+  div[role='button'] {
+    &:focus {
+      outline: 0;
+    }
+  }
 `
 
 export const SocialLinks = ({ post }) => {

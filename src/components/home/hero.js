@@ -19,13 +19,14 @@ const Icon = styled(FaChevronDown)`
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1)
+    color: ${({ theme }) => theme.mainColor};
+    transform: scale(1.1);
   }
 
-  transition: transform 0.2s ease-in;
+  transition: all 0.2s ease-in;
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   ${({ theme }) => theme && css`
     min-height: calc(100vh - ${theme.headerHeight}px);
   `};

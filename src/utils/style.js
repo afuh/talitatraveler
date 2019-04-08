@@ -6,6 +6,7 @@ export const theme = {
   gray: "#9F9FA3",
   lightGray: "rgba(239, 243, 245, 0.5)",
   mainColor: "#008080",
+  secondaryColor: "#FC4A1A",
   shadow: 'rgba(8, 35, 51, 0.03) 0px 0px 2px, rgba(8, 35, 51, 0.05) 0px 3px 6px',
   innerShadow: 'rgba(0, 0, 0, 0.02) 1px -3px 9px 3px inset',
   transition: 'all .2s ease',
@@ -77,6 +78,7 @@ export const fontSize = size => css`
 `
 
 const defaultFont = [
+  'Raleway',
   '-apple-system',
   'BlinkMacSystemFont',
   '"Segoe UI"',
@@ -113,20 +115,24 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${defaultFont};
   }
 
-  h1 { ${fontSize(3.2)}; }
-  h2 { ${fontSize(2.4)}; }
-  h3 { ${fontSize(1.9)}; }
-
   a {
-    color: ${theme.mainColor};
+    color: ${theme.secondaryColor};
     text-decoration: none;
 
     &:hover,
     &:active,
     &:focus {
-      color: ${theme.mainColor};
+      color: ${theme.secondaryColor};
       text-decoration: underline;
     }
+  }
+
+  h1 { ${fontSize(3.2)}; }
+  h2 { ${fontSize(2.4)}; }
+  h3 { ${fontSize(1.9)}; }
+
+  h1, h2, h3 {
+    font-weight: 900;
   }
 
   p, li, figcaption {
@@ -151,7 +157,6 @@ export const GlobalStyle = createGlobalStyle`
       outline: 0;
     }
   }
-
 `
 
 export const Article = styled.article`

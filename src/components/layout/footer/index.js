@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import { Link } from "gatsby"
 
 import { media } from '../../../utils/style'
-import Link from '../../../utils/link'
 import { SocialIcon } from '../../../utils/UI/icons'
 
 import MailForm from './mailForm'
 
-const SubscribeWrapper = styled.div`
+const SubscribeWrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,6 @@ const SubscribeWrapper = styled.div`
     box-shadow: ${theme.innerShadow}
   `};
 
-
   ${media.phone(css`
     padding: 80px 10px;
   `)}
@@ -29,7 +28,7 @@ const SubscribeWrapper = styled.div`
   }
 `
 
-const NavWrapper = styled.div`
+const NavWrapper = styled.nav`
   background: ${({ theme }) => theme.mainColor};
   padding: 40px 0;
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 const Wrapper = styled.div`
-  height: 110px;
+  height: 140px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,12 +20,12 @@ const Wrapper = styled.div`
   }
 `
 
-export const Separator = ({ text, ...rest }) => (
+export const SectionHeader = ({ text, ...rest }) => (
   <Wrapper {...rest}>
     <h2>{text}</h2>
   </Wrapper>
 )
 
-Separator.propTypes = {
+SectionHeader.propTypes = {
   text: PropTypes.string.isRequired
 }

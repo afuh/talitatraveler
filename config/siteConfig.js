@@ -8,7 +8,7 @@ const mainNav = [
 
 module.exports = {
   title: 'talita traveler',
-  description: "Desde otro lado.",
+  description: "todo lo que escribo y considero ser digno de ser publicado.",
   siteUrl,
   image: '/images/cover-720x360.jpg',
   icon: 'src/assets/avatar-512x512.png',
