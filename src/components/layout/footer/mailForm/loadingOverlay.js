@@ -18,7 +18,7 @@ const SpinWrapper = styled.div`
 
 const LoadingOverlay = () => (
   <SpinWrapper>
-    <Spinner color={'#FF5722'} />
+    <Spinner />
   </SpinWrapper>
 )
 
