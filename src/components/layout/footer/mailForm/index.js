@@ -128,6 +128,7 @@ class MailForm extends Component {
                 <Envelope color='#9b9b9b'/>
               </div>
               <Input
+                aria-label='email'
                 required
                 placeholder='tu@email.com'
                 type="email"

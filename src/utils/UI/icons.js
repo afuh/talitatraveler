@@ -80,6 +80,7 @@ export const SocialIcon = ({ name, href, style, as }) => {
 
   return (
     <SocialWrapper
+      aria-label={name + ' Icon'}
       href={href}
       style={{ ...style }}
       as={as}
