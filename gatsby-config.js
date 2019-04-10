@@ -14,8 +14,10 @@ const feedQuery = `{
         title
         categories
         image: headerImage {
+          fixed(width: 173, height:200, resizingBehavior: THUMB, cropFocus: CENTER) {
+            src
+          }
           file {
-            url
             contentType
             details {
               size
@@ -127,7 +129,10 @@ module.exports = {
           description: siteConfig.description,
           feed_url: siteConfig.siteUrl + `/rss.xml`,
           site_url: siteConfig.siteUrl,
-          image_url: siteConfig.siteUrl + siteConfig.image
+          image_url: siteConfig.siteUrl + siteConfig.image,
+          custom_namespaces: {
+            'media': "http://search.yahoo.com/mrss/"
+          }
         }),
         feeds: [
           {
@@ -143,9 +148,16 @@ module.exports = {
                 url: siteConfig.siteUrl + "/" + node.slug,
                 guid: siteConfig.siteUrl + "/" + node.slug,
                 categories: node.categories,
-                custom_elements: [ {
-                  "content:encoded": node.content.md.html
-                } ],
+                custom_elements: [
+                  { "media:content": {
+                    _attr: {
+                      url: node.image.fixed.src,
+                      medium: 'image',
+                      type: node.image.file.contentType
+                    }
+                  } },
+                  { "content:encoded": node.content.md.html }
+                ],
                 enclosure: {
                   url: node.image.file.url,
                   type: node.image.file.contentType,
