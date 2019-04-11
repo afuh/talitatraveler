@@ -4,6 +4,14 @@ import PropTypes from 'prop-types'
 
 import { useSiteMeta } from './hooks'
 
+const checkUrl = url => {
+  if (url.match(/^https/i)) {
+    return url
+  }
+
+  return "https:" + url
+}
+
 const SEO = ({ title, description, image, pathname }) => {
   const {
     title: defaultTitle,
@@ -18,7 +26,7 @@ const SEO = ({ title, description, image, pathname }) => {
     description: description || defaultDescription,
     url: `${siteUrl}${pathname || '/'}`,
     image: {
-      url: image ? image.url : `${siteUrl}${defaultImage}`,
+      url: image ? checkUrl(image.url) : `${siteUrl}${defaultImage}`,
       contentType: image ? image.contentType : "image/jpeg",
       size: image ? image.size : { width: "720", height: "360" }
     }
