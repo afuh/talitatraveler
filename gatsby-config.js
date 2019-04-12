@@ -151,7 +151,7 @@ module.exports = {
                 custom_elements: [
                   { "media:content": {
                     _attr: {
-                      url: node.image.fixed.src,
+                      url: 'https:' + node.image.fixed.src,
                       medium: 'image',
                       type: node.image.file.contentType
                     }
