@@ -19,28 +19,23 @@ const NavLink = styled(Link)`
 
   &:hover,
   &:active,
-  &:focus {
+  &:focus,
+  &.active {
     text-decoration: none;
     color: ${({ theme }) => theme.mainColor};
   }
 
-  &.${({ activeClassName }) => activeClassName} {
-    color: ${({ theme }) => theme.mainColor};
-  }
   ${media.phone(css`
     font-size: 1.6rem;
     padding: 1.4rem;
   `)}
 `
-
-NavLink.defaultProps = {
-  activeClassName: 'active'
-}
-
 const Header = ({ nav, height }) => (
   <Content style={{ height }}>
     {nav.map(item => (
       <NavLink
+        partiallyActive={item.path.length > 1}
+        activeClassName='active'
         key={item.name}
         to={item.path}
       >

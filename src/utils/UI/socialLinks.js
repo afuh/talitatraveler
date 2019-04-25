@@ -30,7 +30,6 @@ export const SocialLinks = ({ post }) => {
     <Wrapper>
       <FacebookShareButton
         url={url}
-        quote={post.content.md.excerpt}
       >
         <SocialIcon
           as='div'
