@@ -24,7 +24,7 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
       graphql(
         `
           {
-            posts: allContentfulPost {
+            posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
               edges {
                 node {
                   slug
