@@ -171,9 +171,8 @@ const query = graphql`
     posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
       edges {
         node {
-          title
-          subTitle
-          slug
+          ...PostBasicInfo
+          ...Dates
           content {
             text: content
             md: childMarkdownRemark {
@@ -187,7 +186,6 @@ const query = graphql`
               ...GatsbyContentfulFluid
             }
           }
-          ...Dates
         }
       }
     }
