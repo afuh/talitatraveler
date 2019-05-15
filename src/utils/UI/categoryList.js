@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
 import styled, { css } from 'styled-components'
 
-import { categoryToSlug } from '../../utils/helpers'
 import { media } from '../../utils/style'
+import { toSlug } from '../../../config/sharedUtils'
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ export const CategoryList = ({ categories, style, big }) => (
       <Link
         style={{ ...style }}
         key={category}
-        to={`/categorias/${categoryToSlug(category)}`}
+        to={`/categorias/${toSlug(category)}`}
       >
         {category}
       </Link>

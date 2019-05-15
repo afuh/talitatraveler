@@ -3,6 +3,7 @@ require("dotenv").config({
 })
 
 const siteConfig = require('./config/siteConfig')
+const { checkUrl } = require('./config/sharedUtils')
 
 const feedQuery = `{
   allContentfulPost(sort: { fields: createdAt, order: DESC  }) {
@@ -151,7 +152,7 @@ module.exports = {
                 custom_elements: [
                   { "media:content": {
                     _attr: {
-                      url: 'https:' + node.image.fixed.src,
+                      url: checkUrl(node.image.fixed.src),
                       medium: 'image',
                       type: node.image.file.contentType
                     }
