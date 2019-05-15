@@ -1,4 +1,5 @@
 const path = require(`path`)
+const { toSlug } = require('./config/sharedUtils')
 
 exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
   const config = getConfig()
@@ -59,19 +60,13 @@ exports.createPages = ({ graphql, actions: { createPage } }) => {
           categories.forEach(category => {
             category = category.trim()
 
-            const slug = category
-              .toLowerCase()
-              .normalize('NFD')
-              .replace(/[\u0300-\u036f]/g, "")
-              .replace(/ /g, '-')
-
             if (!allCategories.filter(cat => cat === category).length) {
               allCategories.push(category)
             }
 
             // Create category page
             createPage({
-              path: `/categorias/${slug}`,
+              path: `/categorias/${toSlug(category)}`,
               component: template.category,
               context: {
                 category

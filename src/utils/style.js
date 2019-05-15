@@ -112,6 +112,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 1.5rem;
     letter-spacing: 0.02rem;
+    font-variant-ligatures: none;
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+    text-decoration-skip-ink: auto;
     font-family: ${defaultFont};
   }
 
