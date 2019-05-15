@@ -45,10 +45,8 @@ export const query = graphql`
       }
     }
     post: contentfulPost(slug: { eq: $slug } ) {
-      id
-      title
-      subTitle
-      slug
+      ...PostBasicInfo
+      ...Dates
       categories
       whiteSpace
       headerImage {
@@ -73,7 +71,6 @@ export const query = graphql`
           html
         }
       }
-      ...Dates
       suggestions {
         ...PostCard
       }

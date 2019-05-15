@@ -3,14 +3,7 @@ import Helmet from 'react-helmet'
 import PropTypes from 'prop-types'
 
 import { useSiteMeta } from './hooks'
-
-const checkUrl = url => {
-  if (url.match(/^https/i)) {
-    return url
-  }
-
-  return "https:" + url
-}
+import { checkUrl } from '../../config/sharedUtils'
 
 const SEO = ({ title, description, image, pathname }) => {
   const {
