@@ -15,7 +15,7 @@ const Home = ({ data: { posts: { edges, totalCount } } }) => (
     />
     <PostsGrid
       totalCount={totalCount}
-      posts={edges}
+      edges={edges}
     />
   </div>
 )

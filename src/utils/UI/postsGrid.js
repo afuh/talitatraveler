@@ -54,16 +54,25 @@ const ButtonWrapper = styled.div`
   `};
 `
 
-const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
+const sortPosts = posts => (
+  posts.map(post => !post.date ? post : ({
+    ...post,
+    createdAt: post.date
+  }))
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+)
+
+const Grid = ({ edges, totalCount, postsToShow, onShowMorePosts }) => {
   const count = totalCount ? postsToShow : Infinity
+  const posts = sortPosts(edges.map(({ node }) => node))
 
   return (
     <section>
       <Wrapper>
         {posts.map((post, i) => i < count && (
           <PostCard
-            key={post.node.id}
-            node={post.node}
+            key={post.id}
+            post={post}
           />
         ))}
       </Wrapper>
@@ -80,7 +89,7 @@ const Grid = ({ posts, totalCount, postsToShow, onShowMorePosts }) => {
 }
 
 Grid.propTypes = {
-  posts: PropTypes.array.isRequired,
+  edges: PropTypes.array.isRequired,
   totalCount: PropTypes.number,
   postsToShow: PropTypes.number.isRequired,
   onShowMorePosts: PropTypes.func.isRequired

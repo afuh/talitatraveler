@@ -21,11 +21,13 @@ export default HomePage
 
 export const query = graphql`
   query HOME_PAGE_QUERY {
-    posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
+    posts: allContentfulPost(sort: { fields: createdAt, order: DESC  }) {
       totalCount
       edges {
         node {
           ...PostCard
+          date
+          createdAt
         }
       }
     }
