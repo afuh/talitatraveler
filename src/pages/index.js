@@ -26,8 +26,7 @@ export const query = graphql`
       edges {
         node {
           ...PostCard
-          date
-          createdAt
+          ...Dates
         }
       }
     }

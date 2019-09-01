@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components'
 import { PostCard } from './'
 import { media } from '../style'
 import { withPostCounter } from '../context/postsToShow'
+import { sortPosts } from '../helpers'
 
 const Wrapper = styled.div`
   display: flex;
@@ -53,14 +54,6 @@ const ButtonWrapper = styled.div`
     display: none;
   `};
 `
-
-const sortPosts = posts => (
-  posts.map(post => !post.date ? post : ({
-    ...post,
-    createdAt: post.date
-  }))
-  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-)
 
 const Grid = ({ edges, totalCount, postsToShow, onShowMorePosts }) => {
   const count = totalCount ? postsToShow : Infinity

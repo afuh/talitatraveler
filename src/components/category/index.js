@@ -25,7 +25,7 @@ const Category = ({ edges, category }) => (
   <Wrapper>
     <SectionHeader text={category} />
     <PostsGrid
-      posts={edges}
+      edges={edges}
       header={category}
     />
   </Wrapper>

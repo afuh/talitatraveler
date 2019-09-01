@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
-
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
 import ListItem from './listItem'
+import { sortPosts } from '../../utils/helpers'
 
 const searchWord = (search, post) => {
   const normalize = str => str && str
@@ -126,7 +126,7 @@ class SearchForm extends Component {
               />
             </InputWrapper>
             <div {...getMenuProps()}>
-              {filteredPosts.map((post, index) => (
+              {sortPosts(filteredPosts).map((post, index) => (
                 <ListItem
                   key={post.slug}
                   post={post}
@@ -168,7 +168,7 @@ export default Search
 
 const query = graphql`
   query SEARCH_POSTS_QUERY {
-    posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
+    posts: allContentfulPost(sort: { fields: createdAt, order: DESC  }) {
       edges {
         node {
           ...PostBasicInfo
