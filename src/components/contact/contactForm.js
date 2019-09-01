@@ -134,7 +134,7 @@ class ContactForm extends Component {
           <SubmitArea>
             {notification && <p style={{ marginRight: 20 }}>{notification}</p>}
             <Submit
-              loading={loading}
+              isLoading={loading}
               type="submit"
             >
               {loading ? <Spinner /> : "Enviar"}

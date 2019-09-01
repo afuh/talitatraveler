@@ -58,9 +58,9 @@ export const Submit = styled.button`
   outline: none;
   user-select: none;
 
-  cursor: ${({ loading }) => !loading && "pointer"};
+  cursor: ${({ isLoading }) => !isLoading && "pointer"};
 
-  ${({ loading, theme }) => !loading && css`
+  ${({ isLoading, theme }) => !isLoading && css`
     :active,
     :focus,
     :hover {
@@ -69,11 +69,10 @@ export const Submit = styled.button`
     }
   `}
 `
-
 Submit.propTypes = {
-  loading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired
 }
 
 Submit.defaultProps = {
-  loading: false
+  isLoading: false
 }

@@ -115,7 +115,7 @@ class MailForm extends Component {
     const { response, loading, email } = this.state
 
     return (
-      <Wrapper loading={loading}>
+      <Wrapper isLoading={loading}>
         <Fieldset disabled={loading}>
           <Header />
           <Subscription
