@@ -91,9 +91,9 @@ const Overlay = styled.div`
   transition: ${({ theme }) => theme.transition};
 `
 
-export const PostCard = ({ node, small, gutter, height }) => (
+export const PostCard = ({ post, small, gutter, height }) => (
   <Wrapper
-    to={"/" + node.slug}
+    to={"/" + post.slug}
     gutter={gutter}
   >
     <Article>
@@ -101,14 +101,14 @@ export const PostCard = ({ node, small, gutter, height }) => (
         <Overlay
           small={small}
         >
-          <h2>{node.title}</h2>
-          <h3>{node.subTitle}</h3>
+          <h2>{post.title}</h2>
+          <h3>{post.subTitle}</h3>
         </Overlay>
         <GatsbyImg
           height={height}
-          fluid={node.headerImage.fluid}
-          alt={node.headerImage.description}
-          title={node.headerImage.description}
+          fluid={post.headerImage.fluid}
+          alt={post.headerImage.description}
+          title={post.headerImage.description}
         />
       </div>
     </Article>
@@ -116,7 +116,7 @@ export const PostCard = ({ node, small, gutter, height }) => (
 )
 
 PostCard.propTypes = {
-  node: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
   small: PropTypes.bool,
   gutter: PropTypes.number,
   height: PropTypes.number

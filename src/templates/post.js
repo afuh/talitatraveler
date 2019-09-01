@@ -5,6 +5,7 @@ import { graphql } from "gatsby"
 import Layout from '../components/layout'
 import Post from '../components/post'
 import SEO from '../utils/seo'
+import { edgesToNode } from '../utils/helpers'
 
 const PostTemplate = ({ data: { post, suggested } }) => (
   <Layout>
@@ -19,7 +20,7 @@ const PostTemplate = ({ data: { post, suggested } }) => (
       }}
     />
     <Post
-      relatedPosts={suggested.edges.map(({ node }) => node)}
+      relatedPosts={edgesToNode(suggested.edges)}
       post={post}
     />
   </Layout>

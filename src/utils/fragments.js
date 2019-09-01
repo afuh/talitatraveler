@@ -2,8 +2,10 @@ import { graphql } from 'gatsby'
 
 export const Dates = graphql`
   fragment Dates on ContentfulPost {
-    createdAt(formatString: "DD/MM/YYYY", locale: "es")
-    date(formatString: "DD/MM/YYYY", locale: "es")
+    createdAt
+    date
+    formatedCreatedAt: createdAt(formatString: "DD/MM/YYYY", locale: "es")
+    formatedDate: date(formatString: "DD/MM/YYYY", locale: "es")
   }
 `
 

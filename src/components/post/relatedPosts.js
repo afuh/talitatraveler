@@ -31,7 +31,7 @@ const RelatedPosts = ({ post, related }) => {
               height={240}
               gutter={10}
               key={post.slug}
-              node={post}
+              post={post}
             />
           ))
         }
