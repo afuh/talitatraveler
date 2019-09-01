@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { PostCard } from './'
 import { media } from '../style'
 import { withPostCounter } from '../context/postsToShow'
-import { sortPosts } from '../helpers'
+import { sortPosts, edgesToNode } from '../helpers'
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ const ButtonWrapper = styled.div`
 
 const Grid = ({ edges, totalCount, postsToShow, onShowMorePosts }) => {
   const count = totalCount ? postsToShow : Infinity
-  const posts = sortPosts(edges.map(({ node }) => node))
+  const posts = sortPosts(edgesToNode(edges))
 
   return (
     <section>

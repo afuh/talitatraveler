@@ -6,3 +6,5 @@ export const sortPosts = posts => (
     }))
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 )
+
+export const edgesToNode = edges => edges.map(({ node }) => node)

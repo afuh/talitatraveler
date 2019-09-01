@@ -6,7 +6,7 @@ import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
 import ListItem from './listItem'
-import { sortPosts } from '../../utils/helpers'
+import { sortPosts, edgesToNode } from '../../utils/helpers'
 
 const searchWord = (search, post) => {
   const normalize = str => str && str
@@ -149,12 +149,13 @@ SearchForm.propTypes = {
 
 const Search = ({ location }) => {
   const { posts: { edges } } = useStaticQuery(query)
+  const posts = edgesToNode(edges)
 
   return (
     <Wrapper>
       <SearchForm
         location={location}
-        posts={edges.map(({ node }) => node)}
+        posts={posts}
       />
     </Wrapper>
   )
