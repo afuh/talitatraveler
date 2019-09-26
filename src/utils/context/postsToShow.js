@@ -3,7 +3,7 @@ import React, { Component, createContext } from 'react'
 const { Provider, Consumer } = createContext()
 
 export class PostsToShowProvider extends Component {
-  posts = 6
+  posts = 9
   state = {
     postsToShow: this.posts
   }
