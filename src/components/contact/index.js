@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import ContactForm from './contactForm'
 import { Section, SectionHeader, Paragraph } from '../../utils/UI'
 import { useSiteContent } from '../../utils/hooks'
 
@@ -26,7 +25,6 @@ const Contact = () => {
           <Paragraph
             dangerouslySetInnerHTML={{ __html: contactText.md.html }}
           />
-          <ContactForm />
         </Section>
       </Wrapper>
     </>
