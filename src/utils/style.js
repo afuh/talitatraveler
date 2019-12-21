@@ -168,6 +168,12 @@ export const Article = styled.article`
   position: relative;
   border-bottom: 1px solid #f8f8f8;
 
+  a {
+    ${media.phone(css`
+      text-decoration: underline;
+    `)}
+  }
+
   p {
     white-space: ${({ whiteSpace }) => whiteSpace ? "pre-line" : "normal"}
   }
