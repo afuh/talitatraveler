@@ -26,7 +26,7 @@ module.exports = {
   ],
   footerNav: [
     ...mainNav,
-    { name: "Contacto", path: '/contacto' },
+    { name: "Contacto", path: '/sobre-mi#contacto' },
     { name: "Buscar", path: '/categorias' }
   ]
 }

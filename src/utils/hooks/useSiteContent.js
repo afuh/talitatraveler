@@ -14,11 +14,6 @@ export const useSiteContent = () => {
           }
           subscriptionTitle
           subscriptionSubtitle
-          contactText {
-            md: childMarkdownRemark {
-              html
-            }
-          }
           authorName
           authorBio {
             md: childMarkdownRemark {

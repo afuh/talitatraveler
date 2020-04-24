@@ -90,7 +90,7 @@ Avatar.propTypes = {
 }
 
 const About = () => {
-  const { authorName, authorBio, authorAvatars } = useSiteContent()
+  const { authorBio, authorAvatars } = useSiteContent()
 
   return (
     <>
@@ -100,7 +100,6 @@ const About = () => {
           margin={2}
           style={{ maxWidth: 1400 }}
         >
-          <h1>{authorName}</h1>
           <Inner>
             <Paragraph
               className='text'

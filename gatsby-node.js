@@ -1,13 +1,28 @@
 const path = require(`path`)
-const { toSlug } = require('./config/sharedUtils')
 
-exports.createPages = ({ graphql, actions: { createPage } }) => {
+const { toSlug } = require('./config/sharedUtils')
+const redirects = require('./config/redirects')
+
+exports.createPages = ({ graphql, reporter, actions: { createPage, createRedirect } }) => {
   const allCategories = []
   const template = {
     post: path.resolve('src/templates/post.js'),
     category: path.resolve('src/templates/category.js'),
     allCategories: path.resolve('src/templates/allCategories.js')
   }
+
+  Object.keys(redirects).forEach(from => {
+    const to = redirects[from]
+
+    createRedirect({
+      fromPath: from,
+      toPath: to,
+      isPermanent: true,
+      redirectInBrowser: true
+    })
+
+    reporter.info(`Redirect: ${from} -> ${to}`)
+  })
 
   return new Promise((resolve, reject) => {
     resolve(
