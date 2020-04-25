@@ -2,7 +2,7 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
-import { PostsToShowProvider } from './context/postsToShow'
+import { PostsToShowProvider } from './hooks/usePostCounter'
 import { theme, GlobalStyles } from './style'
 
 export const wrapRootElement = ({ element }) => (
