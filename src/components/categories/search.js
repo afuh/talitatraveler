@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useStaticQuery, graphql, navigate } from 'gatsby'
-import PropTypes from 'prop-types'
+import { useLocation } from '@reach/router'
 import styled, { css } from 'styled-components'
 import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
 import ListItem from './listItem'
-import { sortPosts, edgesToNode } from '../../utils/helpers'
+import { sortPosts } from '../../utils/helpers'
 
 const searchWord = (search, post) => {
   const normalize = (str) =>
@@ -16,7 +16,7 @@ const searchWord = (search, post) => {
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
 
-  const searchIn = (post) => Object.values(post).map((value) => normalize(value))
+  const searchIn = (schema) => Object.values(schema).map((value) => normalize(value))
 
   const fields = searchIn({
     title: post.title,
@@ -27,8 +27,11 @@ const searchWord = (search, post) => {
   return fields.some((str) => RegExp('\\b' + normalize(search), 'i').test(str))
 }
 
-const Wrapper = styled.div`
-  margin: 40px 0 80px;
+const Wrapper = styled.section.attrs({
+  id: 'buscar',
+})`
+  padding-top: 40px;
+  margin-bottom: 80px;
 `
 
 const InputWrapper = styled.div`
@@ -38,9 +41,7 @@ const InputWrapper = styled.div`
   position: relative;
 `
 
-const Input = styled.input.attrs({
-  id: 'buscar',
-})`
+const Input = styled.input`
   ${({ theme }) => css`
     caret-color: ${theme.mainColor};
     background: ${theme.lightGray};
@@ -59,31 +60,20 @@ const Input = styled.input.attrs({
   `};
 `
 
-class SearchForm extends Component {
-  searchInput = React.createRef()
-  state = {
-    filteredPosts: [],
-  }
+const Search = () => {
+  const { allContentfulPost } = useStaticQuery(query)
+  const searchInput = useRef(null)
+  const location = useLocation()
+  const [posts, filterPosts] = useState(allContentfulPost.nodes)
 
-  componentDidMount() {
-    const { location, posts } = this.props
-
+  useEffect(() => {
     if (location.state && location.state.focus) {
-      this.searchInput.current.focus()
+      searchInput.current.focus()
     }
+  }, [location.state])
 
-    this.setState({ filteredPosts: posts })
-  }
-
-  handleChange = (e) => {
-    const filteredPosts = this.handleFilter(e.target.value)
-    this.setState({ filteredPosts })
-  }
-
-  handleFilter(search) {
-    const { posts } = this.props
-
-    return posts.reduce((acc, post) => {
+  const filterByInput = (search) => {
+    return allContentfulPost.nodes.reduce((acc, post) => {
       if (searchWord(search, post)) {
         acc.push(post)
       }
@@ -91,10 +81,8 @@ class SearchForm extends Component {
     }, [])
   }
 
-  render() {
-    const { filteredPosts } = this.state
-
-    return (
+  return (
+    <Wrapper>
       <Downshift
         itemToString={(post) => (post === null ? '' : post.title)}
         onChange={({ slug }) => navigate(slug)}
@@ -106,6 +94,7 @@ class SearchForm extends Component {
             block: 'nearest',
             inline: 'nearest',
           })
+
           if (!action) return
 
           action.el.scrollTop = action.top
@@ -116,7 +105,7 @@ class SearchForm extends Component {
           <div>
             <InputWrapper>
               <Input
-                ref={this.searchInput}
+                ref={searchInput}
                 {...getInputProps({
                   name: 'search',
                   type: 'text',
@@ -124,13 +113,13 @@ class SearchForm extends Component {
                   id: 'search',
                   onChange: (e) => {
                     e.persist()
-                    this.handleChange(e)
+                    filterPosts(filterByInput(e.target.value))
                   },
                 })}
               />
             </InputWrapper>
             <div {...getMenuProps()}>
-              {sortPosts(filteredPosts).map((post, index) => (
+              {sortPosts(posts).map((post, index) => (
                 <ListItem
                   key={post.slug}
                   post={post}
@@ -142,53 +131,29 @@ class SearchForm extends Component {
           </div>
         )}
       </Downshift>
-    )
-  }
-}
-
-SearchForm.propTypes = {
-  posts: PropTypes.array.isRequired,
-  location: PropTypes.object.isRequired,
-}
-
-const Search = ({ location }) => {
-  const {
-    posts: { edges },
-  } = useStaticQuery(query)
-  const posts = edgesToNode(edges)
-
-  return (
-    <Wrapper>
-      <SearchForm location={location} posts={posts} />
     </Wrapper>
   )
-}
-
-Search.propTypes = {
-  location: PropTypes.object.isRequired,
 }
 
 export default Search
 
 const query = graphql`
   query SEARCH_POSTS_QUERY {
-    posts: allContentfulPost(sort: { fields: createdAt, order: DESC }) {
-      edges {
-        node {
-          ...PostBasicInfo
-          ...Dates
-          content {
-            text: content
-            md: childMarkdownRemark {
-              text: rawMarkdownBody
-              excerpt(pruneLength: 240)
-            }
+    allContentfulPost(sort: { fields: createdAt, order: DESC }) {
+      nodes {
+        ...PostBasicInfo
+        ...Dates
+        content {
+          text: content
+          md: childMarkdownRemark {
+            text: rawMarkdownBody
+            excerpt(pruneLength: 240)
           }
-          headerImage {
-            description
-            fluid(maxWidth: 400) {
-              ...GatsbyContentfulFluid
-            }
+        }
+        headerImage {
+          description
+          fluid(maxWidth: 400) {
+            ...GatsbyContentfulFluid
           }
         }
       }

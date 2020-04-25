@@ -15,17 +15,14 @@ const Wrapper = styled(Section)`
   }
 `
 
-const Categories = ({ categories, location }) => (
-  <>
-    <Wrapper margin={2} style={{ marginTop: 20 }}>
-      <CategoryList big categories={categories} />
-      <Search location={location} />
-    </Wrapper>
-  </>
+const Categories = ({ categories }) => (
+  <Wrapper margin={2} style={{ marginTop: 20 }} as="div">
+    <CategoryList big categories={categories} />
+    <Search />
+  </Wrapper>
 )
 
 Categories.propTypes = {
-  location: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired,
 }
 
