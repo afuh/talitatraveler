@@ -7,7 +7,7 @@ const inputBaseStyle = css`
   display: block;
   margin: 10px 0 20px;
   padding: 0.9rem;
-  transition: .2s border-color;
+  transition: 0.2s border-color;
 
   &:focus {
     outline: 0;
@@ -44,6 +44,7 @@ export const Textarea = styled.textarea`
 export const Fieldset = styled.fieldset`
   border: none;
   padding: 0;
+  filter: ${(p) => p.isLoading && 'blur(3px)'};
 `
 
 export const Submit = styled.button`
@@ -58,21 +59,23 @@ export const Submit = styled.button`
   outline: none;
   user-select: none;
 
-  cursor: ${({ isLoading }) => !isLoading && "pointer"};
+  cursor: ${({ isLoading }) => !isLoading && 'pointer'};
 
-  ${({ isLoading, theme }) => !isLoading && css`
-    :active,
-    :focus,
-    :hover {
-      border: 1px solid ${theme.mainColor};
-      color: ${theme.mainColor};
-    }
-  `}
+  ${({ isLoading, theme }) =>
+    !isLoading &&
+    css`
+      :active,
+      :focus,
+      :hover {
+        border: 1px solid ${theme.mainColor};
+        color: ${theme.mainColor};
+      }
+    `}
 `
 Submit.propTypes = {
-  isLoading: PropTypes.bool.isRequired
+  isLoading: PropTypes.bool.isRequired,
 }
 
 Submit.defaultProps = {
-  isLoading: false
+  isLoading: false,
 }

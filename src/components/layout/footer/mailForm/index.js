@@ -1,25 +1,18 @@
-import React, { Component } from 'react'
-import styled, { css } from 'styled-components'
-import addToMailchimp from 'gatsby-plugin-mailchimp'
-import { isEmail, isEmpty, normalizeEmail } from 'validator'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 
 import { Envelope } from '../../../../utils/UI/icons'
 import { Form, Input, Submit, Fieldset } from '../../../../utils/UI/'
 
 import DisplayMessage from './displayMessage'
 import Header from './header'
-import msg from './messages'
 import LoadingOverlay from './loadingOverlay'
+import { useMailChimp } from '../../../../utils/hooks'
 
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
-
-  fieldset {
-    ${({ loading }) => loading && css`
-      filter: blur(2px);
-    `};
-  }
+  user-select: ${(p) => p.isLoading && 'none'};
 `
 
 const Subscription = styled(Form)`
@@ -70,83 +63,36 @@ const Subscription = styled(Form)`
   }
 `
 
-class MailForm extends Component {
-  state = {
-    email: '',
-    response: null,
-    loading: false
-  }
+const MailForm = () => {
+  const [email, setEmail] = useState('')
+  const { handleSubmit, loading, response } = useMailChimp(email)
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    })
-  }
-
-  handleSubmit = async e => {
-    e.preventDefault()
-    const { email } = this.state
-
-    if (isEmpty(email)) return
-
-    this.setState({ loading: true })
-
-    if (!isEmail(email)) {
-      this.setState({
-        response: {
-          result: "error",
-          msg: msg.invalidEmail
-        },
-        loading: false
-      })
-      return
-    }
-
-    const response = await addToMailchimp(normalizeEmail(email))
-
-    this.setState({
-      loading: false,
-      email: '',
-      response
-    })
-  }
-
-  render(){
-    const { response, loading, email } = this.state
-
-    return (
-      <Wrapper isLoading={loading}>
-        <Fieldset disabled={loading}>
-          <Header />
-          <Subscription
-            method='post'
-            blur={loading}
-            onSubmit={this.handleSubmit}
-          >
-            <div className='email'>
-              <div className='icon'>
-                <Envelope color='#9b9b9b'/>
-              </div>
-              <Input
-                aria-label='email'
-                required
-                placeholder='tu@email.com'
-                type="email"
-                name="email"
-                value={email}
-                onChange={this.handleChange}
-              />
-              <Submit>
-                Enviar
-              </Submit>
+  return (
+    <Wrapper isLoading={loading}>
+      <Fieldset disabled={loading} isLoading={loading}>
+        <Header />
+        <Subscription method="post" blur={loading} onSubmit={handleSubmit}>
+          <div className="email">
+            <div className="icon">
+              <Envelope color="#9b9b9b" />
             </div>
-            {response && <DisplayMessage response={response} />}
-          </Subscription>
-        </Fieldset>
-        {loading && <LoadingOverlay />}
-      </Wrapper>
-    )
-  }
+            <Input
+              aria-label="email"
+              required
+              placeholder="tu@email.com"
+              type="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Submit>Enviar</Submit>
+          </div>
+          {response && <DisplayMessage response={response} />}
+        </Subscription>
+      </Fieldset>
+      {loading && <LoadingOverlay />}
+    </Wrapper>
+  )
 }
 
 export default MailForm
