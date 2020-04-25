@@ -1,18 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import Header from './header'
 import Footer from './footer'
 import SEO from '../../utils/seo'
-import { theme, GlobalStyle, media } from '../../utils/style'
+import { media } from '../../utils/style'
 import { useSiteMeta } from '../../utils/hooks'
-
-const { headerHeight } = theme
 
 const Main = styled.main`
   margin: 0 auto;
-  min-height: calc(100vh - ${headerHeight}px);
+  min-height: calc(100vh - ${({ theme }) => theme.headerHeight}px);
 
   ${media.phone(css`
     max-width: none;
@@ -20,34 +18,21 @@ const Main = styled.main`
   `)}
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, seo }) => {
   const { nav, footerNav, external } = useSiteMeta()
 
   return (
     <>
-      <GlobalStyle />
-      <SEO />
-      <ThemeProvider theme={theme}>
-        <>
-          <Header
-            nav={nav}
-            height={headerHeight}
-          />
-          <Main>
-            {children}
-          </Main>
-          <Footer
-            external={external}
-            nav={footerNav}
-          />
-        </>
-      </ThemeProvider>
+      <SEO {...seo} />
+      <Header nav={nav} />
+      <Main>{children}</Main>
+      <Footer external={external} nav={footerNav} />
     </>
   )
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  seo: PropTypes.object,
 }
 
 export default Layout

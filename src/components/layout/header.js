@@ -9,6 +9,7 @@ const Content = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  height: ${({ theme }) => theme.headerHeight}px;
 `
 
 const NavLink = styled(Link)`
@@ -30,15 +31,10 @@ const NavLink = styled(Link)`
     padding: 1.4rem;
   `)}
 `
-const Header = ({ nav, height }) => (
-  <Content style={{ height }}>
-    {nav.map(item => (
-      <NavLink
-        partiallyActive={item.path.length > 1}
-        activeClassName='active'
-        key={item.name}
-        to={item.path}
-      >
+const Header = ({ nav }) => (
+  <Content>
+    {nav.map((item) => (
+      <NavLink partiallyActive={item.path.length > 1} activeClassName="active" key={item.name} to={item.path}>
         <span>{item.name}</span>
       </NavLink>
     ))}
@@ -47,7 +43,6 @@ const Header = ({ nav, height }) => (
 
 Header.propTypes = {
   nav: PropTypes.array.isRequired,
-  height: PropTypes.number.isRequired
 }
 
 export default Header
