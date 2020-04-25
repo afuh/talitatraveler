@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
-import { Section, SectionHeader, Paragraph } from '../../utils/UI'
+import { Section, Paragraph } from '../../utils/UI'
 import { media } from '../../utils/style'
 import { useSiteContent } from '../../utils/hooks'
 
@@ -46,11 +46,11 @@ const Inner = styled.div`
 `
 
 const AvatarWrapper = styled.div.attrs({
-  className: 'avatar'
+  className: 'avatar',
 })`
   border-radius: 100%;
   overflow: hidden;
-  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   max-width: 400px;
 
   .avatar-b {
@@ -69,24 +69,19 @@ const AvatarWrapper = styled.div.attrs({
 `
 
 const Avatar = ({ avatars }) => {
-  const makeClassName = i => `avatar${i.title.match(/avatar - a/i) ? '-a' : '-b'}`
+  const makeClassName = (i) => `avatar${i.title.match(/avatar - a/i) ? '-a' : '-b'}`
 
   return (
-    <AvatarWrapper >
-      {avatars.map(avatar => (
-        <GatsbyImg
-          key={avatar.title}
-          className={makeClassName(avatar)}
-          fluid={avatar.fluid}
-          alt={avatar.description}
-        />
+    <AvatarWrapper>
+      {avatars.map((avatar) => (
+        <GatsbyImg key={avatar.title} className={makeClassName(avatar)} fluid={avatar.fluid} alt={avatar.description} />
       ))}
     </AvatarWrapper>
   )
 }
 
 Avatar.propTypes = {
-  avatars: PropTypes.array.isRequired
+  avatars: PropTypes.array.isRequired,
 }
 
 const About = () => {
@@ -94,17 +89,10 @@ const About = () => {
 
   return (
     <>
-      <SectionHeader text='Sobre mí' />
       <Wrapper>
-        <Section
-          margin={2}
-          style={{ maxWidth: 1400 }}
-        >
+        <Section margin={2} style={{ maxWidth: 1400 }}>
           <Inner>
-            <Paragraph
-              className='text'
-              dangerouslySetInnerHTML={{ __html: authorBio.md.html }}
-            />
+            <Paragraph className="text" dangerouslySetInnerHTML={{ __html: authorBio.md.html }} />
             <Avatar avatars={authorAvatars} />
           </Inner>
         </Section>
