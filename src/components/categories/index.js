@@ -3,9 +3,15 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Search from './search'
-import { CategoryList, Section } from '../../utils/UI'
+import { CategoryList, Container as _Container, Divider } from '../../utils/UI'
 
-const Wrapper = styled(Section)`
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Container = styled(_Container)`
   padding-top: 20px;
 
   h3 {
@@ -15,10 +21,15 @@ const Wrapper = styled(Section)`
 `
 
 const Categories = ({ categories }) => (
-  <Wrapper margin={2} style={{ marginTop: 20 }} as="div">
-    <CategoryList big categories={categories} />
-    <Search />
-  </Wrapper>
+  <>
+    <Divider text="Categorías" />
+    <Wrapper>
+      <Container>
+        <CategoryList big categories={categories} />
+        <Search />
+      </Container>
+    </Wrapper>
+  </>
 )
 
 Categories.propTypes = {

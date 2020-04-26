@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import Hero from './hero'
-import { PostsGrid, SectionHeader } from '../../utils/UI'
+import { PostsGrid, Divider } from '../../utils/UI'
 
 const Home = ({ data: { posts } }) => (
   <>
     <Hero />
-    <SectionHeader text="Últimos posts" />
+    <Divider text="Últimos posts" />
     <PostsGrid totalCount={posts.totalCount} edges={posts.edges} />
   </>
 )

@@ -20,12 +20,12 @@ const Wrapper = styled.div`
   `};
 `
 
-export const SectionHeader = ({ text, ...rest }) => (
+export const Divider = ({ text, ...rest }) => (
   <Wrapper {...rest}>
     <h2>{text}</h2>
   </Wrapper>
 )
 
-SectionHeader.propTypes = {
+Divider.propTypes = {
   text: PropTypes.string.isRequired,
 }

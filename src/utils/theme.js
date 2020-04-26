@@ -75,6 +75,9 @@ export default {
   transition: 'all .2s ease',
   headerHeight: 80,
   fontSize,
+  spacing: {
+    mobile: '5%',
+  },
   media: {
     ...media,
   },

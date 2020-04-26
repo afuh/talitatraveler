@@ -101,7 +101,7 @@ export const GlobalStyles = createGlobalStyle`
   `}
 `
 
-export const Article = styled.article`
+export const PostStyles = styled.section`
   ${({ theme }) => css`
     padding-bottom: 40px;
     position: relative;

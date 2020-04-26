@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { PostsGrid, Section, SectionHeader } from '../../utils/UI'
+import { PostsGrid, Divider } from '../../utils/UI'
 
-const Wrapper = styled(Section)`
+const Wrapper = styled.div`
   position: relative;
 
   .title {
@@ -22,7 +22,7 @@ const Wrapper = styled(Section)`
 
 const Category = ({ edges, category }) => (
   <Wrapper>
-    <SectionHeader text={category} />
+    <Divider text={category} />
     <PostsGrid edges={edges} header={category} />
   </Wrapper>
 )
