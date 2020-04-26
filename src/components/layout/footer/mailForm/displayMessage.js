@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import msg from './messages'
+import { msg } from '../../../../utils/hooks/useMailChimp'
 
 const Message = styled.span`
   font-size: 1.4rem;
@@ -11,16 +11,20 @@ const Message = styled.span`
   margin-top: 20px;
   color: ${({ theme }) => theme.black};
 
-  ${({ error }) => error && css`
-    color: #F44336;
-  `}
+  ${({ error }) =>
+    error &&
+    css`
+      color: #f44336;
+    `}
 `
 
 const DisplayMessage = ({ response }) => {
   let message = response.msg ? response.msg.replace(/([0-9]|-)/g, '').trim() : ''
+  console.log(message)
 
   if (message.includes('Ya estás suscrito')) {
-    [ message ] = message.split('<')
+    // eslint-disable-next-line prefer-destructuring
+    message = message.split('<')[0]
   }
 
   if (
@@ -30,23 +34,15 @@ const DisplayMessage = ({ response }) => {
     message = msg.invalidEmail
   }
 
-  if (
-    message.includes('many recent signup requests') ||
-    message.includes('many subscribe attempts')
-  ) {
+  if (message.includes('many recent signup requests') || message.includes('many subscribe attempts')) {
     message = msg.tooManyRequests
   }
 
-  return (
-    <Message
-      error={response.result && response.result === 'error' && true}>
-      {message}
-    </Message>
-  )
+  return <Message error={response.result && response.result === 'error' && true}>{message}</Message>
 }
 
 DisplayMessage.propTypes = {
-  response: PropTypes.object.isRequired
+  response: PropTypes.object.isRequired,
 }
 
 export default DisplayMessage

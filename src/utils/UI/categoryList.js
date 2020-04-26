@@ -3,75 +3,70 @@ import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
 import styled, { css } from 'styled-components'
 
-import { media } from '../../utils/style'
 import { toSlug } from '../../../config/sharedUtils'
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const Wrapper = styled.section`
+  ${({ theme, big }) => css`
+    display: flex;
+    flex-wrap: wrap;
 
-  ${p => p.big && css`
-    a.category {
-      font-size: 2rem;
-      margin: 0 8px 8px 0;
-      padding: 10px 20px;
+    ${big &&
+    css`
+      a.category {
+        font-size: 2rem;
+        margin: 0 8px 8px 0;
+        padding: 10px 20px;
 
-      ${media.phone(css`
-        flex: 1;
-        margin: 4px;
-        text-align: center;
-        font-size: 1.5rem;
-      `)}
-    }
+        ${theme.media.phone(css`
+          flex: 1;
+          margin: 4px;
+          text-align: center;
+          font-size: 1.5rem;
+        `)}
+      }
+    `}
   `}
 `
 
 const Link = styled(GatsbyLink).attrs({
-  className: 'category'
+  className: 'category',
 })`
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-weight: bold;
-  padding: 8px;
-  margin-right: 4px;
-  ${({ theme }) => theme && css`
+  ${({ theme }) => css`
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 8px;
+    margin-right: 4px;
     background: ${theme.lightGray};
     color: ${theme.gray};
-  `};
 
-  &:hover {
-    text-decoration: none;
-    color: #fff;
-    ${({ theme }) => theme && css`
+    &:hover {
+      text-decoration: none;
+      color: #fff;
       box-shadow: ${theme.shadow};
       background: ${theme.mainColor};
-    `};
-  }
+    }
 
-  transition: ${({ theme }) => theme.transition};
+    transition: ${theme.transition};
+  `}
 `
 
 export const CategoryList = ({ categories, style, big }) => (
   <Wrapper big={big}>
-    {categories.map(category => (
-      <Link
-        style={{ ...style }}
-        key={category}
-        to={`/categorias/${toSlug(category)}`}
-      >
+    {categories.map((category) => (
+      <Link style={{ ...style }} key={category} to={`/categorias/${toSlug(category)}`}>
         {category}
       </Link>
     ))}
   </Wrapper>
 )
 
-
 CategoryList.propTypes = {
   categories: PropTypes.array.isRequired,
   style: PropTypes.object,
-  big: PropTypes.bool
+  big: PropTypes.bool,
 }
 
 CategoryList.defaultProps = {
-  big: false
+  big: false,
 }

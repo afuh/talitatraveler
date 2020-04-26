@@ -8,17 +8,12 @@ export const useSiteContent = () => {
           heroTitle
           heroImage {
             description
-            fluid(maxWidth: 2000) {
+            fluid(maxWidth: 2400) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
           subscriptionTitle
           subscriptionSubtitle
-          contactText {
-            md: childMarkdownRemark {
-              html
-            }
-          }
           authorName
           authorBio {
             md: childMarkdownRemark {
@@ -34,7 +29,7 @@ export const useSiteContent = () => {
           }
         }
       }
-    `
+    `,
   )
 
   return content

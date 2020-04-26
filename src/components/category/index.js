@@ -2,15 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { fontSize } from '../../utils/style'
-import { PostsGrid, Section, SectionHeader } from '../../utils/UI'
+import { PostsGrid, Divider } from '../../utils/UI'
 
-const Wrapper = styled(Section)`
+const Wrapper = styled.div`
   position: relative;
 
   .title {
     text-align: center;
-    ${fontSize(3.2)};
+    ${({ theme }) => theme.fontSize(3.2)};
     font-weight: 900;
   }
 
@@ -23,17 +22,14 @@ const Wrapper = styled(Section)`
 
 const Category = ({ edges, category }) => (
   <Wrapper>
-    <SectionHeader text={category} />
-    <PostsGrid
-      edges={edges}
-      header={category}
-    />
+    <Divider text={category} />
+    <PostsGrid edges={edges} header={category} />
   </Wrapper>
 )
 
 Category.propTypes = {
   edges: PropTypes.array.isRequired,
-  category: PropTypes.string.isRequired
+  category: PropTypes.string.isRequired,
 }
 
 export default Category
