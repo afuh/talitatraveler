@@ -5,22 +5,24 @@ import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
 import { Section, SocialLinks, CategoryList } from '../../utils/UI'
-import { media, Article } from '../../utils/style'
+import { Article } from '../../utils/style'
 
 import Header from './header'
 import RelatedPosts from './relatedPosts'
 
 const Content = styled(Section)`
-  background: ${({ theme }) => theme.white};
-  transform: translateY(-150px);
-  padding: 5% 5% 0;
+  ${({ theme }) => css`
+    background: ${theme.white};
+    transform: translateY(-150px);
+    padding: 5% 5% 0;
 
-  ${media.phone(css`
-    transform: none;
-    max-width: none;
-    margin: 0;
-    padding: 5%;
-  `)}
+    ${theme.media.phone(css`
+      transform: none;
+      max-width: none;
+      margin: 0;
+      padding: 5%;
+    `)}
+  `}
 `
 
 const Footer = styled.footer`

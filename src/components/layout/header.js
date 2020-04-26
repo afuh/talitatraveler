@@ -3,18 +3,14 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
-import { media } from '../../utils/style'
-
 const Wrapper = styled.header`
-  ${({ theme }) => css`
+  ${({ theme, withImage }) => css`
     display: flex;
     align-items: center;
     justify-content: center;
     height: ${theme.headerHeight}px;
-  `}
 
-  ${({ withImage }) =>
-    withImage &&
+    ${withImage &&
     css`
       position: absolute;
       top: 0;
@@ -22,6 +18,7 @@ const Wrapper = styled.header`
       right: 0;
       z-index: 999;
     `}
+  `}
 `
 
 const NavLink = styled(Link)`
@@ -39,7 +36,7 @@ const NavLink = styled(Link)`
       color: ${theme.mainColor};
     }
 
-    ${media.phone(css`
+    ${theme.media.phone(css`
       font-size: 1.6rem;
       padding: 1.4rem;
     `)}

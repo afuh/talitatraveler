@@ -5,16 +5,17 @@ import styled, { css } from 'styled-components'
 import Header from './header'
 import Footer from './footer'
 import SEO from '../../utils/seo'
-import { media, GlobalStyles } from '../../utils/style'
+import { GlobalStyles } from '../../utils/style'
 import { useSiteMeta } from '../../utils/hooks'
 
 const Main = styled.main`
   margin: 0 auto;
 
-  ${media.phone(css`
-    max-width: none;
-    margin: 0;
-  `)}
+  ${({ theme }) =>
+    theme.media.phone(css`
+      max-width: none;
+      margin: 0;
+    `)}
 `
 
 const Layout = ({ children, seo, withImage }) => {

@@ -4,13 +4,12 @@ import styled from 'styled-components'
 
 import Search from './search'
 import { CategoryList, Section } from '../../utils/UI'
-import { fontSize } from '../../utils/style'
 
 const Wrapper = styled(Section)`
   padding-top: 20px;
 
   h3 {
-    ${fontSize(3.2)};
+    ${({ theme }) => theme.fontSize(3.2)};
     font-weight: 900;
   }
 `

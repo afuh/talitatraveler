@@ -3,22 +3,21 @@ import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
 import styled, { css } from 'styled-components'
 
-import { media } from '../../utils/style'
 import { toSlug } from '../../../config/sharedUtils'
 
 const Wrapper = styled.section`
-  display: flex;
-  flex-wrap: wrap;
+  ${({ theme, big }) => css`
+    display: flex;
+    flex-wrap: wrap;
 
-  ${(p) =>
-    p.big &&
+    ${big &&
     css`
       a.category {
         font-size: 2rem;
         margin: 0 8px 8px 0;
         padding: 10px 20px;
 
-        ${media.phone(css`
+        ${theme.media.phone(css`
           flex: 1;
           margin: 4px;
           text-align: center;
@@ -26,6 +25,7 @@ const Wrapper = styled.section`
         `)}
       }
     `}
+  `}
 `
 
 const Link = styled(GatsbyLink).attrs({

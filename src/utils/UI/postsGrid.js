@@ -3,18 +3,19 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { PostCard } from './'
-import { media } from '../style'
 import { sortPosts, edgesToNode } from '../helpers'
 import { usePostCounter } from '../hooks'
 
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  ${({ theme }) => css`
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
-  ${media.phone(css`
-    flex-direction: column;
-  `)}
+    ${theme.media.phone(css`
+      flex-direction: column;
+    `)}
+  `}
 `
 
 const MoreButton = styled.button`

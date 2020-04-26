@@ -4,7 +4,6 @@ import styled, { css } from 'styled-components'
 import GatsbyImg from 'gatsby-image'
 
 import { Section, Paragraph } from '../../utils/UI'
-import { media } from '../../utils/style'
 import { useSiteContent } from '../../utils/hooks'
 
 const Wrapper = styled.div`
@@ -17,9 +16,10 @@ const Wrapper = styled.div`
     margin-top: 0;
   }
 
-  ${media.mobile(css`
-    margin-top: 40px;
-  `)}
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      margin-top: 40px;
+    `)}
 `
 
 const Inner = styled.div`
@@ -35,14 +35,15 @@ const Inner = styled.div`
     flex-basis: 70%;
   }
 
-  ${media.mobile(css`
-    flex-direction: column;
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      flex-direction: column;
 
-    .avatar {
-      width: 100%;
-      margin: 60px 0;
-    }
-  `)}
+      .avatar {
+        width: 100%;
+        margin: 60px 0;
+      }
+    `)}
 `
 
 const AvatarWrapper = styled.div.attrs({
