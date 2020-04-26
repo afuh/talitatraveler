@@ -35,7 +35,7 @@ const Container = styled(_Container).attrs({
   as: 'article',
 })`
   ${({ theme }) => css`
-    max-width: 1100px;
+    width: 1100px;
     background: ${theme.white};
     transform: translateY(-150px);
     padding-top: ${theme.spacing.mobile};%;
@@ -50,6 +50,8 @@ const Container = styled(_Container).attrs({
 `
 
 const Footer = styled.footer`
+  margin-bottom: 80px;
+
   .social-wrapper {
     display: flex;
     justify-content: space-between;
