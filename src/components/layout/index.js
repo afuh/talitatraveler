@@ -1,53 +1,43 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled, { ThemeProvider, css } from 'styled-components'
+import styled from 'styled-components'
 
 import Header from './header'
 import Footer from './footer'
 import SEO from '../../utils/seo'
-import { theme, GlobalStyle, media } from '../../utils/style'
+import { GlobalStyles } from '../../utils/style'
 import { useSiteMeta } from '../../utils/hooks'
 
-const { headerHeight } = theme
+const PageWrapper = styled.div`
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
-const Main = styled.main`
-  margin: 0 auto;
-  min-height: calc(100vh - ${headerHeight}px);
-
-  ${media.phone(css`
-    max-width: none;
-    margin: 0;
-  `)}
+  main {
+    width: 100%;
+    flex: 1;
+  }
 `
 
-const Layout = ({ children }) => {
+const Layout = ({ children, seo, withImage }) => {
   const { nav, footerNav, external } = useSiteMeta()
 
   return (
     <>
-      <GlobalStyle />
-      <SEO />
-      <ThemeProvider theme={theme}>
-        <>
-          <Header
-            nav={nav}
-            height={headerHeight}
-          />
-          <Main>
-            {children}
-          </Main>
-          <Footer
-            external={external}
-            nav={footerNav}
-          />
-        </>
-      </ThemeProvider>
+      <GlobalStyles />
+      <SEO {...seo} />
+      <PageWrapper>
+        <Header nav={nav} withImage={withImage} />
+        <main>{children}</main>
+        <Footer external={external} nav={footerNav} />
+      </PageWrapper>
     </>
   )
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired
+  seo: PropTypes.object,
+  withImage: PropTypes.bool,
 }
 
 export default Layout

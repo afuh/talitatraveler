@@ -3,36 +3,37 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import Search from './search'
-import { CategoryList, Section, SectionHeader } from '../../utils/UI'
-import { fontSize } from '../../utils/style'
+import { CategoryList, Container as _Container, Divider } from '../../utils/UI'
 
-const Wrapper = styled(Section)`
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const Container = styled(_Container)`
   padding-top: 20px;
 
   h3 {
-    ${fontSize(3.2)};
+    ${({ theme }) => theme.fontSize(3.2)};
     font-weight: 900;
   }
 `
 
-const Categories = ({ categories, location }) => (
+const Categories = ({ categories }) => (
   <>
-    <SectionHeader text='Categorías' />
-    <Wrapper margin={2} style={{ marginTop: 20 }}>
-      <CategoryList
-        big
-        categories={categories}
-      />
-      <Search
-        location={location}
-      />
+    <Divider text="Categorías" />
+    <Wrapper>
+      <Container>
+        <CategoryList big categories={categories} />
+        <Search />
+      </Container>
     </Wrapper>
   </>
 )
 
 Categories.propTypes = {
-  location: PropTypes.object.isRequired,
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
 }
 
 export default Categories
