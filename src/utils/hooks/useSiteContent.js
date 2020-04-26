@@ -8,7 +8,7 @@ export const useSiteContent = () => {
           heroTitle
           heroImage {
             description
-            fluid(maxWidth: 2000) {
+            fluid(maxWidth: 2400) {
               ...GatsbyContentfulFluid_withWebp
             }
           }
@@ -29,7 +29,7 @@ export const useSiteContent = () => {
           }
         }
       }
-    `
+    `,
   )
 
   return content

@@ -4,26 +4,18 @@ import PropTypes from 'prop-types'
 import Hero from './hero'
 import { PostsGrid, SectionHeader } from '../../utils/UI'
 
-const scrollId = 'post-grid'
-
-const Home = ({ data: { posts: { edges, totalCount } } }) => (
-  <div>
-    <Hero scrollId={scrollId} />
-    <SectionHeader
-      id={scrollId}
-      text='Últimos posts'
-    />
-    <PostsGrid
-      totalCount={totalCount}
-      edges={edges}
-    />
-  </div>
+const Home = ({ data: { posts } }) => (
+  <>
+    <Hero />
+    <SectionHeader text="Últimos posts" />
+    <PostsGrid totalCount={posts.totalCount} edges={posts.edges} />
+  </>
 )
 
 Home.propTypes = {
   data: PropTypes.shape({
-    posts: PropTypes.object
-  }).isRequired
+    posts: PropTypes.object,
+  }).isRequired,
 }
 
 export default Home

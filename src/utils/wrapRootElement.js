@@ -3,13 +3,10 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 
 import { PostsToShowProvider } from './hooks/usePostCounter'
-import { theme, GlobalStyles } from './style'
+import { theme } from './theme'
 
 export const wrapRootElement = ({ element }) => (
   <ThemeProvider theme={theme}>
-    <>
-      <GlobalStyles />
-      <PostsToShowProvider>{element}</PostsToShowProvider>
-    </>
+    <PostsToShowProvider>{element}</PostsToShowProvider>
   </ThemeProvider>
 )

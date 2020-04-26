@@ -13,18 +13,17 @@ import RelatedPosts from './relatedPosts'
 const Content = styled(Section)`
   background: ${({ theme }) => theme.white};
   transform: translateY(-150px);
-  padding: 5%;
+  padding: 5% 5% 0;
 
   ${media.phone(css`
     transform: none;
     max-width: none;
     margin: 0;
+    padding: 5%;
   `)}
 `
 
 const Footer = styled.footer`
-  padding: 0 0 80px;
-
   .social-wrapper {
     display: flex;
     justify-content: space-between;
@@ -33,26 +32,37 @@ const Footer = styled.footer`
   }
 `
 
+const Wrapper = styled.div`
+  .gatsby-image-wrapper {
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 1%, rgba(0, 0, 0, 0) 100%);
+    }
+  }
+`
+
 const HeaderImage = ({ image }) => (
-  <GatsbyImg
-    style={{ maxHeight: '84vh' }}
-    fluid={image.fluid}
-    alt={image.description}
-    title={image.description}
-  />
+  <Wrapper>
+    <GatsbyImg style={{ maxHeight: '70vh' }} fluid={image.fluid} alt={image.description} title={image.description} />
+  </Wrapper>
 )
 
 HeaderImage.propTypes = {
-  image: PropTypes.object.isRequired
+  image: PropTypes.object.isRequired,
 }
 
 const Post = ({ post, relatedPosts }) => {
   const disqusProps = {
     shortname: process.env.GATSBY_DISQUSS,
     config: {
-      identifier : post.id,
-      title : post.title
-    }
+      identifier: post.id,
+      title: post.title,
+    },
   }
 
   return (
@@ -60,21 +70,15 @@ const Post = ({ post, relatedPosts }) => {
       <HeaderImage image={post.headerImage} />
       <Content margin={6}>
         <Header post={post} />
-        <Article
-          whiteSpace={post.whiteSpace}
-          dangerouslySetInnerHTML={{ __html: post.content.md.html }}
-        />
+        <Article whiteSpace={post.whiteSpace} dangerouslySetInnerHTML={{ __html: post.content.md.html }} />
         <Footer>
-          <div className='social-wrapper'>
-            <CategoryList categories={post.categories}/>
+          <div className="social-wrapper">
+            <CategoryList categories={post.categories} />
             <SocialLinks post={post} />
           </div>
-          <RelatedPosts
-            related={relatedPosts}
-            post={post}
-          />
+          <RelatedPosts related={relatedPosts} post={post} />
         </Footer>
-        {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps}/>}
+        {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps} />}
       </Content>
     </>
   )
@@ -82,7 +86,7 @@ const Post = ({ post, relatedPosts }) => {
 
 Post.propTypes = {
   post: PropTypes.object.isRequired,
-  relatedPosts: PropTypes.array.isRequired
+  relatedPosts: PropTypes.array.isRequired,
 }
 
 export default Post

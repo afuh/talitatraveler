@@ -1,45 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
-import styled, { css } from 'styled-components'
-import { FaChevronDown } from 'react-icons/fa'
-import { scroller } from 'react-scroll'
+import styled from 'styled-components'
 
 import { useSiteContent } from '../../utils/hooks'
 
 const GatsbyImg = styled(Img)`
-  ${({ theme }) => theme && css`
-    height: calc(70vh - ${theme.headerHeight/2}px);
-  `};
-`
-
-const Icon = styled(FaChevronDown)`
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-
-  &:hover {
-    color: ${({ theme }) => theme.mainColor};
-    transform: scale(1.1);
-  }
-
-  transition: all 0.2s ease-in;
-`
-
-const Wrapper = styled.section`
-  ${({ theme }) => theme && css`
-    min-height: calc(100vh - ${theme.headerHeight}px);
-  `};
-
-  .icon-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    ${({ theme }) => theme && css`
-      height: calc(30vh - ${theme.headerHeight/2}px);
-    `};
-  }
+  height: 60vh;
 `
 
 const Overlay = styled.div`
@@ -58,7 +25,7 @@ const Overlay = styled.div`
     color: ${({ theme }) => theme.white};
     font-family: 'Noto Serif KR', serif;
     font-weight: 900;
-    font-size: 6.0rem;
+    font-size: 7rem;
     letter-spacing: 0.1em;
     text-align: center;
     line-height: 0.6;
@@ -67,41 +34,25 @@ const Overlay = styled.div`
 
 const HeaderImage = ({ image, children }) => (
   <div style={{ position: 'relative' }}>
-    <GatsbyImg
-      fluid={image.fluid}
-      alt={image.description}
-      title={image.description}
-    />
+    <GatsbyImg fluid={image.fluid} alt={image.description} title={image.description} />
     <Overlay>{children}</Overlay>
   </div>
 )
 
 HeaderImage.propTypes = {
-  image: PropTypes.object.isRequired
+  image: PropTypes.object.isRequired,
 }
 
-const Hero = ({ scrollId }) => {
+const Hero = () => {
   const { heroTitle, heroImage } = useSiteContent()
 
   return (
-    <Wrapper>
+    <section>
       <HeaderImage image={heroImage}>
         <h1>{heroTitle}</h1>
       </HeaderImage>
-      <div className='icon-wrapper'>
-        <Icon
-          onClick={() => scroller.scrollTo(scrollId, {
-            duration: 1000,
-            smooth: "easeOutQuint"
-          })}
-        />
-      </div>
-    </Wrapper>
+    </section>
   )
-}
-
-Hero.propTypes = {
-  scrollId: PropTypes.string.isRequired
 }
 
 export default Hero

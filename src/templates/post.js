@@ -8,6 +8,7 @@ import { edgesToNode } from '../utils/helpers'
 
 const PostTemplate = ({ data: { post, suggested } }) => (
   <Layout
+    withImage
     seo={{
       title: post.title,
       description: post.content.md.excerpt,

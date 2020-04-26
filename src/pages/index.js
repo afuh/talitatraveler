@@ -6,7 +6,7 @@ import Layout from '../components/layout'
 import Home from '../components/home'
 
 const HomePage = ({ data }) => (
-  <Layout>
+  <Layout withImage>
     <Home data={data} />
   </Layout>
 )
