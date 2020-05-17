@@ -22,8 +22,8 @@ const Wrapper = styled.header`
 `
 
 const NavLink = styled(Link)`
-  ${({ theme, itemColor }) => css`
-    color: ${theme[itemColor]};
+  ${({ theme, color }) => css`
+    color: ${theme[color]};
     font-weight: 800;
     font-size: 2rem;
     padding: 1.4rem 2rem;
@@ -46,7 +46,7 @@ const Header = ({ nav, withImage }) => (
   <Wrapper withImage={withImage}>
     {nav.map((item) => (
       <NavLink
-        itemColor={withImage ? 'white' : 'black'}
+        color={withImage ? 'white' : 'black'}
         partiallyActive={item.path.length > 1}
         activeClassName="active"
         key={item.name}

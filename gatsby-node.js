@@ -1,6 +1,6 @@
 const path = require(`path`)
+const slugify = require('@sindresorhus/slugify')
 
-const { toSlug } = require('./config/sharedUtils')
 const redirects = require('./config/redirects')
 
 exports.createPages = ({ graphql, reporter, actions: { createPage, createRedirect } }) => {
@@ -8,17 +8,17 @@ exports.createPages = ({ graphql, reporter, actions: { createPage, createRedirec
   const template = {
     post: path.resolve('src/templates/post.js'),
     category: path.resolve('src/templates/category.js'),
-    allCategories: path.resolve('src/templates/allCategories.js')
+    allCategories: path.resolve('src/templates/allCategories.js'),
   }
 
-  Object.keys(redirects).forEach(from => {
+  Object.keys(redirects).forEach((from) => {
     const to = redirects[from]
 
     createRedirect({
       fromPath: from,
       toPath: to,
       isPermanent: true,
-      redirectInBrowser: true
+      redirectInBrowser: true,
     })
 
     reporter.info(`Redirect: ${from} -> ${to}`)
@@ -29,7 +29,7 @@ exports.createPages = ({ graphql, reporter, actions: { createPage, createRedirec
       graphql(
         `
           {
-            posts: allContentfulPost(sort: { fields: date, order: DESC  }) {
+            posts: allContentfulPost(sort: { fields: date, order: DESC }) {
               edges {
                 node {
                   slug
@@ -38,44 +38,37 @@ exports.createPages = ({ graphql, reporter, actions: { createPage, createRedirec
               }
             }
           }
-        `
-      ).then(res => {
+        `,
+      ).then((res) => {
         if (res.errors) {
           console.log(res.errors)
           reject(res.errors)
         }
 
-        res.data.posts.edges.forEach(({
-          node: {
-            slug,
-            categories
-          }
-        }) => {
+        res.data.posts.edges.forEach(({ node: { slug, categories } }) => {
           // Create post page
           createPage({
             path: `/${slug}`,
             component: template.post,
             context: {
               slug,
-              categories
-            }
+              categories,
+            },
           })
 
           // group all Categories
-          categories.forEach(category => {
-            category = category.trim()
-
-            if (!allCategories.filter(cat => cat === category).length) {
+          categories.forEach((category) => {
+            if (!allCategories.filter((cat) => cat === category).length) {
               allCategories.push(category)
             }
 
             // Create category page
             createPage({
-              path: `/categorias/${toSlug(category)}`,
+              path: `/categorias/${slugify(category)}`,
               component: template.category,
               context: {
-                category
-              }
+                category,
+              },
             })
 
             // create a category index
@@ -83,12 +76,12 @@ exports.createPages = ({ graphql, reporter, actions: { createPage, createRedirec
               path: '/categorias',
               component: template.allCategories,
               context: {
-                allCategories
-              }
+                allCategories,
+              },
             })
           })
         })
-      })
+      }),
     )
   })
 }

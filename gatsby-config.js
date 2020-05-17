@@ -1,5 +1,5 @@
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 const siteConfig = require('./config/siteConfig')
@@ -38,7 +38,7 @@ const feedQuery = `{
 
 module.exports = {
   siteMetadata: {
-    ...siteConfig
+    ...siteConfig,
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -53,15 +53,15 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: "Noto Serif KR",
-            variants: ["500", "700", "900"]
+            family: 'Noto Serif KR',
+            variants: ['500', '700', '900'],
           },
           {
-            family: "Raleway",
-            variants: ["500", "700", "800", "900"]
-          }
-        ]
-      }
+            family: 'Raleway',
+            variants: ['500', '700', '800', '900'],
+          },
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -69,26 +69,26 @@ module.exports = {
         name: siteConfig.title,
         short_name: siteConfig.title,
         description: siteConfig.description,
-        start_url: "/",
+        start_url: '/',
         background_color: siteConfig.backgroundColor,
         theme_color: siteConfig.themeColor,
-        display: "standalone",
-        icon: siteConfig.icon
-      }
+        display: 'standalone',
+        icon: siteConfig.icon,
+      },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'src',
-        path: `${__dirname}/src/`
-      }
+        path: `${__dirname}/src/`,
+      },
     },
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         color: siteConfig.themeColor,
-        showSpinner: false
-      }
+        showSpinner: false,
+      },
     },
     {
       resolve: 'gatsby-transformer-remark',
@@ -97,30 +97,31 @@ module.exports = {
           'gatsby-remark-figure-caption',
           'gatsby-remark-numbered-footnotes',
           'gatsby-remark-responsive-iframe',
-          'gatsby-remark-external-links'
-        ]
-      }
+          'gatsby-remark-external-links',
+        ],
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA,
         anonymize: true,
-        respectDNT: true
-      }
+        respectDNT: true,
+      },
     },
     {
       resolve: 'gatsby-plugin-mailchimp',
       options: {
-        endpoint: process.env.MAIL
-      }
+        endpoint: process.env.MAIL,
+      },
     },
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_TOKEN
-      }
+        accessToken: process.env.CONTENTFUL_TOKEN,
+        host: `${process.env.ENABLE_GATSBY_REFRESH_ENDPOINT ? 'preview' : 'cdn'}.contentful.com`,
+      },
     },
     {
       resolve: `gatsby-plugin-feed`,
@@ -132,8 +133,8 @@ module.exports = {
           site_url: siteConfig.siteUrl,
           image_url: siteConfig.siteUrl + siteConfig.image,
           custom_namespaces: {
-            'media': "http://search.yahoo.com/mrss/"
-          }
+            media: 'http://search.yahoo.com/mrss/',
+          },
         }),
         feeds: [
           {
@@ -146,32 +147,34 @@ module.exports = {
                 title: node.title,
                 description: node.content.md.excerpt,
                 date: node.date ? node.date : node.createdAt,
-                url: siteConfig.siteUrl + "/" + node.slug,
-                guid: siteConfig.siteUrl + "/" + node.slug,
+                url: siteConfig.siteUrl + '/' + node.slug,
+                guid: siteConfig.siteUrl + '/' + node.slug,
                 categories: node.categories,
                 custom_elements: [
-                  { "media:content": {
-                    _attr: {
-                      url: checkUrl(node.image.fixed.src),
-                      medium: 'image',
-                      type: node.image.file.contentType
-                    }
-                  } },
-                  { "content:encoded": node.content.md.html }
+                  {
+                    'media:content': {
+                      _attr: {
+                        url: checkUrl(node.image.fixed.src),
+                        medium: 'image',
+                        type: node.image.file.contentType,
+                      },
+                    },
+                  },
+                  { 'content:encoded': node.content.md.html },
                 ],
                 enclosure: {
                   url: node.image.file.url,
                   type: node.image.file.contentType,
-                  size: node.image.file.details.size
-                }
-              }))
-          }
-        ]
-      }
+                  size: node.image.file.details.size,
+                },
+              })),
+          },
+        ],
+      },
     },
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify-cache',
     'gatsby-plugin-netlify',
-    'gatsby-plugin-client-side-redirect'
-  ]
+    'gatsby-plugin-client-side-redirect',
+  ],
 }

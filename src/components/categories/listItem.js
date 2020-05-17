@@ -2,9 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled, { css } from 'styled-components'
-import GatsbyImg from 'gatsby-image'
 
-import { Time } from '../../utils/UI'
+import { Time, PostImage as _PostImage } from '../../utils/UI'
+
+const PostImage = styled(_PostImage)`
+  height: 100%;
+`
 
 const Wrapper = styled.article`
   ${({ theme, highlighted }) => css`
@@ -76,12 +79,7 @@ const Wrapper = styled.article`
 
 const Image = ({ headerImage, slug }) => (
   <Link className="image" to={'/' + slug}>
-    <GatsbyImg
-      style={{ height: '100%' }}
-      fluid={headerImage.fluid}
-      alt={headerImage.description}
-      title={headerImage.description}
-    />
+    <PostImage placeholderHeight="100%" image={headerImage} />
   </Link>
 )
 

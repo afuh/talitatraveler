@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link as GatsbyLink } from 'gatsby'
 import styled, { css } from 'styled-components'
-
-import { toSlug } from '../../../config/sharedUtils'
+import slugify from '@sindresorhus/slugify'
 
 const Wrapper = styled.section`
   ${({ theme, big }) => css`
@@ -54,7 +53,7 @@ const Link = styled(GatsbyLink).attrs({
 export const CategoryList = ({ categories, style, big }) => (
   <Wrapper big={big}>
     {categories.map((category) => (
-      <Link style={{ ...style }} key={category} to={`/categorias/${toSlug(category)}`}>
+      <Link style={{ ...style }} key={category} to={`/categorias/${slugify(category)}`}>
         {category}
       </Link>
     ))}
