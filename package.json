@@ -66,6 +66,7 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop -H 0.0.0.0",
+    "dev:clean": "npm run clean && npm run dev",
     "clean": "gatsby clean",
     "test": "stylelint './src/**/*.js' && eslint src/.",
     "start": "gatsby serve --open"
