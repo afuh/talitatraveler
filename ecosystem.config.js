@@ -7,7 +7,7 @@ module.exports = {
     {
       name: 'talita',
       script: 'npm',
-      args: 'run dev',
+      args: 'run dev:clean',
       cron_restart: '0 2 * * *',
     },
   ],
@@ -18,7 +18,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/afuh/talitatraveler.git',
       path: '/var/www/talitatraveler',
-      'post-deploy': 'npm run clean && pm2 reload ecosystem.config.js',
+      'post-deploy': 'npm i && pm2 reload ecosystem.config.js',
     },
   },
 }
