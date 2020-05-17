@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { DiscussionEmbed } from 'disqus-react'
 import styled, { css } from 'styled-components'
-import GatsbyImg from 'gatsby-image'
 
-import { Container as _Container, SocialLinks, CategoryList } from '../../utils/UI'
+import { Container as _Container, SocialLinks, CategoryList, PostImage } from '../../utils/UI'
 import { PostStyles } from '../../utils/style'
 
 import Header from './header'
@@ -71,11 +70,7 @@ const Post = ({ post, relatedPosts }) => {
 
   return (
     <Wrapper>
-      <GatsbyImg
-        fluid={post.headerImage.fluid}
-        alt={post.headerImage.description}
-        title={post.headerImage.description}
-      />
+      <PostImage image={post.headerImage} placeholderHeight="40vh" />
       <div className="post-wrapper">
         <Container>
           <Header post={post} />

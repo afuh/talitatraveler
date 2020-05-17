@@ -9,16 +9,18 @@ import { edgesToNode } from '../utils/helpers'
 const PostTemplate = ({ data: { post, suggested } }) => (
   <Layout
     withImage
-    seo={{
-      title: post.title,
-      description: post.content.md.excerpt,
-      pathname: '/' + post.slug,
-      image: {
-        url: post.headerImage.file.url,
-        contentType: post.headerImage.file.contentType,
-        size: post.headerImage.file.details.image,
-      },
-    }}
+    seo={
+      process.env.NODE_ENV === 'production' && {
+        title: post.title,
+        description: post.content.md.excerpt,
+        pathname: '/' + post.slug,
+        image: {
+          url: post.headerImage.file.url,
+          contentType: post.headerImage.file.contentType,
+          size: post.headerImage.file.details.image,
+        },
+      }
+    }
   >
     <Post relatedPosts={edgesToNode(suggested.edges)} post={post} />
   </Layout>

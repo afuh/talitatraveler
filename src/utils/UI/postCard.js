@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import Img from 'gatsby-image'
 import styled, { css } from 'styled-components'
 
-const GatsbyImg = styled(Img)`
+import { PostImage as _PostImage } from './postImage'
+
+const PostImage = styled(_PostImage)`
   ${({ theme, height }) => css`
     height: ${height}px;
 
@@ -104,12 +105,7 @@ export const PostCard = ({ post, small, gutter, height }) => (
           <h2>{post.title}</h2>
           <h3>{post.subTitle}</h3>
         </Overlay>
-        <GatsbyImg
-          height={height}
-          fluid={post.headerImage.fluid}
-          alt={post.headerImage.description}
-          title={post.headerImage.description}
-        />
+        <PostImage image={post.headerImage} height={height} placeholderHeight={height + 'px'} />
       </div>
     </Article>
   </Wrapper>
