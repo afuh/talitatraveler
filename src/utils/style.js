@@ -118,8 +118,12 @@ export const PostStyles = styled.section`
 
     p,
     li {
-      ${theme.fontSize(1.6)};
+      font-size: 16px;
       text-align: justify;
+
+      ${theme.media.mobile(css`
+        font-size: 18px;
+      `)}
 
       ${theme.media.phone(css`
         text-align: left;
