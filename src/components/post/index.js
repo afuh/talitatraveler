@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { DiscussionEmbed } from 'disqus-react'
 import styled, { css } from 'styled-components'
 
 import { Container as _Container, SocialLinks, CategoryList, PostImage } from '../../utils/UI'
@@ -60,14 +59,6 @@ const Footer = styled.footer`
 `
 
 const Post = ({ post, relatedPosts }) => {
-  const disqusProps = {
-    shortname: process.env.GATSBY_DISQUSS,
-    config: {
-      identifier: post.id,
-      title: post.title,
-    },
-  }
-
   return (
     <Wrapper>
       <PostImage image={post.headerImage} placeholderHeight="40vh" />
@@ -82,7 +73,6 @@ const Post = ({ post, relatedPosts }) => {
             </div>
             <RelatedPosts related={relatedPosts} post={post} />
           </Footer>
-          {process.env.NODE_ENV !== 'development' && <DiscussionEmbed {...disqusProps} />}
         </Container>
       </div>
     </Wrapper>
