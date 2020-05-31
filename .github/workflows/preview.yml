@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.PREVIEW_USER }}
           key: ${{ secrets.PREVIEW_KEY }}
           script: |
-            cd ${{ secrets.PREVIEW_USER }}
+            cd ${{ secrets.PREVIEW_PATH }}
             git pull
             npm i
             pm2 reload pm2.yml
