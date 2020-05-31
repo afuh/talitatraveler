@@ -3,7 +3,7 @@
   "description": "Talita traveler",
   "version": "1.0.0",
   "engines": {
-    "node": ">= 8.5.0"
+    "node": ">= 10.13.0"
   },
   "dependencies": {
     "@sindresorhus/slugify": "^1.0.0",
