@@ -38,7 +38,7 @@ export const query = graphql`
   query POST_TEMPLATE_QUERY($slug: String!, $categories: [String!]) {
     suggested: allContentfulPost(
       filter: { categories: { in: $categories }, slug: { ne: $slug } }
-      sort: { fields: createdAt, order: DESC }
+      sort: { fields: date, order: DESC }
       limit: 3
     ) {
       edges {

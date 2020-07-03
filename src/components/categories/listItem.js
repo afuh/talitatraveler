@@ -96,7 +96,7 @@ const ListItem = ({ post, getItemProps, highlighted }) => (
         <h3>
           <Link to={'/' + post.slug}>{post.title}</Link>
         </h3>
-        <Time post={post} />
+        <Time date={post.date} formattedDate={post.formattedDate} />
       </div>
       <p>{post.content.md.excerpt}</p>
     </div>

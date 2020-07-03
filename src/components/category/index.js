@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { PostsGrid, Divider } from '../../utils/UI'
+import { edgesToNode } from '../../utils/helpers'
 
 const Wrapper = styled.div`
   position: relative;
@@ -23,7 +24,7 @@ const Wrapper = styled.div`
 const Category = ({ edges, category }) => (
   <Wrapper>
     <Divider text={category} />
-    <PostsGrid edges={edges} header={category} />
+    <PostsGrid posts={edgesToNode(edges)} header={category} />
   </Wrapper>
 )
 

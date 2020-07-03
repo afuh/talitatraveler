@@ -6,7 +6,6 @@ import Downshift from 'downshift'
 import computeScrollIntoView from 'compute-scroll-into-view'
 
 import ListItem from './listItem'
-import { sortPosts } from '../../utils/helpers'
 
 const searchWord = (search, post) => {
   const normalize = (str) =>
@@ -119,7 +118,7 @@ const Search = () => {
               />
             </InputWrapper>
             <div {...getMenuProps()}>
-              {sortPosts(posts).map((post, index) => (
+              {posts.map((post, index) => (
                 <ListItem
                   key={post.slug}
                   post={post}
@@ -139,7 +138,7 @@ export default Search
 
 const query = graphql`
   query SEARCH_POSTS_QUERY {
-    allContentfulPost(sort: { fields: createdAt, order: DESC }) {
+    allContentfulPost(sort: { fields: date, order: DESC }) {
       nodes {
         ...PostBasicInfo
         ...Dates

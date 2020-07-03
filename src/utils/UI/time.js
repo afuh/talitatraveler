@@ -1,15 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const Time = ({ post, style }) => (
-  <time dateTime={(post.date || post.createdAt)}>
-    <span style={{ ...style }}>
-      {post.formatedDate || post.formatedCreatedAt}
-    </span>
+export const Time = ({ style, formattedDate, date }) => (
+  <time dateTime={date}>
+    <span style={{ ...style }}>{formattedDate}</span>
   </time>
 )
 
 Time.propTypes = {
-  post: PropTypes.object.isRequired,
-  style: PropTypes.object
+  style: PropTypes.object,
+  formattedDate: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
 }

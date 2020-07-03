@@ -39,7 +39,7 @@ const Wrapper = styled.header`
 
 const Header = ({ post }) => (
   <Wrapper>
-    <Time post={post} />
+    <Time date={post.date} formattedDate={post.formattedDate} />
     <h1>{post.title}</h1>
     {post.subTitle && <h2>{post.subTitle}</h2>}
     <span>por</span> <Link to="/sobre-mi">Talita</Link>
