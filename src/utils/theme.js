@@ -1,11 +1,14 @@
 import { css } from 'styled-components'
 
+/**
+ * Convert pixel value to rems
+ * @param {number} pxVal
+ */
+const rem = (pxVal) => `${(pxVal + '').split('').join('.')}rem`
+
 const screenBreak = {
   mobile: 992,
   phone: 650,
-  small: 480,
-  medium: 1024,
-  xlarge: 1920,
   xxlarge: 2560,
 }
 
@@ -20,28 +23,8 @@ const media = {
       ${inner}
     }
   `,
-  small: (inner) => css`
-    @media (max-width: ${screenBreak.small / 16}em) {
-      ${inner}
-    }
-  `,
   custom: (n, inner) => css`
     @media (max-width: ${n / 16}em) {
-      ${inner}
-    }
-  `,
-  medium: (inner) => css`
-    @media (min-width: ${screenBreak.medium / 16}em) {
-      ${inner}
-    }
-  `,
-  xlarge: (inner) => css`
-    @media (min-width: ${screenBreak.xlarge / 16}em) {
-      ${inner}
-    }
-  `,
-  xxlarge: (inner) => css`
-    @media (min-width: ${screenBreak.xxlarge / 16}em) {
       ${inner}
     }
   `,
@@ -58,9 +41,12 @@ const fontSize = (size) => css`
     font-size: ${size - size / 10}rem;
   `)}
 
-  ${media.xxlarge(css`
-    font-size: ${size * 1.2}rem;
-  `)}
+  ${media.custom(
+    screenBreak.xxlarge,
+    css`
+      font-size: ${size * 1.2}rem;
+    `,
+  )}
 `
 
 export default {
@@ -77,6 +63,17 @@ export default {
   fontSize,
   spacing: {
     mobile: '5%',
+    rem,
+    _4: rem(4),
+    _8: rem(8),
+    _12: rem(12),
+    _16: rem(16),
+    _20: rem(20),
+    _24: rem(24),
+    _28: rem(28),
+    _32: rem(32),
+    _36: rem(36),
+    _40: rem(40),
   },
   media: {
     ...media,

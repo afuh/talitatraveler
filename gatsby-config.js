@@ -6,10 +6,9 @@ const siteConfig = require('./config/siteConfig')
 const { checkUrl } = require('./config/sharedUtils')
 
 const feedQuery = `{
-  allContentfulPost(sort: { fields: createdAt, order: DESC  }) {
+  allContentfulPost(sort: { fields: date, order: DESC  }) {
     edges {
       node {
-        createdAt
         date
 				slug
         title
@@ -146,7 +145,7 @@ module.exports = {
               allContentfulPost.edges.map(({ node }) => ({
                 title: node.title,
                 description: node.content.md.excerpt,
-                date: node.date ? node.date : node.createdAt,
+                date: node.date,
                 url: siteConfig.siteUrl + '/' + node.slug,
                 guid: siteConfig.siteUrl + '/' + node.slug,
                 categories: node.categories,

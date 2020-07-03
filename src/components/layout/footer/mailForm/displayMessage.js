@@ -20,7 +20,6 @@ const Message = styled.span`
 
 const DisplayMessage = ({ response }) => {
   let message = response.msg ? response.msg.replace(/([0-9]|-)/g, '').trim() : ''
-  console.log(message)
 
   if (message.includes('Ya estás suscrito')) {
     // eslint-disable-next-line prefer-destructuring

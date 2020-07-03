@@ -77,7 +77,7 @@ export const GlobalStyles = createGlobalStyle`
     li,
     figcaption {
       font-family: 'Noto Serif KR', serif;
-      font-size: 1.6rem;
+      font-size: ${theme.spacing._16};
       font-weight: 500;
       line-height: 1.5;
     }
@@ -88,7 +88,7 @@ export const GlobalStyles = createGlobalStyle`
 
     input {
       ${theme.media.phone(css`
-        font-size: 1.6rem;
+        font-size: ${theme.spacing._16};
       `)}
     }
 
@@ -103,9 +103,9 @@ export const GlobalStyles = createGlobalStyle`
 
 export const PostStyles = styled.section`
   ${({ theme }) => css`
-    padding-bottom: 40px;
+    padding-bottom: ${theme.spacing._40};
     position: relative;
-    border-bottom: 1px solid #f8f8f8;
+    border-bottom: 1px solid ${theme.lightGray};
 
     p {
       white-space: ${({ whiteSpace }) => (whiteSpace ? 'pre-line' : 'normal')};
@@ -118,11 +118,11 @@ export const PostStyles = styled.section`
 
     p,
     li {
-      font-size: 16px;
+      font-size: ${theme.spacing._16};
       text-align: justify;
 
       ${theme.media.mobile(css`
-        font-size: 18px;
+        font-size: ${theme.spacing.rem(18)};
       `)}
 
       ${theme.media.phone(css`
@@ -146,6 +146,12 @@ export const PostStyles = styled.section`
 
       ${theme.media.phone(css`
         text-align: left;
+      `)}
+    }
+
+    h3 {
+      ${theme.media.phone(css`
+        font-size: ${theme.spacing._20};
       `)}
     }
 

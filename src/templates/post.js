@@ -10,16 +10,18 @@ const PostTemplate = ({ data: { post, suggested } }) => (
   <Layout
     withImage
     seo={
-      process.env.NODE_ENV === 'production' && {
-        title: post.title,
-        description: post.content.md.excerpt,
-        pathname: '/' + post.slug,
-        image: {
-          url: post.headerImage.file.url,
-          contentType: post.headerImage.file.contentType,
-          size: post.headerImage.file.details.image,
-        },
-      }
+      process.env.NODE_ENV === 'production'
+        ? {
+            title: post.title,
+            description: post.content.md.excerpt,
+            pathname: '/' + post.slug,
+            image: {
+              url: post.headerImage.file.url,
+              contentType: post.headerImage.file.contentType,
+              size: post.headerImage.file.details.image,
+            },
+          }
+        : {}
     }
   >
     <Post relatedPosts={edgesToNode(suggested.edges)} post={post} />
@@ -36,7 +38,7 @@ export const query = graphql`
   query POST_TEMPLATE_QUERY($slug: String!, $categories: [String!]) {
     suggested: allContentfulPost(
       filter: { categories: { in: $categories }, slug: { ne: $slug } }
-      sort: { fields: createdAt, order: DESC }
+      sort: { fields: date, order: DESC }
       limit: 3
     ) {
       edges {

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
 import { PostCard } from './'
-import { sortPosts, edgesToNode } from '../helpers'
 import { usePostCounter } from '../hooks'
 
 const Wrapper = styled.div`
@@ -50,10 +49,9 @@ const ButtonWrapper = styled.div`
   display: ${(p) => (p.hide ? 'none' : 'flex')};
 `
 
-export const PostsGrid = ({ edges, totalCount }) => {
+export const PostsGrid = ({ totalCount, posts }) => {
   const { postsToShow, onShowMorePosts } = usePostCounter()
   const count = totalCount ? postsToShow : Infinity
-  const posts = sortPosts(edgesToNode(edges))
 
   return (
     <section>
@@ -69,6 +67,6 @@ export const PostsGrid = ({ edges, totalCount }) => {
 }
 
 PostsGrid.propTypes = {
-  edges: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
   totalCount: PropTypes.number,
 }
