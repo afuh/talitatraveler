@@ -48,8 +48,7 @@ const fontSize = (size) => css`
     `,
   )}
 `
-
-export default {
+const theme = {
   black: '#212129',
   white: '#fff',
   gray: '#9F9FA3',
@@ -79,3 +78,5 @@ export default {
     ...media,
   },
 }
+
+export default theme

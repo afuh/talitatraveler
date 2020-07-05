@@ -24,41 +24,23 @@ const Wrapper = styled.div`
 
 export const SocialLinks = ({ post }) => {
   const { siteUrl } = useSiteMeta()
-  const url = siteUrl + "/" + post.slug
+  const url = siteUrl + '/' + post.slug
 
   return (
     <Wrapper>
-      <FacebookShareButton
-        url={url}
-      >
-        <SocialIcon
-          as='div'
-          name='Facebook'
-        />
+      <FacebookShareButton url={url}>
+        <SocialIcon as="div" name="Facebook" />
       </FacebookShareButton>
-      <TwitterShareButton
-        url={url}
-        title={post.title}
-        hashtags={post.categories}
-      >
-        <SocialIcon
-          as='div'
-          name='Twitter'
-        />
+      <TwitterShareButton url={url} title={post.title} hashtags={post.categories}>
+        <SocialIcon as="div" name="Twitter" />
       </TwitterShareButton>
-      <WhatsappShareButton
-        url={url}
-        title={post.title}
-      >
-        <SocialIcon
-          as='div'
-          name='Whatsapp'
-        />
+      <WhatsappShareButton url={url} title={post.title}>
+        <SocialIcon as="div" name="Whatsapp" />
       </WhatsappShareButton>
     </Wrapper>
   )
 }
 
 SocialLinks.propTypes = {
-  post: PropTypes.object.isRequired
+  post: PropTypes.object.isRequired,
 }

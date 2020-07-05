@@ -2,17 +2,11 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 import PropTypes from 'prop-types'
 
-import { useSiteMeta } from './hooks'
 import { checkUrl } from '../../config/sharedUtils'
+import { useSiteMeta } from './hooks'
 
 const SEO = ({ title, description, image, pathname }) => {
-  const {
-    title: defaultTitle,
-    description: defaultDescription,
-    image: defaultImage,
-    siteUrl,
-    external
-  } = useSiteMeta()
+  const { title: defaultTitle, description: defaultDescription, image: defaultImage, siteUrl, external } = useSiteMeta()
 
   const seo = {
     title: title || defaultTitle,
@@ -20,24 +14,24 @@ const SEO = ({ title, description, image, pathname }) => {
     url: `${siteUrl}${pathname || '/'}`,
     image: {
       url: image ? checkUrl(image.url) : `${siteUrl}${defaultImage}`,
-      contentType: image ? image.contentType : "image/jpeg",
-      size: image ? image.size : { width: "720", height: "360" }
-    }
+      contentType: image ? image.contentType : 'image/jpeg',
+      size: image ? image.size : { width: '720', height: '360' },
+    },
   }
 
-  const twitterUrl = external.find(item => item.name === 'Twitter').url.split("/")
-  const twitterUser = "@" + twitterUrl[twitterUrl.length - 1]
+  const twitterUrl = external.find((item) => item.name === 'Twitter').url.split('/')
+  const twitterUser = '@' + twitterUrl[twitterUrl.length - 1]
 
   return (
     <Helmet
-      htmlAttributes={{ lang: "es" }}
+      htmlAttributes={{ lang: 'es' }}
       titleTemplate={!title ? defaultTitle : `%s | ${defaultTitle}`}
       title={seo.title}
     >
       <meta name="description" content={seo.description} />
       <meta name="image" content={seo.image.url} />
 
-      <meta property="og:locale" content='en'/>
+      <meta property="og:locale" content="en" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={seo.title} />
       <meta property="og:title" content={seo.title} />
@@ -63,14 +57,14 @@ SEO.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.object,
-  pathname: PropTypes.string
+  pathname: PropTypes.string,
 }
 
 SEO.defaultProps = {
   title: null,
   description: null,
   image: null,
-  pathname: null
+  pathname: null,
 }
 
 export default SEO

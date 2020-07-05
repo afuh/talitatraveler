@@ -1,7 +1,9 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
 export const useSiteMeta = () => {
-  const { site: { siteMetadata } } = useStaticQuery(
+  const {
+    site: { siteMetadata },
+  } = useStaticQuery(
     graphql`
       query SITE_META {
         site {
@@ -26,7 +28,7 @@ export const useSiteMeta = () => {
           }
         }
       }
-    `
+    `,
   )
 
   return siteMetadata
