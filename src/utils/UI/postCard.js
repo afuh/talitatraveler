@@ -5,9 +5,19 @@ import styled, { css } from 'styled-components'
 
 import { PostImage as _PostImage } from './postImage'
 
+const Article = styled.article`
+  display: flex;
+  height: 100%;
+
+  .content {
+    position: relative;
+    flex: 1;
+  }
+`
+
 const PostImage = styled(_PostImage)`
   ${({ theme, height }) => css`
-    height: ${height}px;
+    height: ${height ? height + 'px' : '50vh'};
 
     ${theme.media.phone(css`
       height: 40vh;
@@ -35,15 +45,6 @@ const Wrapper = styled(Link)`
   `}
 `
 
-const Article = styled.article`
-  display: flex;
-
-  .content {
-    position: relative;
-    flex: 1;
-  }
-`
-
 const Overlay = styled.div`
   ${({ theme, small }) => css`
     position: absolute;
@@ -58,7 +59,7 @@ const Overlay = styled.div`
     justify-content: center;
     flex-direction: column;
 
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.35);
     color: ${theme.white};
 
     h2,
@@ -120,5 +121,4 @@ PostCard.propTypes = {
 
 PostCard.defaultProps = {
   small: false,
-  height: 300,
 }

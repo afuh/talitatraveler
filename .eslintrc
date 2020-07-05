@@ -1,5 +1,5 @@
 {
-  "extends": ["afuh", "plugin:prettier/recommended"],
+  "extends": ["afuh/react", "plugin:prettier/recommended"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error"

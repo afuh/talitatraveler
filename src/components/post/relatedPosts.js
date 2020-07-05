@@ -24,7 +24,10 @@ const RelatedPosts = ({ post, related }) => {
     <Wrapper>
       <h3>Posts relacionados</h3>
       <div className="posts">
-        {suggestions.map((post, i) => i < 3 && <PostCard small height={240} gutter={10} key={post.slug} post={post} />)}
+        {suggestions.map(
+          (suggestedPost, i) =>
+            i < 3 && <PostCard small height={240} gutter={10} key={suggestedPost.slug} post={suggestedPost} />,
+        )}
       </div>
     </Wrapper>
   )
