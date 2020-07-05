@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Search from './search'
 import { CategoryList, Container as _Container, Divider } from '../../utils/UI'
+import Search from './search'
 
 const Wrapper = styled.div`
   display: flex;

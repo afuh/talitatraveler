@@ -4,10 +4,10 @@ import styled from 'styled-components'
 import { Envelope } from '../../../../utils/UI/icons'
 import { Form, Input, Submit, Fieldset } from '../../../../utils/UI/'
 
+import { useMailChimp } from '../../../../utils/hooks'
 import DisplayMessage from './displayMessage'
 import Header from './header'
 import LoadingOverlay from './loadingOverlay'
-import { useMailChimp } from '../../../../utils/hooks'
 
 const Wrapper = styled.div`
   position: relative;

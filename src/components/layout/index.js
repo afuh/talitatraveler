@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import Header from './header'
-import Footer from './footer'
 import SEO from '../../utils/seo'
 import { GlobalStyles } from '../../utils/style'
 import { useSiteMeta } from '../../utils/hooks'
+import Footer from './footer'
+import Header from './header'
 
 const PageWrapper = styled.div`
   min-height: 100vh;
