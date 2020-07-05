@@ -19,7 +19,7 @@ export default HomePage
 
 export const query = graphql`
   query HOME_PAGE_QUERY {
-    posts: allContentfulPost(sort: { fields: date, order: DESC }, limit: 9) {
+    posts: allContentfulPost(sort: { fields: date, order: DESC }, limit: 6) {
       edges {
         node {
           ...PostCard
