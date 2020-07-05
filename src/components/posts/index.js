@@ -12,11 +12,11 @@ const Posts = ({ data: { posts } }) => (
     <PostsGrid posts={edgesToNode(posts.edges)} />
     <Pagination
       onChange={(page) => navigate(`/posts/${page}`)}
-      showSizeChanger={false}
       current={posts.pageInfo.currentPage}
       total={posts.totalCount}
       defaultPageSize={posts.pageInfo.perPage}
-      showLessItems
+      showPrevNextJumpers={false}
+      showSizeChanger={false}
     />
   </>
 )

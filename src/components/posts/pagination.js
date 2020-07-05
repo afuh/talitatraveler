@@ -71,14 +71,6 @@ const SPagination = styled(_Pagination)`
           color: ${theme.white};
         }
       }
-
-      &-jump-prev,
-      &-jump-next {
-        .anticon,
-        .anticon:hover {
-          color: ${theme.mainColor};
-        }
-      }
     }
   `}
 `
