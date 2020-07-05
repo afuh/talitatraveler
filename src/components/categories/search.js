@@ -84,7 +84,7 @@ const Search = () => {
     <Wrapper>
       <Downshift
         itemToString={(post) => (post === null ? '' : post.title)}
-        onChange={({ slug }) => navigate(slug)}
+        onChange={({ slug }) => navigate('/' + slug)}
         scrollIntoView={(node) => {
           if (!node) return
 
