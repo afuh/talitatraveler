@@ -4,7 +4,7 @@ const slugify = require('@sindresorhus/slugify')
 const redirects = require('./config/redirects')
 
 exports.createPages = async ({ graphql, reporter, actions: { createPage, createRedirect } }) => {
-  const postsPerPage = 9
+  const postsPerPage = 6
   const allCategories = []
   const template = {
     post: path.resolve('src/templates/post.js'),
@@ -41,6 +41,7 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage, createR
   `)
 
   Array.from({ length: Math.ceil(data.posts.totalCount / postsPerPage) }).forEach((_, i) => {
+    // Create pagination
     createPage({
       path: `/posts/${i + 1}`,
       component: template.posts,
