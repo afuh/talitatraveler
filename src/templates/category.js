@@ -24,7 +24,7 @@ export default CategoryTemplate
 
 export const pageQuery = graphql`
   query CATEGORY_TEMPLATE_QUERY($category: [String!]) {
-    posts: allContentfulPost(filter: { categories: { in: $category } }) {
+    posts: allContentfulPost(filter: { categories: { in: $category } }, sort: { fields: date, order: DESC }) {
       edges {
         node {
           ...PostCard
