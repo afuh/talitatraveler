@@ -61,7 +61,7 @@ const Footer = styled.footer`
 const Post = ({ post, relatedPosts }) => {
   return (
     <Wrapper>
-      <PostImage image={post.headerImage} placeholderHeight="40vh" />
+      <PostImage image={post.headerImage} />
       <div className="post-wrapper">
         <Container>
           <Header post={post} />

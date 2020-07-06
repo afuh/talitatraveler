@@ -8,6 +8,7 @@ const Placeholder = styled.div`
     background: ${theme.gray};
     height: ${height};
     overflow: hidden;
+    border: 1px solid ${theme.lightGray};
   `};
 `
 
@@ -29,4 +30,8 @@ PostImage.propTypes = {
     fluid: PropTypes.object,
     description: PropTypes.string,
   }),
+}
+
+PostImage.defaultProps = {
+  placeholderHeight: '70vh',
 }

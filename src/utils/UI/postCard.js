@@ -106,7 +106,7 @@ export const PostCard = ({ post, small, gutter, height }) => (
           <h2>{post.title}</h2>
           <h3>{post.subTitle}</h3>
         </Overlay>
-        <PostImage image={post.headerImage} height={height} placeholderHeight={height + 'px'} />
+        <PostImage image={post.headerImage} height={height} placeholderHeight={small ? '300px' : '50vh'} />
       </div>
     </Article>
   </Wrapper>
