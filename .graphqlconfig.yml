@@ -1,3 +1,0 @@
-extensions:
-  endpoints:
-    gatsby: "http://localhost:8000/___graphql"
