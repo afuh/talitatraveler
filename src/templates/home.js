@@ -3,22 +3,22 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-import Posts from '../components/posts'
+import Home from '../components/home'
 
-const PaginatedPosts = ({ data }) => (
-  <Layout>
-    <Posts data={data} />
+const HomePage = ({ data }) => (
+  <Layout withImage>
+    <Home data={data} />
   </Layout>
 )
 
-PaginatedPosts.propTypes = {
+HomePage.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-export default PaginatedPosts
+export default HomePage
 
 export const query = graphql`
-  query PAGINATED_POSTS($skip: Int!, $limit: Int!) {
+  query HOME_PAGE_QUERY($skip: Int!, $limit: Int!) {
     posts: allContentfulPost(sort: { fields: date, order: DESC }, limit: $limit, skip: $skip) {
       totalCount
       pageInfo {

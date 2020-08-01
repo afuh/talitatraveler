@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: ${theme.spacing._40} 0;
   `}
 `
