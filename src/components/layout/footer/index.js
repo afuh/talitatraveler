@@ -75,7 +75,7 @@ const ListLink = ({ path, name, icon }) => (
     {icon ? (
       <SocialIcon style={{ fontSize: '2rem' }} href={path} name={name} />
     ) : (
-      <Link className={'test'} style={{ color: '#fff' }} to={path} state={name !== 'Buscar' ? {} : { focus: true }}>
+      <Link style={{ color: '#fff' }} to={path} state={{ focus: name === 'Buscar' }}>
         {name}
       </Link>
     )}

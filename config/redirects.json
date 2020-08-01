@@ -1,4 +1,5 @@
 {
     "/contacto": "/sobre-mi#contacto",
-    "/posts": "/"
+    "/posts": "/",
+    "/posts/1": "/"
 }
