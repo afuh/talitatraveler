@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage, createR
   Array.from({ length: Math.ceil(data.posts.totalCount / postsPerPage) }).forEach((_, i) => {
     // Create pagination
     createPage({
-      path: i === 0 ? '/' : `/${i + 1}`,
+      path: i === 0 ? '/' : `/posts/${i + 1}`,
       component: template.home,
       context: {
         limit: postsPerPage,

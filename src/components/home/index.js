@@ -14,7 +14,7 @@ const Home = ({ data: { posts } }) => (
     <PostsGrid posts={edgesToNode(posts.edges)} />
     <Pagination
       onChange={(page) =>
-        navigate(page === 1 ? '/' : `/${page}`, {
+        navigate(page === 1 ? '/' : `/posts/${page}`, {
           state: {
             disableScrollUpdate: true,
           },
