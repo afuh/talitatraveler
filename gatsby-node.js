@@ -52,7 +52,9 @@ exports.createPages = async ({ graphql, reporter, actions: { createPage, createR
     })
   })
 
-  data.posts.edges.forEach(({ node: { slug, categories } }) => {
+  data.posts.edges.forEach(({ node: { slug, categories: _categories } }) => {
+    const categories = _categories ? _categories : ['development']
+
     // Create post page
     createPage({
       path: `/${slug}`,
