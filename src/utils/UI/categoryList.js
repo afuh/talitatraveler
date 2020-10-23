@@ -52,11 +52,12 @@ const Link = styled(GatsbyLink).attrs({
 
 export const CategoryList = ({ categories, style, big }) => (
   <Wrapper big={big}>
-    {categories.map((category) => (
-      <Link style={{ ...style }} key={category} to={`/categorias/${slugify(category)}`}>
-        {category}
-      </Link>
-    ))}
+    {categories &&
+      categories.map((category) => (
+        <Link style={{ ...style }} key={category} to={`/categorias/${slugify(category)}`}>
+          {category}
+        </Link>
+      ))}
   </Wrapper>
 )
 
