@@ -23,7 +23,7 @@ const Overlay = styled.div`
 
   h1 {
     color: ${({ theme }) => theme.white};
-    font-family: 'Noto Serif KR', serif;
+    font-family: 'Noto Serif', serif;
     font-weight: 900;
     font-size: 7rem;
     letter-spacing: 0.1em;
