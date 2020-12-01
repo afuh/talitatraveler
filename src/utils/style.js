@@ -1,7 +1,6 @@
 import styled, { css, createGlobalStyle } from 'styled-components'
 
 const defaultFont = [
-  'Raleway',
   '-apple-system',
   'BlinkMacSystemFont',
   '"Segoe UI"',
@@ -76,9 +75,8 @@ export const GlobalStyles = createGlobalStyle`
     p,
     li,
     figcaption {
-      font-family: 'Noto Serif KR', serif;
+      font-family: 'Noto Serif', serif;
       font-size: ${theme.spacing._16};
-      font-weight: 500;
       line-height: 1.5;
     }
 

@@ -132,18 +132,11 @@ const config = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-styled-components',
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: `gatsby-plugin-web-font-loader`,
       options: {
-        fonts: [
-          {
-            family: 'Noto Serif KR',
-            variants: ['500', '700', '900'],
-          },
-          {
-            family: 'Raleway',
-            variants: ['500', '700', '800', '900'],
-          },
-        ],
+        google: {
+          families: ['Noto Serif:400,500,700,900'],
+        },
       },
     },
     {
