@@ -54,14 +54,6 @@ const prodPlugins = [
     },
   },
   {
-    resolve: `gatsby-plugin-google-analytics`,
-    options: {
-      trackingId: process.env.GA,
-      anonymize: true,
-      respectDNT: true,
-    },
-  },
-  {
     resolve: 'gatsby-plugin-mailchimp',
     options: {
       endpoint: process.env.MAIL,
@@ -117,7 +109,6 @@ const prodPlugins = [
     },
   },
   'gatsby-plugin-offline',
-  'gatsby-plugin-netlify-cache',
   'gatsby-plugin-netlify',
 ]
 
