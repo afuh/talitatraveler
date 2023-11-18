@@ -108,7 +108,6 @@ const prodPlugins = [
       ],
     },
   },
-  'gatsby-plugin-offline',
   'gatsby-plugin-netlify',
 ]
 
