@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   .posts {
     display: flex;
     justify-content: space-between;
+    gap: 8px;
 
     ${({ theme }) =>
       theme.media.mobile(css`
@@ -25,8 +26,7 @@ const RelatedPosts = ({ post, related }) => {
       <h3>Posts relacionados</h3>
       <div className="posts">
         {suggestions.map(
-          (suggestedPost, i) =>
-            i < 3 && <PostCard small height={240} gutter={10} key={suggestedPost.slug} post={suggestedPost} />,
+          (suggestedPost, i) => i < 3 && <PostCard small height={240} key={suggestedPost.slug} post={suggestedPost} />,
         )}
       </div>
     </Wrapper>

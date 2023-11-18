@@ -77,7 +77,8 @@ export const GlobalStyles = createGlobalStyle`
     figcaption {
       font-family: 'Noto Serif', serif;
       font-size: ${theme.spacing._16};
-      line-height: 1.5;
+      line-height: 1.8;
+      color: #000;
     }
 
     img {
@@ -116,12 +117,7 @@ export const PostStyles = styled.section`
 
     p,
     li {
-      font-size: ${theme.spacing._16};
-      text-align: justify;
-
-      ${theme.media.mobile(css`
-        font-size: ${theme.spacing.rem(18)};
-      `)}
+      font-size: ${theme.spacing.rem(18)};
 
       ${theme.media.phone(css`
         text-align: left;
@@ -138,7 +134,6 @@ export const PostStyles = styled.section`
     h4,
     h5,
     h6 {
-      text-align: justify;
       font-weight: 800;
       margin: 3rem 0;
 

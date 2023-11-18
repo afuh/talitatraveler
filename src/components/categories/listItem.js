@@ -14,14 +14,13 @@ const Wrapper = styled.article`
     filter: grayscale(100%);
     display: flex;
     padding: 20px;
+    cursor: pointer;
 
-    ${
-      highlighted &&
-      css`
-        filter: grayscale(0);
-        background: ${theme.lightGray};
-      `
-    };
+    ${highlighted &&
+    css`
+      filter: grayscale(0);
+      background: ${theme.lightGray};
+    `};
 
     .text {
       flex: 5;

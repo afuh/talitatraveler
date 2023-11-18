@@ -1,5 +1,0 @@
-apps:
-  name: talita
-  script: npm
-  args: run dev:clean
-  cron_restart: 0 2 * * *

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 
-import { Container as _Container, SocialLinks, CategoryList, PostImage } from '../../utils/UI'
+import { Container as _Container, CategoryList, PostImage } from '../../utils/UI'
 import { PostStyles } from '../../utils/style'
 
 import Header from './header'
@@ -33,10 +33,10 @@ const Container = styled(_Container).attrs({
   as: 'article',
 })`
   ${({ theme }) => css`
-    width: 1100px;
+    width: 800px;
     background: ${theme.white};
     transform: translateY(-150px);
-    padding-top: ${theme.spacing.mobile};%;
+    padding-top: 48px;
     margin: 0;
 
     ${theme.media.phone(css`
@@ -47,17 +47,6 @@ const Container = styled(_Container).attrs({
   `}
 `
 
-const Footer = styled.footer`
-  margin-bottom: 80px;
-
-  .social-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-  }
-`
-
 const Post = ({ post, relatedPosts }) => {
   return (
     <Wrapper>
@@ -66,13 +55,10 @@ const Post = ({ post, relatedPosts }) => {
         <Container>
           <Header post={post} />
           <PostStyles whiteSpace={post.whiteSpace} dangerouslySetInnerHTML={{ __html: post.content.md.html }} />
-          <Footer>
-            <div className="social-wrapper">
-              <CategoryList categories={post.categories} />
-              <SocialLinks post={post} />
-            </div>
+          <footer>
+            <CategoryList categories={post.categories} />
             <RelatedPosts related={relatedPosts} post={post} />
-          </Footer>
+          </footer>
         </Container>
       </div>
     </Wrapper>

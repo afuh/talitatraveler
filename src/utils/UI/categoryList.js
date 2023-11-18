@@ -8,9 +8,11 @@ const Wrapper = styled.section`
   ${({ theme, big }) => css`
     display: flex;
     flex-wrap: wrap;
+    margin: 16px 0 48px 0;
 
     ${big &&
     css`
+      margin: 0;
       a.category {
         font-size: 2rem;
         margin: 0 8px 8px 0;
@@ -23,7 +25,7 @@ const Wrapper = styled.section`
           font-size: 1.5rem;
         `)}
       }
-    `}
+    `};
   `}
 `
 
@@ -45,8 +47,6 @@ const Link = styled(GatsbyLink).attrs({
       box-shadow: ${theme.shadow};
       background: ${theme.mainColor};
     }
-
-    transition: ${theme.transition};
   `}
 `
 
