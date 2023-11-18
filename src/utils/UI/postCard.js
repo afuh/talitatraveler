@@ -26,23 +26,8 @@ const PostImage = styled(_PostImage)`
 `
 
 const Wrapper = styled(Link)`
-  ${({ theme, gutter }) => css`
-    flex: 1;
-    flex-basis: 33%;
-
-    ${gutter &&
-    css`
-      margin: 0 ${gutter / 2}px;
-
-      ${theme.media.mobile(css`
-        margin: ${gutter / 2}px 0;
-      `)}
-    `}
-
-    ${theme.media.mobile(css`
-      flex-basis: 50%;
-    `)}
-  `}
+  flex: 1;
+  flex-basis: 33%;
 `
 
 const Overlay = styled.div`
@@ -98,8 +83,8 @@ const Overlay = styled.div`
   `}
 `
 
-export const PostCard = ({ post, small, gutter, height }) => (
-  <Wrapper to={'/' + post.slug} gutter={gutter}>
+export const PostCard = ({ post, small, height }) => (
+  <Wrapper to={'/' + post.slug}>
     <Article>
       <div className="content">
         <Overlay small={small}>
@@ -115,7 +100,6 @@ export const PostCard = ({ post, small, gutter, height }) => (
 PostCard.propTypes = {
   post: PropTypes.object.isRequired,
   small: PropTypes.bool,
-  gutter: PropTypes.number,
   height: PropTypes.number,
 }
 

@@ -10,7 +10,7 @@ const Wrapper = styled.header`
     padding-bottom: 40px;
 
     h1 {
-      ${theme.fontSize(6)};
+      ${theme.fontSize(5)};
 
       color: ${theme.black};
       margin: 1.5rem 0;

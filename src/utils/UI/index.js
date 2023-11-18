@@ -1,7 +1,6 @@
 export { Container } from './container'
 export { PostsGrid } from './postsGrid'
 export { PostCard } from './postCard'
-export { SocialLinks } from './socialLinks'
 export { CategoryList } from './categoryList'
 export { Time } from './time'
 export { Divider } from './divider'
