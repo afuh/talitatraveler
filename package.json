@@ -2,9 +2,6 @@
   "name": "talitatraveler",
   "description": "Talita traveler",
   "version": "1.0.0",
-  "engines": {
-    "node": ">= 10.13.0"
-  },
   "dependencies": {
     "@sindresorhus/slugify": "^1.1.0",
     "antd": "^4.9.1",
