@@ -1,4 +1,4 @@
-const siteUrl = 'https://talitatraveler.com' // no trailing slash
+const siteUrl = 'https://talitatraveler.netlify.app' // no trailing slash
 
 const mainNav = [
   { name: 'Inicio', path: '/' },
@@ -14,7 +14,7 @@ module.exports = {
   icon: 'src/assets/avatar-512x512.png',
   themeColor: '#008080',
   backgroundColor: '#fff',
-  email: 'talita@talitatraveler.com',
+  email: 'playset-dean-wok@duck.com',
   external: [
     { name: 'Facebook', url: 'https://www.facebook.com/talitraveler' },
     { name: 'Twitter', url: 'https://twitter.com/talita_traveler' },
